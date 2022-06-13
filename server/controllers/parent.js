@@ -1,6 +1,8 @@
 //require the parent/child schema for registration
 const { Parent, Child } = require("../models/parent");
 
+/******* this is a branching test *******/
+
 //third-party models
 let bcrypt = require("bcryptjs");
 let jwt = require("jsonwebtoken");
