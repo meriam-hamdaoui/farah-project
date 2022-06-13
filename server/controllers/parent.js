@@ -10,7 +10,7 @@ let jwt = require("jsonwebtoken");
 /** registration conroller */
 exports.signup = async (req, res) => {
   //distracturing
-  const { email, password } = req.body;
+  const { email, password, passwordConfirm } = req.body;
   try {
     /*******verify if the email already exists******/
     const emailExists = await Parent.findOne({ email });
@@ -32,7 +32,11 @@ exports.signup = async (req, res) => {
 
     //2.if true we proceed
 
-    /**** hashing the password before saving the parent (npm i bcryptjs) */
+    //before hashing the password we should match them
+    if (password !== passwordConfirm)
+      return res.status(406).send("passords didn't match");
+
+    /**** hashing the passwords before saving the parent (npm i bcryptjs) */
     //generate a salt round for our hash
     const saltRound = 10;
     const salt = bcrypt.genSaltSync(saltRound);
@@ -40,6 +44,7 @@ exports.signup = async (req, res) => {
     const hash = bcrypt.hashSync(password, salt);
     //we add the hash to the user password
     newParent.password = hash;
+    newParent.passwordConfirm = hash;
 
     /********* associate a token to our new parent( npm i jsonwebtoken)*/
 

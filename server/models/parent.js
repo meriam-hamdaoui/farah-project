@@ -1,37 +1,19 @@
 const { Schema, model } = require("mongoose");
 
 const childSchema = new Schema({
-  childFName: {
-    type: String,
-    required: [true, "enter your child first name"],
-  },
+  childFName: { type: String },
   childLName: {
     type: String,
     required: [true, "enter your child last name"],
   },
-  birthDate: {
-    type: Date,
-    required: [true, "enter your child birth date"],
-  },
+  birthDate: { type: Date },
   disorder: {
-    disType: {
-      type: String,
-      required: [true, "please select the disorder type of your child"],
-    },
-    disEstablishment: {
-      type: String,
-      required: [true, "enter the establishment diagnositic"],
-    },
-    disDate: {
-      type: Date,
-      required: [true, "select the diagnostic Date"],
-    },
+    disType: { type: String },
+    disEstablishment: { type: String },
+    disDate: { type: Date },
   },
   integration: {
-    integrated: {
-      type: Boolean,
-      required: [true, "choose a field"],
-    },
+    integrated: { type: Boolean },
     integEstablishment: {
       type: String,
       required: () => {
@@ -50,63 +32,27 @@ const parentSchema = new Schema({
     type: Number,
     default: 2,
   },
-  firstName: {
-    type: String,
-    required: [true, "enter your first name"],
-  },
-  lastName: {
-    type: String,
-    required: [true, "enter your last name"],
-  },
+  firstName: { type: String },
+  lastName: { type: String },
   email: {
     type: String,
-    required: [true, "this field can't be empty"],
     unique: true,
-    lowercase: true,
   },
-  password: {
-    type: String,
-    required: [true, "this field can't be empty"],
-  },
+  password: { type: String },
+  passwordConfirm: { type: String },
   phone: {
     type: Number,
-    min: [8, "enter a valid phone number please"],
-    required: [true, "enter your phone number please"],
   },
   address: {
-    street: {
-      type: String,
-      required: [true, "this field is required"],
-    },
-    city: {
-      type: String,
-      required: [true, "this field is required"],
-    },
-    state: {
-      type: String,
-      required: [true, "this field is required"],
-    },
-    postal: {
-      type: Number,
-      required: [true, "this field is required"],
-    },
+    street: { type: String },
+    city: { type: String },
+    state: { type: String },
+    postal: { type: Number },
   },
-  job: {
-    type: String,
-    required: [true, "insert your job please"],
-  },
-  familyMembers: {
-    type: Number,
-    required: [true, "insert your information please"],
-  },
-  child: {
-    type: [childSchema],
-    required: [true, "you can't subscribe without children"],
-  },
-  demandes: {
-    type: String,
-    required: [true, "insert your demandes please"],
-  },
+  job: { type: String },
+  familyMembers: { type: Number },
+  child: { type: [childSchema] },
+  demandes: { type: String },
   registerDate: {
     type: Date,
     default: Date.now(),
