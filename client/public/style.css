@@ -1,0 +1,72 @@
+/*side bar styling*/
+.sideBar {
+  /* border: 1px solid red; */
+  height: 100%; /* 100% Full-height */
+  width: 5%; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  /*background-color: #2b6789; /*  659dbd Blue*/
+  background-color: #1480a3;
+}
+.sideBar:hover {
+  width: 10%;
+}
+span {
+  margin-left: 5%;
+}
+.asidebar-nav {
+  margin-top: 50%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.asidebar-nav {
+  margin-top: 50%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.asidebar-top {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.asidebar-top a {
+  /* border: 1px solid red; */
+  text-decoration: none;
+  color: #e2ac7c;
+  margin-bottom: 50%;
+}
+.asidebar-bottom {
+  /* border: 1px solid red; */
+  position: relative;
+  bottom: 0;
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.asidebar-bottom a {
+  text-decoration: none;
+  color: #e2ac7c;
+}
+.sideBar a:hover {
+  color: rgb(247, 167, 21);
+}
+
+/* navbar styling */
+.navBar {
+  /* border: 1px solid black; */
+  background-color: white;
+  box-shadow: 0 0 15px rgb(247, 167, 21);
+}
+.navBar a {
+  text-decoration: none;
+  color: #1480a3;
+}
