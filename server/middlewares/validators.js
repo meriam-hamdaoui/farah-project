@@ -48,24 +48,6 @@ exports.parentValidator = [
   //demandes
   body("demandes").notEmpty().withMessage("specify your demandes please"),
 ];
-
-exports.childValidator = (req, res, next) => {
-  const children = req.body.child;
-  const err = children.map((child) => {
-    const { childFName, childLName, birthDate, disorder, integration } = child;
-    check(childFName).notEmpty();
-    check(childLName).notEmpty();
-    check(birthDate).notEmpty().isDate();
-    check(disorder.disType).notEmpty();
-    check(disorder.disEstablishment).notEmpty();
-    check(disorder.disDate).notEmpty().isDate();
-    check(integration.integrated).isBoolean();
-  });
-  if (!err.isEmpty) {
-    return res.status(400).json({ msg: "child validation errors" });
-  }
-  next();
-};
 exports.validation = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

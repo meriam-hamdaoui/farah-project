@@ -1,19 +1,37 @@
 const { Schema, model } = require("mongoose");
 
 const childSchema = new Schema({
-  childFName: { type: String },
+  childFName: {
+    type: String,
+    required: [true, "enter your child first name"],
+  },
   childLName: {
     type: String,
     required: [true, "enter your child last name"],
   },
-  birthDate: { type: Date },
+  birthDate: {
+    type: Date,
+    required: [true, "your child birth date??"],
+  },
   disorder: {
-    disType: { type: String },
-    disEstablishment: { type: String },
-    disDate: { type: Date },
+    disType: {
+      type: String,
+      required: [true, "enter your child disorder type"],
+    },
+    disEstablishment: {
+      type: String,
+      required: [true, "enter diagnostic establishment"],
+    },
+    disDate: {
+      type: Date,
+      required: [true, "when did your child has diagnostics"],
+    },
   },
   integration: {
-    integrated: { type: Boolean },
+    integrated: {
+      type: Boolean,
+      required: [true, "choose a field"],
+    },
     integEstablishment: {
       type: String,
       required: () => {
