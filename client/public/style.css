@@ -70,3 +70,11 @@ span {
   text-decoration: none;
   color: #1480a3;
 }
+/* signin form */
+/* .logs {
+  border: 1px solid red;
+} */
+.field-wrap {
+  position: relative;
+  margin-bottom: 40px;
+}

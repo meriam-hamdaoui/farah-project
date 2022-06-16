@@ -3,11 +3,15 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const Logs = () => {
   return (
-    <div className="signIn">
-      {/* <nav className="links">
-        <NavLink to="signin">A Member </NavLink>
-        <NavLink to="signup">Not a Member </NavLink>
-      </nav>*/}
+    //  d-flex align-items-center
+    <div
+      style={{ height: "100px" }}
+      className="logs h-100 d-flex flex-column align-content-center justify-content-center"
+    >
+      <nav className="links">
+        <NavLink to="/join-us/sign-in">Login </NavLink>
+        <NavLink to="/join-us/sign-up">Register </NavLink>
+      </nav>
       <div>
         <Outlet />
       </div>

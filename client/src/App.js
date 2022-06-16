@@ -6,6 +6,7 @@ import NavBar from "./components/navigations/NavBar";
 import SideBar from "./components/navigations/SideBar";
 import Logs from "./components/joinUs/Logs";
 import Signin from "./components/joinUs/Signin";
+import Signup from "./components/joinUs/Signup";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import Services from "./components/pages/Services";
@@ -28,14 +29,17 @@ function App() {
       <div className="main" style={{ marginLeft: show ? "10%" : "5%" }}>
         <NavBar />
         <Routes>
+          {/* pages routes */}
           <Route path="/" element={<Home />} />
           <Route path="about-us" element={<About />} />
           <Route path="services" element={<Services />} />
           <Route path="events" element={<Events />} />
           <Route path="contacts" element={<Contacts />} />
-
+          {/* forms routes */}
           <Route path="join-us" element={<Logs />}>
             <Route index element={<Signin />} />
+            <Route path="sign-in" element={<Signin />} />
+            <Route path="sign-up" element={<Signup />} />
           </Route>
         </Routes>
       </div>
