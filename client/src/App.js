@@ -12,10 +12,39 @@ import About from "./components/pages/About";
 import Services from "./components/pages/Services";
 import Events from "./components/pages/Events";
 import Contacts from "./components/pages/Contacts";
+import Parent from "./components/forms/Parent";
+import Consultant from "./components/forms/Consultant";
+import CheckUser from "./components/joinUs/CheckUser";
 
 function App() {
   const [show, setShow] = useState(false);
+  const [user, setUser] = useState({
+    parent: true,
+    consultant: false,
+  });
 
+  const onCheck = (e) => {
+    const { name } = e.target;
+    if (name === "parent") {
+      setUser({
+        parent: true,
+        consultant: false,
+      });
+      // console.log(user.parent, user.consultant);
+    }
+    if (name === "consultant") {
+      setUser({
+        parent: false,
+        consultant: true,
+      });
+      // console.log(user.parent, user.consultant);
+    }
+  };
+
+  const handleChange = (e, prevValues) => {
+    const { name, value } = e.target;
+    return { ...prevValues, [name]: value };
+  };
   return (
     <div className="App">
       <div
@@ -39,8 +68,25 @@ function App() {
           <Route path="join-us" element={<Logs />}>
             <Route index element={<Signin />} />
             <Route path="sign-in" element={<Signin />} />
-            <Route path="sign-up" element={<Signup />} />
+            <Route
+              path="sign-up"
+              element={
+                <Signup
+                  user={user}
+                  onCheck={onCheck}
+                  handleChange={handleChange}
+                >
+                  <CheckUser
+                    user={user}
+                    onCheck={onCheck}
+                    handleChange={handleChange}
+                  />
+                </Signup>
+              }
+            />
           </Route>
+          <Route path="register/parent" element={<Parent />} />
+          <Route path="register/consultant" element={<Consultant />} />
         </Routes>
       </div>
     </div>

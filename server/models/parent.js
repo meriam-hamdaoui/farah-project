@@ -65,7 +65,7 @@ const parentSchema = new Schema({
     street: { type: String },
     city: { type: String },
     state: { type: String },
-    postal: { type: Number },
+    zipCode: { type: Number },
   },
   job: { type: String },
   familyMembers: { type: Number },

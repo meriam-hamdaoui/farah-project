@@ -1,4 +1,4 @@
-const { check, body, validationResult } = require("express-validator");
+const { body, validationResult } = require("express-validator");
 
 exports.parentValidator = [
   //name validation
@@ -15,7 +15,7 @@ exports.parentValidator = [
     .withMessage("your email can not have capital letters"),
   //password
   body("password", "your password should have 8 acracters as minimum").isLength(
-    { min: 8 }
+    { min: 8, max: 12 }
   ),
   //phone validation
   body("phone").notEmpty().withMessage("phone number is required"),
@@ -28,10 +28,8 @@ exports.parentValidator = [
   body("address.street").notEmpty().withMessage("enter your street please"),
   body("address.city").notEmpty().withMessage("enter your city  please"),
   body("address.state").notEmpty().withMessage("enter your state  please"),
-  body("address.postal")
-    .notEmpty()
-    .withMessage("enter your postal code please"),
-  body("address.postal").isNumeric().withMessage("the postal code is a number"),
+  body("address.zipCode").notEmpty().withMessage("enter your zip code please"),
+  body("address.zipCode").isNumeric().withMessage("the zip code is a number"),
   //job
   body("job").notEmpty().withMessage("enter your current job please"),
   //family member
