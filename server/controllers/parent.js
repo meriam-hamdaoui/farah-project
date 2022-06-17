@@ -1,5 +1,7 @@
 //require the parent/child schema for registration
-const { Parent, Child } = require("../models/parent");
+const Parent = require("../models/parent");
+const { Child } = require("../models/child");
+const { User } = require("../models/user");
 
 //third-party models
 let bcrypt = require("bcryptjs");
@@ -8,13 +10,18 @@ let jwt = require("jsonwebtoken");
 /** registration conroller */
 exports.signup = async (req, res) => {
   //distracturing
-  const { email, password, passwordConfirm } = req.body;
+  const { email, password, passwordConfirm } = req.body.user;
+  // console.log("email =>", email);
   try {
     /*******verify if the email already exists******/
-    const emailExists = await Parent.findOne({ email });
+    const userEmail = await Parent.find({ "user.email": email });
+    // console.log("userEmail =>", userEmail);
+
     //1.email exists
-    if (emailExists) return res.status(403).send("this email already exists");
-    //2.email doesn't exist
+    if (userEmail.length !== 0)
+      return res.status(403).send("this email already exists");
+
+    //2.email doesn't exist    ;
     const newParent = await new Parent(req.body);
     // console.log("newParent => " + newParent);
 
@@ -26,7 +33,7 @@ exports.signup = async (req, res) => {
       (name, index) => duplicatedChild.indexOf(name) !== index
     );
     //1.false errror message
-    if (duplacted) return res.status(409).send("duplacted child");
+    if (duplacted) return res.status(409).send("duplacted child name");
 
     //2.if true we proceed
 
@@ -41,18 +48,18 @@ exports.signup = async (req, res) => {
     //hash the password
     const hash = bcrypt.hashSync(password, salt);
     //we add the hash to the user password
-    newParent.password = hash;
-    newParent.passwordConfirm = hash;
+    newParent.user.password = hash;
+    newParent.user.passwordConfirm = hash;
 
     /********* associate a token to our new parent( npm i jsonwebtoken)*/
 
-    const payload = { id: newParent._id };
-    const token = jwt.sign(payload, process.env.secretOrKey);
+    const payloadParent = { id: newParent.user._id };
+    const token = jwt.sign(payloadParent, process.env.secretOrKey);
 
     if (newParent && !duplacted) {
       (await newParent.save()) && Child.insertMany(children);
       return res.status(200).send({
-        msg: `welcome ${newParent.firstName} ${newParent.lastName}`,
+        msg: `welcome ${newParent.user.firstName} ${newParent.user.lastName}`,
         newParent,
         token,
       });
