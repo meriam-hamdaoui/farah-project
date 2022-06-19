@@ -51,6 +51,9 @@ exports.signup = async (req, res) => {
     newParent.user.password = hash;
     newParent.user.passwordConfirm = hash;
 
+    //give the parent a role
+    newParent.user.role = 2;
+
     /********* associate a token to our new parent( npm i jsonwebtoken)*/
 
     const payloadParent = { id: newParent.user._id };
