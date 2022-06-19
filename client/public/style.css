@@ -78,3 +78,7 @@ span {
   position: relative;
   margin-bottom: 40px;
 }
+
+small {
+  color: red;
+}

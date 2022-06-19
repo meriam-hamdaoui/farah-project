@@ -9,6 +9,9 @@ import About from "./components/pages/About";
 import Services from "./components/pages/Services";
 import Events from "./components/pages/Events";
 import Contacts from "./components/pages/Contacts";
+import JoinUs from "./components/joinUs/JoinUs";
+import Signin from "./components/joinUs/Signin";
+import Signup from "./components/joinUs/Signup";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -33,6 +36,12 @@ function App() {
           <Route path="services" element={<Services />} />
           <Route path="events" element={<Events />} />
           <Route path="contacts" element={<Contacts />} />
+          {/* forms routes */}
+          <Route path="join-us" element={<JoinUs />}>
+            <Route index element={<Signin />} />
+            <Route path="sign-in" element={<Signin />} />
+            <Route path="sign-up" element={<Signup />} />
+          </Route>
         </Routes>
       </div>
     </div>

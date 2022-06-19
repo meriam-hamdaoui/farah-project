@@ -4,28 +4,26 @@ import { Nav, Navbar, Container } from "react-bootstrap";
 
 const NavBar = () => {
   return (
-    <div className="navBar">
-      <Navbar>
-        <Container>
-          <Navbar.Brand>
-            <img
-              alt=""
-              src="../logo.png"
-              width="40"
-              height="35"
-              className="d-inline-block align-top"
-            />
-            Farah Association for Autistic Children and Special Needs
-          </Navbar.Brand>
-          <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
-            <Nav as={Link} to="/join-us">
-              Join Us
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </div>
+    <Navbar className="navBar">
+      <Container>
+        <Navbar.Brand>
+          <img
+            alt=""
+            src="../logo.png"
+            width="40"
+            height="35"
+            className="d-inline-block align-top"
+          />
+          Farah Association for Autistic Children and Special Needs
+        </Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end">
+          <Nav as={Link} to="/join-us">
+            Join Us
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
