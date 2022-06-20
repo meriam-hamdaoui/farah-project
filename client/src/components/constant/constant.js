@@ -7,10 +7,11 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 export const SX_Styling = {
   backgroundImage: "url(/logo.png)",
   backgroundRepeat: "no-repeat",
-  backgroundColor: (t) =>
-    t.palette.mode === "light" ? t.palette.grey[50] : t.palette.grey[900],
-  backgroundSize: "cover",
+  backgroundColor: "white",
+  //(t) => t.palette.mode === "light" ? t.palette.grey[50] : t.palette.grey[900],
+  backgroundSize: "100%",
   backgroundPosition: "center",
+  width: "300vh",
 };
 
 export const handleChange = (e, prevValue) => {
@@ -51,6 +52,8 @@ export const userInitialValues = {
     city: "",
     state: "",
   },
+  parent: true,
+  consultant: false,
 };
 
 export const stateOptions = [
