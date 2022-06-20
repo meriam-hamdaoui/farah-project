@@ -79,6 +79,8 @@ span {
   margin-bottom: 40px;
 }
 
-small {
-  color: red;
+.InputForm[type="number"]::-webkit-inner-spin-button,
+.InputForm[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

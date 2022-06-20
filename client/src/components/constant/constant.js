@@ -15,6 +15,7 @@ export const SX_Styling = {
 };
 
 export const handleChange = (e, prevValue) => {
+  // console.log(prevValue);
   const { name, value } = e.target;
   return {
     ...prevValue,
@@ -84,8 +85,8 @@ export const stateOptions = [
 ];
 
 export const signUpValidation = yup.object().shape({
-  fName: yup.string().required("enter your first Name please"),
-  lName: yup.string().required("enter your last Name please"),
+  firstName: yup.string().required("enter your first Name please"),
+  lastName: yup.string().required("enter your last Name please"),
   email: yup
     .string()
     .email("invalid email")
@@ -98,15 +99,15 @@ export const signUpValidation = yup.object().shape({
     .max(12, "your password must have 12 caracteres as maximum"),
   confirmPassword: yup
     .string()
+    .required("confirm your password")
     .oneOf([yup.ref("password"), null], "password don't mutch"),
-
   phone: yup
     .string()
     .matches(phoneRegExp, "invalid phone number")
     .required("phone number is required"),
   address: yup.object().shape({
     street: yup.string().required("this field is required"),
-    zipCode: yup.string().required("this field is required"),
+    zipCode: yup.number().required("this field is required"),
     city: yup.string().required("this field is required"),
     state: yup.object().shape({
       id: yup.string().required("Please, select your resident state"),

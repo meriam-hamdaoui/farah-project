@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Select from "react-select";
+import FormikController from "../formikFields/FormikController";
 import {
   Button,
-  TextField,
   Typography,
   Grid,
   Box,
@@ -21,20 +21,17 @@ import {
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-
-import DangerousOutlinedIcon from "@mui/icons-material/DangerousOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import {
   stateOptions,
   SX_Styling,
-  handleChange,
   signUpValidation,
   handleSubmit,
   userInitialValues,
+  handleChange,
 } from "../constant/constant";
-import User from "../forms/User";
 
 const theme = createTheme();
 
@@ -66,61 +63,43 @@ const Signup = () => {
               <Formik
                 initialValues={userInitialValues}
                 validationSchema={signUpValidation}
+                onSubmit={handleSubmit}
+                handleChange={handleChange}
               >
-                {({ values }) => (
-                  <Form>
-                    <Grid container spacing={2}>
-                      <Grid item xs={12} sm={6}>
-                        <Field
-                          as={TextField}
+                {({ values, getFieldProps, setFieldValue }) => {
+                  return (
+                    <Form>
+                      <Grid container spacing={2}>
+                        <FormikController
+                          sm={6}
+                          control="input"
                           name="firstName"
-                          label="First Name"
-                          value={values.firstName}
-                          fullWidth
-                          variant="outlined"
-                          required
-                          autoComplete="off"
-                          placeholder="Mariem"
+                          label="first Name"
+                          {...getFieldProps("firstName")}
                         />
-                      </Grid>
 
-                      <Grid item xs={12} sm={6}>
-                        <Field
-                          as={TextField}
-                          label="Last Name"
+                        <FormikController
+                          sm={6}
+                          control="input"
                           name="lastName"
-                          fullWidth
-                          variant="outlined"
-                          required
-                          autoComplete="off"
-                          placeholder="Hamdaoui"
+                          label="last Name"
+                          {...getFieldProps("lastName")}
                         />
-                      </Grid>
 
-                      <Grid item xs={12}>
-                        <Field
-                          as={TextField}
-                          label="Email Address"
+                        <FormikController
+                          control="input"
                           name="email"
-                          fullWidth
-                          variant="outlined"
-                          required
-                          autoComplete="off"
-                          placeholder="mariem@gmail.com"
+                          label="email"
+                          {...getFieldProps("email")}
                         />
-                      </Grid>
 
-                      <Grid item xs={12} sm={6}>
-                        <Field
-                          as={TextField}
+                        <FormikController
+                          sm={6}
+                          control="input"
                           name="password"
                           label="Password"
                           type={showPassword ? "txt" : "password"}
-                          fullWidth
-                          variant="outlined"
-                          required
-                          autoComplete="off"
-                          placeholder="password"
+                          {...getFieldProps("password")}
                           InputProps={{
                             endAdornment: (
                               <InputAdornment position="end">
@@ -141,19 +120,14 @@ const Signup = () => {
                             ),
                           }}
                         />
-                      </Grid>
 
-                      <Grid item xs={12} sm={6}>
-                        <Field
-                          as={TextField}
+                        <FormikController
+                          sm={6}
+                          control="input"
                           name="confirmPassword"
-                          label="Confirm Password"
-                          fullWidth
+                          label="Confirm Password "
                           type={showConfirm ? "txt" : "password"}
-                          variant="outlined"
-                          required
-                          autoComplete="off"
-                          placeholder="confirm password"
+                          {...getFieldProps("confirmPassword")}
                           InputProps={{
                             endAdornment: (
                               <InputAdornment position="end">
@@ -164,7 +138,7 @@ const Signup = () => {
                                     setShowConfirm(showConfirm ? false : true)
                                   }
                                 >
-                                  {showConfirm ? (
+                                  {showPassword ? (
                                     <VisibilityOff />
                                   ) : (
                                     <Visibility />
@@ -174,117 +148,99 @@ const Signup = () => {
                             ),
                           }}
                         />
-                      </Grid>
 
-                      <Grid item xs={12}>
-                        <Field
-                          as={TextField}
-                          label="phone"
+                        <FormikController
+                          control="input"
+                          type="phone"
                           name="phone"
-                          fullWidth
-                          variant="outlined"
-                          required
-                          autoComplete="off"
-                          placeholder="(+xxx) xx-xxx-xxx"
+                          label="phone"
+                          {...getFieldProps("phone")}
                         />
-                      </Grid>
 
-                      <br />
-                      <FormLabel style={{ marginTop: "5%", marginLeft: "5%" }}>
-                        Address
-                      </FormLabel>
-                      <Grid item xs={12}>
-                        <Field
-                          as={TextField}
+                        <br />
+                        <FormLabel
+                          style={{ marginTop: "5%", marginLeft: "5%" }}
+                        >
+                          Address
+                        </FormLabel>
+
+                        <FormikController
+                          control="input"
                           name="address.street"
                           label="street"
-                          fullWidth
-                          variant="outlined"
-                          required
-                          autoComplete="off"
                           placeholder="street address"
+                          {...getFieldProps("address.street")}
                         />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <Field
-                          as={TextField}
+
+                        <FormikController
+                          sm={6}
+                          control="input"
                           name="address.city"
                           label="city"
-                          fullWidth
-                          variant="outlined"
-                          required
-                          autoComplete="off"
                           placeholder="city"
+                          {...getFieldProps("address.city")}
                         />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <Field
-                          as={TextField}
-                          name="address.zipCode"
-                          label="zip code"
-                          fullWidth
-                          variant="outlined"
-                          required
-                          autoComplete="off"
-                          placeholder="zip code"
-                        />
-                      </Grid>
 
-                      <Grid item xs={12} sm={6}>
-                        <Field
-                          as={Select}
+                        <FormikController
+                          sm={6}
+                          control="input"
+                          name="address.zipCode"
+                          label="zip Code"
+                          placeholder="zip Code "
+                          {...getFieldProps("address.zipCode")}
+                        />
+
+                        <FormikController
+                          control="select"
                           name="address.state"
-                          required
-                          fullWidth
-                          placeholder="select state ..."
                           options={stateOptions}
                         />
-                      </Grid>
 
-                      <Grid item xs={12}>
-                        <FormControl>
-                          <FormLabel id="demo-radio-buttons-group-label">
-                            I'm a
-                          </FormLabel>
-                          <RadioGroup
-                            aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue={values.parent}
-                            name="radio-buttons-group"
+                        <Grid item xs={12}>
+                          <FormControl>
+                            <FormLabel id="demo-radio-buttons-group-label">
+                              I'm a
+                            </FormLabel>
+                            <RadioGroup
+                              aria-labelledby="demo-radio-buttons-group-label"
+                              defaultValue={values.parent}
+                              name="radio-buttons-group"
+                            >
+                              <FormControlLabel
+                                value={values.parent}
+                                control={<Radio />}
+                                label="Parent"
+                              />
+                              <FormControlLabel
+                                value={values.consultant}
+                                control={<Radio />}
+                                label="Consultant"
+                              />
+                            </RadioGroup>
+                          </FormControl>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
                           >
-                            <FormControlLabel
-                              value={values.parent}
-                              control={<Radio />}
-                              label="Parent"
-                            />
-                            <FormControlLabel
-                              value={values.consultant}
-                              control={<Radio />}
-                              label="Consultant"
-                            />
-                          </RadioGroup>
-                        </FormControl>
+                            Continue
+                          </Button>
+                          <Button
+                            type="btn"
+                            fullWidth
+                            variant=""
+                            sx={{ mt: 3, mb: 2 }}
+                          >
+                            Cancel
+                          </Button>
+                        </Grid>
                       </Grid>
-                      <Grid item xs={12}>
-                        <Button
-                          type="submit"
-                          fullWidth
-                          variant="contained"
-                          sx={{ mt: 3, mb: 2 }}
-                        >
-                          Continue
-                        </Button>
-                        <Button
-                          type="btn"
-                          fullWidth
-                          variant=""
-                          sx={{ mt: 3, mb: 2 }}
-                        >
-                          Cancel
-                        </Button>
-                      </Grid>
-                    </Grid>
-                  </Form>
-                )}
+                    </Form>
+                  );
+                }}
               </Formik>
             </Box>
           </Box>
