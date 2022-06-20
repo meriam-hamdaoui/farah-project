@@ -19,7 +19,7 @@ import LockOpenIcon from "@mui/icons-material/LockOpen";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import DangerousOutlinedIcon from "@mui/icons-material/DangerousOutlined";
 import { Formik, Form, Field } from "formik";
 import {
   SX_Styling,
@@ -66,14 +66,7 @@ const Signin = () => {
                 onSubmit={handleSubmit}
               >
                 {(props) => {
-                  const {
-                    values,
-                    handleSubmit,
-                    handleChange,
-                    handleBlur,
-                    touched,
-                    errors,
-                  } = props;
+                  const { values, getFieldProps, touched, errors } = props;
                   return (
                     <Form onSubmit={handleSubmit}>
                       <div>
@@ -81,18 +74,18 @@ const Signin = () => {
                           as={TextField}
                           label="Email"
                           name="email"
-                          value={values.email}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
+                          {...getFieldProps("email")}
                           margin="normal"
                           required
                           fullWidth
-                          id="outlined-basic"
+                          id="email"
                           variant="outlined"
                           autoComplete="off"
                         />
                         {errors.email && touched.email && (
-                          <small style={{ color: "red" }}>{errors.email}</small>
+                          <small>
+                            <DangerousOutlinedIcon /> {errors.email}
+                          </small>
                         )}
                       </div>
                       <div>
@@ -100,14 +93,12 @@ const Signin = () => {
                           as={TextField}
                           name="password"
                           label="Password"
-                          value={values.password}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
+                          {...getFieldProps("password")}
                           type={showPassword ? "text" : "password"}
                           margin="normal"
                           required
                           fullWidth
-                          id="outlined-basic"
+                          id="outlined-password-basic"
                           variant="outlined"
                           autoComplete="off"
                           InputProps={{
@@ -131,7 +122,8 @@ const Signin = () => {
                           }}
                         />
                         {errors.password && touched.password && (
-                          <small style={{ color: "red" }}>
+                          <small>
+                            <DangerousOutlinedIcon />
                             {errors.password}
                           </small>
                         )}

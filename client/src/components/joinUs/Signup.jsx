@@ -65,12 +65,10 @@ const Signup = () => {
             <Box sx={{ mt: 1 }}>
               <Formik
                 initialValues={userInitialValues}
-                handleChange={handleChange}
                 validationSchema={signUpValidation}
-                onSubmit={handleSubmit}
               >
-                {({ values, setFieldTouched, setFieldValue }) => (
-                  <Form onSubmit={handleSubmit}>
+                {({ values }) => (
+                  <Form>
                     <Grid container spacing={2}>
                       <Grid item xs={12} sm={6}>
                         <Field
@@ -79,50 +77,46 @@ const Signup = () => {
                           label="First Name"
                           value={values.firstName}
                           fullWidth
-                          id="outlined-basic"
                           variant="outlined"
                           required
                           autoComplete="off"
                           placeholder="Mariem"
                         />
                       </Grid>
+
                       <Grid item xs={12} sm={6}>
                         <Field
                           as={TextField}
                           label="Last Name"
                           name="lastName"
-                          value={values.lastName}
                           fullWidth
-                          id="outlined-basic"
                           variant="outlined"
                           required
                           autoComplete="off"
                           placeholder="Hamdaoui"
                         />
                       </Grid>
+
                       <Grid item xs={12}>
                         <Field
                           as={TextField}
                           label="Email Address"
                           name="email"
-                          value={values.email}
                           fullWidth
-                          id="outlined-basic"
                           variant="outlined"
                           required
                           autoComplete="off"
                           placeholder="mariem@gmail.com"
                         />
                       </Grid>
+
                       <Grid item xs={12} sm={6}>
                         <Field
                           as={TextField}
                           name="password"
                           label="Password"
-                          value={values.password}
                           type={showPassword ? "txt" : "password"}
                           fullWidth
-                          id="outlined-basic"
                           variant="outlined"
                           required
                           autoComplete="off"
@@ -148,15 +142,14 @@ const Signup = () => {
                           }}
                         />
                       </Grid>
+
                       <Grid item xs={12} sm={6}>
                         <Field
                           as={TextField}
                           name="confirmPassword"
                           label="Confirm Password"
-                          value={values.confirmPassword}
                           fullWidth
                           type={showConfirm ? "txt" : "password"}
-                          id="outlined-basic"
                           variant="outlined"
                           required
                           autoComplete="off"
@@ -182,20 +175,20 @@ const Signup = () => {
                           }}
                         />
                       </Grid>
+
                       <Grid item xs={12}>
                         <Field
                           as={TextField}
                           label="phone"
                           name="phone"
-                          value={values.phone}
                           fullWidth
-                          id="outlined-basic"
                           variant="outlined"
                           required
                           autoComplete="off"
                           placeholder="(+xxx) xx-xxx-xxx"
                         />
                       </Grid>
+
                       <br />
                       <FormLabel style={{ marginTop: "5%", marginLeft: "5%" }}>
                         Address
@@ -206,7 +199,6 @@ const Signup = () => {
                           name="address.street"
                           label="street"
                           fullWidth
-                          id="outlined-basic"
                           variant="outlined"
                           required
                           autoComplete="off"
@@ -219,7 +211,6 @@ const Signup = () => {
                           name="address.city"
                           label="city"
                           fullWidth
-                          id="outlined-basic"
                           variant="outlined"
                           required
                           autoComplete="off"
@@ -232,26 +223,24 @@ const Signup = () => {
                           name="address.zipCode"
                           label="zip code"
                           fullWidth
-                          id="outlined-basic"
                           variant="outlined"
                           required
                           autoComplete="off"
                           placeholder="zip code"
                         />
                       </Grid>
+
                       <Grid item xs={12} sm={6}>
                         <Field
                           as={Select}
-                          onBlur={() => setFieldTouched("state", true)}
-                          onChange={(option) => {
-                            setFieldValue("state", option);
-                          }}
                           name="address.state"
                           required
+                          fullWidth
                           placeholder="select state ..."
                           options={stateOptions}
                         />
                       </Grid>
+
                       <Grid item xs={12}>
                         <FormControl>
                           <FormLabel id="demo-radio-buttons-group-label">
