@@ -53,8 +53,7 @@ export const userInitialValues = {
     city: "",
     state: "",
   },
-  parent: true,
-  consultant: false,
+  userCategory: "",
 };
 
 export const stateOptions = [
@@ -113,4 +112,11 @@ export const signUpValidation = yup.object().shape({
       id: yup.string().required("Please, select your resident state"),
     }),
   }),
+  userCategory: yup.string().required("specify who you are"),
 });
+
+//radios
+export const userOptions = [
+  { id: uuidv4(), key: "Parent", value: "parent" },
+  { id: uuidv4(), key: "Consultant", value: "consultant" },
+];

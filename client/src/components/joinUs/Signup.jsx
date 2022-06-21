@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Select from "react-select";
+import React from "react";
 import FormikController from "../formikFields/FormikController";
 import {
   Button,
@@ -9,36 +8,23 @@ import {
   Paper,
   Avatar,
   CssBaseline,
-  IconButton,
-  InputAdornment,
-  FormControlLabel,
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  Radio,
 } from "@mui/material";
-
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 import { Formik, Form } from "formik";
 import {
-  stateOptions,
   SX_Styling,
   signUpValidation,
   handleSubmit,
   userInitialValues,
   handleChange,
+  userOptions,
 } from "../constant/constant";
+import User from "../forms/User";
 
 const theme = createTheme();
 
 const Signup = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
-
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -70,154 +56,14 @@ const Signup = () => {
                   return (
                     <Form>
                       <Grid container spacing={2}>
-                        <FormikController
-                          sm={6}
-                          control="input"
-                          name="firstName"
-                          label="first Name"
-                          {...getFieldProps("firstName")}
-                        />
-
-                        <FormikController
-                          sm={6}
-                          control="input"
-                          name="lastName"
-                          label="last Name"
-                          {...getFieldProps("lastName")}
-                        />
-
-                        <FormikController
-                          control="input"
-                          name="email"
-                          label="email"
-                          {...getFieldProps("email")}
-                        />
-
-                        <FormikController
-                          sm={6}
-                          control="input"
-                          name="password"
-                          label="Password"
-                          type={showPassword ? "txt" : "password"}
-                          {...getFieldProps("password")}
-                          InputProps={{
-                            endAdornment: (
-                              <InputAdornment position="end">
-                                <IconButton
-                                  aria-label="toggle password visibility"
-                                  edge="end"
-                                  onClick={() =>
-                                    setShowPassword(showPassword ? false : true)
-                                  }
-                                >
-                                  {showPassword ? (
-                                    <VisibilityOff />
-                                  ) : (
-                                    <Visibility />
-                                  )}
-                                </IconButton>
-                              </InputAdornment>
-                            ),
-                          }}
-                        />
-
-                        <FormikController
-                          sm={6}
-                          control="input"
-                          name="confirmPassword"
-                          label="Confirm Password "
-                          type={showConfirm ? "txt" : "password"}
-                          {...getFieldProps("confirmPassword")}
-                          InputProps={{
-                            endAdornment: (
-                              <InputAdornment position="end">
-                                <IconButton
-                                  aria-label="toggle password visibility"
-                                  edge="end"
-                                  onClick={() =>
-                                    setShowConfirm(showConfirm ? false : true)
-                                  }
-                                >
-                                  {showPassword ? (
-                                    <VisibilityOff />
-                                  ) : (
-                                    <Visibility />
-                                  )}
-                                </IconButton>
-                              </InputAdornment>
-                            ),
-                          }}
-                        />
-
-                        <FormikController
-                          control="input"
-                          type="phone"
-                          name="phone"
-                          label="phone"
-                          {...getFieldProps("phone")}
-                        />
-
-                        <br />
-                        <FormLabel
-                          style={{ marginTop: "5%", marginLeft: "5%" }}
-                        >
-                          Address
-                        </FormLabel>
-
-                        <FormikController
-                          control="input"
-                          name="address.street"
-                          label="street"
-                          placeholder="street address"
-                          {...getFieldProps("address.street")}
-                        />
-
-                        <FormikController
-                          sm={6}
-                          control="input"
-                          name="address.city"
-                          label="city"
-                          placeholder="city"
-                          {...getFieldProps("address.city")}
-                        />
-
-                        <FormikController
-                          sm={6}
-                          control="input"
-                          name="address.zipCode"
-                          label="zip Code"
-                          placeholder="zip Code "
-                          {...getFieldProps("address.zipCode")}
-                        />
-
-                        <FormikController
-                          control="select"
-                          name="address.state"
-                          options={stateOptions}
-                        />
-
+                        <User getFieldProps={getFieldProps} />
                         <Grid item xs={12}>
-                          <FormControl>
-                            <FormLabel id="demo-radio-buttons-group-label">
-                              I'm a
-                            </FormLabel>
-                            <RadioGroup
-                              aria-labelledby="demo-radio-buttons-group-label"
-                              defaultValue={values.parent}
-                              name="radio-buttons-group"
-                            >
-                              <FormControlLabel
-                                value={values.parent}
-                                control={<Radio />}
-                                label="Parent"
-                              />
-                              <FormControlLabel
-                                value={values.consultant}
-                                control={<Radio />}
-                                label="Consultant"
-                              />
-                            </RadioGroup>
-                          </FormControl>
+                          <FormikController
+                            control="radio"
+                            label="I'm a "
+                            name="userCategory"
+                            options={userOptions}
+                          />
                         </Grid>
                         <Grid item xs={12}>
                           <Button

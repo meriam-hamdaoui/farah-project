@@ -9,9 +9,9 @@ const SelectForm = (props) => {
 
   const [field, meta, helpers] = useField(name);
 
-  console.log("field => ", field);
-  console.log("meta => ", meta);
-  console.log("helpers => ", helpers);
+  // console.log("field => ", field);
+  // console.log("meta => ", meta);
+  // console.log("helpers => ", helpers);
 
   return (
     <Grid item xs={12} sm={sm}>
