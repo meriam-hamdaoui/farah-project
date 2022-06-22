@@ -12,7 +12,9 @@ import Contacts from "./components/pages/Contacts";
 import JoinUs from "./components/joinUs/JoinUs";
 import Signin from "./components/joinUs/Signin";
 import Signup from "./components/joinUs/Signup";
-import Parent from "./components/forms/Parent";
+// import Copyright from "./components/footer/Copyright";
+import Consultant from "./components/forms/consultant/Consultant";
+import ParentTemplate from "./components/forms/parent/ParentTemplate";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -43,8 +45,10 @@ function App() {
             <Route path="sign-in" element={<Signin />} />
             <Route path="sign-up" element={<Signup />} />
           </Route>
-          <Route path="/register/parent" element={<Parent />} />
+          <Route path="/register/parent" element={<ParentTemplate />} />
+          <Route path="/register/consultant" element={<Consultant />} />
         </Routes>
+        {/* <Copyright /> */}
       </div>
     </div>
   );

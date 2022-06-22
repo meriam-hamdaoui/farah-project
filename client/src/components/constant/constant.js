@@ -53,7 +53,7 @@ export const userInitialValues = {
     city: "",
     state: "",
   },
-  userCategory: "",
+  userCategory: "parent",
 };
 
 export const stateOptions = [
@@ -119,4 +119,11 @@ export const signUpValidation = yup.object().shape({
 export const userOptions = [
   { key: "Parent", value: "parent" },
   { key: "Consultant", value: "consultant" },
+];
+
+// parent registeration
+export const parentSteps = [
+  "Personal Details",
+  "Child Information",
+  "Association Closes",
 ];

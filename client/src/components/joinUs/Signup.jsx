@@ -9,7 +9,6 @@ import {
   Paper,
   Avatar,
   CssBaseline,
-  ListItemText,
 } from "@mui/material";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -71,10 +70,18 @@ const Signup = () => {
                         </Grid>
                         <Grid item xs={12}>
                           <Button
-                            type="submit"
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
+                            onClick={() => {
+                              if (values.userCategory === "parent") {
+                                navigate("/register/parent");
+                              } else if (values.userCategory === "consultant") {
+                                navigate("/register/consultant");
+                              } else if (!values) {
+                                alert("all  field are required");
+                              }
+                            }}
                           >
                             Continue
                           </Button>

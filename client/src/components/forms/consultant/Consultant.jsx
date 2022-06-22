@@ -1,7 +1,7 @@
 import React from "react";
 
 const Consultant = () => {
-  return <div>Consultant</div>;
+  return <div>consultant registration</div>;
 };
 
 export default Consultant;
