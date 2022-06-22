@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import FormikController from "../formikFields/FormikController";
 import {
   Button,
@@ -8,6 +9,7 @@ import {
   Paper,
   Avatar,
   CssBaseline,
+  ListItemText,
 } from "@mui/material";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -25,6 +27,8 @@ import User from "../forms/User";
 const theme = createTheme();
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -52,7 +56,7 @@ const Signup = () => {
                 onSubmit={handleSubmit}
                 handleChange={handleChange}
               >
-                {({ values, getFieldProps, setFieldValue }) => {
+                {({ values, getFieldProps }) => {
                   return (
                     <Form>
                       <Grid container spacing={2}>
@@ -75,10 +79,11 @@ const Signup = () => {
                             Continue
                           </Button>
                           <Button
-                            type="btn"
+                            type="btn btn-danger"
                             fullWidth
                             variant=""
                             sx={{ mt: 3, mb: 2 }}
+                            onClick={() => navigate("/", { replace: true })}
                           >
                             Cancel
                           </Button>

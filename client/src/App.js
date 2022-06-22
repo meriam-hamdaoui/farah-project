@@ -12,6 +12,7 @@ import Contacts from "./components/pages/Contacts";
 import JoinUs from "./components/joinUs/JoinUs";
 import Signin from "./components/joinUs/Signin";
 import Signup from "./components/joinUs/Signup";
+import Parent from "./components/forms/Parent";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -42,6 +43,7 @@ function App() {
             <Route path="sign-in" element={<Signin />} />
             <Route path="sign-up" element={<Signup />} />
           </Route>
+          <Route path="/register/parent" element={<Parent />} />
         </Routes>
       </div>
     </div>

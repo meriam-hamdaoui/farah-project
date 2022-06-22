@@ -20,7 +20,7 @@ const SideBar = ({ show }) => {
         <div className="asidebar-top">
           <NavLink to="/">
             <BiHomeHeart />
-            {show && <span>Home Page</span>}
+            {show && <span>Home</span>}
           </NavLink>
           <NavLink to="/about-us">
             <FaUsers />
@@ -36,7 +36,7 @@ const SideBar = ({ show }) => {
           </NavLink>
           <NavLink to="/contacts">
             <RiContactsLine />
-            {show && <span>Contact Us</span>}
+            {show && <span>Contacts</span>}
           </NavLink>
         </div>
         <div className="asidebar-bottom">

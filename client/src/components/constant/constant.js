@@ -117,6 +117,6 @@ export const signUpValidation = yup.object().shape({
 
 //radios
 export const userOptions = [
-  { id: uuidv4(), key: "Parent", value: "parent" },
-  { id: uuidv4(), key: "Consultant", value: "consultant" },
+  { key: "Parent", value: "parent" },
+  { key: "Consultant", value: "consultant" },
 ];
