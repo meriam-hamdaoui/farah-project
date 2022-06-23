@@ -7,7 +7,7 @@ import DangerousOutlinedIcon from "@mui/icons-material/DangerousOutlined";
 const SelectForm = (props) => {
   const { name, values, sm, options, ...rest } = props;
 
-  const [field, helpers] = useField(name);
+  const [field, meta, helpers] = useField(name);
 
   return (
     <Grid item xs={12} sm={sm}>
