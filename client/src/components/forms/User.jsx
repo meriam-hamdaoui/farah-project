@@ -5,7 +5,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { stateOptions } from "../constant/constant";
 import FormikController from "../formikFields/FormikController";
 
-const User = ({ getFieldProps }) => {
+const User = ({ fields }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -16,31 +16,28 @@ const User = ({ getFieldProps }) => {
         control="input"
         name="firstName"
         label="first Name"
-        {...getFieldProps("firstName")}
+        fields={fields}
       />
-
       <FormikController
         sm={6}
         control="input"
         name="lastName"
         label="last Name"
-        {...getFieldProps("lastName")}
+        fields={fields}
       />
-
       <FormikController
         control="input"
         name="email"
         label="email"
-        {...getFieldProps("email")}
+        fields={fields}
       />
-
       <FormikController
         sm={6}
         control="input"
         name="password"
         label="Password"
         type={showPassword ? "txt" : "password"}
-        {...getFieldProps("password")}
+        fields={fields}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -55,14 +52,13 @@ const User = ({ getFieldProps }) => {
           ),
         }}
       />
-
       <FormikController
         sm={6}
         control="input"
         name="confirmPassword"
         label="Confirm Password "
         type={showConfirm ? "txt" : "password"}
-        {...getFieldProps("confirmPassword")}
+        fields={fields}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -77,15 +73,13 @@ const User = ({ getFieldProps }) => {
           ),
         }}
       />
-
       <FormikController
         control="input"
         type="phone"
         name="phone"
         label="phone"
-        {...getFieldProps("phone")}
+        fields={fields}
       />
-
       <br />
       <FormLabel style={{ marginTop: "5%", marginLeft: "5%" }}>
         Address
@@ -96,7 +90,7 @@ const User = ({ getFieldProps }) => {
         name="address.street"
         label="street"
         placeholder="street address"
-        {...getFieldProps("address.street")}
+        fields={fields}
       />
 
       <FormikController
@@ -105,7 +99,7 @@ const User = ({ getFieldProps }) => {
         name="address.city"
         label="city"
         placeholder="city"
-        {...getFieldProps("address.city")}
+        fields={fields}
       />
 
       <FormikController
@@ -114,7 +108,7 @@ const User = ({ getFieldProps }) => {
         name="address.zipCode"
         label="zip Code"
         placeholder="zip Code "
-        {...getFieldProps("address.zipCode")}
+        fields={fields}
       />
 
       <FormikController

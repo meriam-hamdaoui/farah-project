@@ -3,34 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-//sign in form
-export const SX_Styling = {
-  backgroundImage: "url(/logo.png)",
-  backgroundRepeat: "no-repeat",
-  backgroundColor: "white",
-  //(t) => t.palette.mode === "light" ? t.palette.grey[50] : t.palette.grey[900],
-  backgroundSize: "100%",
-  backgroundPosition: "center",
-  width: "300vh",
-};
-
-export const handleChange = (e, prevValue) => {
-  // console.log(prevValue);
-  const { name, value } = e.target;
-  return {
-    ...prevValue,
-    [name]: value,
-  };
-};
-
-export const handleSubmit = (e, values, { setSubmitting }) => {
-  e.preventDefault();
-  setTimeout(() => {
-    alert(JSON.stringify(values, null, 2));
-    setSubmitting(false);
-  }, 400);
-};
-
 //sign up form
 export const userInitialValues = {
   firstName: "",
@@ -45,7 +17,7 @@ export const userInitialValues = {
     city: "",
     state: "",
   },
-  userCategory: "",
+  userCategory: "parent",
 };
 
 export const stateOptions = [

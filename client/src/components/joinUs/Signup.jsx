@@ -13,14 +13,12 @@ import {
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Formik, Form } from "formik";
+import { SX_Styling, handleSubmit, handleChange } from "../constant/constant";
 import {
-  SX_Styling,
   signUpValidation,
-  handleSubmit,
   userInitialValues,
-  handleChange,
   userOptions,
-} from "../constant/constant";
+} from "../constant/signUp";
 import User from "../forms/User";
 
 const theme = createTheme();
@@ -59,15 +57,15 @@ const Signup = () => {
                   return (
                     <Form>
                       <Grid container spacing={2}>
-                        <User getFieldProps={getFieldProps} />
-                        <Grid item xs={12}>
-                          <FormikController
-                            control="radio"
-                            label="I'm a "
-                            name="userCategory"
-                            options={userOptions}
-                          />
-                        </Grid>
+                        <User fieldProps={getFieldProps} />
+
+                        <FormikController
+                          control="radio"
+                          label="I'm a "
+                          name="userCategory"
+                          options={userOptions}
+                        />
+
                         <Grid item xs={12}>
                           <Button
                             fullWidth

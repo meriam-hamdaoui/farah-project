@@ -1,7 +1,11 @@
 import React from "react";
 
 const Child = () => {
-  return <div>child info</div>;
+  return (
+    <React.Fragment>
+      <div>child info</div>
+    </React.Fragment>
+  );
 };
 
 export default Child;
