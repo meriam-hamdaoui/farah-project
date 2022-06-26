@@ -1,7 +1,7 @@
 export const parentSteps = [
   "Personal Details",
   "Child Information",
-  "Association Closes",
+  "Last Step",
 ];
 
 export const statusOptions = [

@@ -53,11 +53,11 @@ const Signup = () => {
                 onSubmit={handleSubmit}
                 handleChange={handleChange}
               >
-                {({ values, getFieldProps }) => {
+                {({ values, handleChange }) => {
                   return (
                     <Form>
                       <Grid container spacing={2}>
-                        <User fieldProps={getFieldProps} />
+                        <User />
 
                         <FormikController
                           control="radio"

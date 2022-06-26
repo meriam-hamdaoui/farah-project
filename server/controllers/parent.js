@@ -43,7 +43,7 @@ exports.signup = async (req, res) => {
 
     /**** hashing the passwords before saving the parent (npm i bcryptjs) */
     //generate a salt round for our hash
-    const saltRound = 10;
+    const saltRound = 8;
     const salt = bcrypt.genSaltSync(saltRound);
     //hash the password
     const hash = bcrypt.hashSync(password, salt);
@@ -57,7 +57,7 @@ exports.signup = async (req, res) => {
     /********* associate a token to our new parent( npm i jsonwebtoken)*/
 
     const payloadParent = { id: newParent.user._id };
-    const token = jwt.sign(payloadParent, process.env.secretOrKey);
+    let token = jwt.sign(payloadParent, process.env.secretOrKey);
 
     if (newParent && !duplacted) {
       (await newParent.save()) && Child.insertMany(children);
@@ -70,5 +70,36 @@ exports.signup = async (req, res) => {
   } catch (error) {
     console.error(`signup error => ${error}`);
     return res.status(500).send({ msg: "signup error", error });
+  }
+};
+
+/** signin parent */
+exports.signin = async (req, res) => {
+  //distracturing
+  const { email, password } = req.body;
+  try {
+    //check first for the existance of our user
+    const exist = await Parent.findOne({ "user.email": email });
+    // console.log("exist => ", exist);
+    if (!exist) {
+      return res
+        .status(400)
+        .send({ msg: "you don't have an account, sign up first" });
+    }
+
+    //verify for the match fo password using the bcrypt
+    const match = await bcrypt.compare(password, exist.user.password);
+    // console.log("match =>", match);
+    if (!match) {
+      return res.status(400).send({ msg: "you have the rong password" });
+    }
+
+    const payloadParent = { id: exist.user._id };
+    let token = jwt.sign(payloadParent, process.env.secretOrKey);
+
+    return res.status(200).send({ msg: "login with succes", exist, token });
+  } catch (error) {
+    console.error(`signin error => ${error}`);
+    return res.status(500).send({ msg: "you can't login ", error });
   }
 };

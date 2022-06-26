@@ -1,6 +1,6 @@
 const express = require("express");
 //controllers
-const { signup } = require("../controllers/parent");
+const { signup, signin } = require("../controllers/parent");
 //validators
 const {
   parentValidator,
@@ -19,6 +19,8 @@ parentRouter.post(
   validation,
   signup
 );
+
+parentRouter.post("/signin", signin);
 
 //exports our router
 module.exports = parentRouter;

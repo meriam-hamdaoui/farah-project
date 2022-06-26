@@ -6,6 +6,7 @@ const { userSchema } = require("./user");
 
 const parentSchema = new Schema({
   user: { type: userSchema },
+  status: { type: String },
   job: { type: String },
   familyMembers: { type: Number },
   child: { type: [childSchema] },

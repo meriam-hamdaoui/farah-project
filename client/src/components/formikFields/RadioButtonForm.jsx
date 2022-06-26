@@ -22,7 +22,6 @@ const RadioButtonForm = (props) => {
           row
           aria-labelledby="demo-radio-buttons-group-label"
           name={name}
-          defaultValue={options[0].value}
         >
           <Field name={name} {...rest}>
             {({ field }) => {

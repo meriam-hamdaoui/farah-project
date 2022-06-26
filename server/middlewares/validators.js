@@ -43,6 +43,8 @@ exports.userValidator = [
 exports.parentValidator = [
   //job
   body("job").notEmpty().withMessage("enter your current job please"),
+  //status
+  body("status").notEmpty().withMessage("choose your current status"),
   //family member
   body("familyMembers")
     .notEmpty()
@@ -72,15 +74,15 @@ exports.childValidator = [
     .isISO8601()
     .toDate()
     .withMessage("enter your child date of birth"),
-  body("child.*.disorder.disType")
+  body("child.*.diagnosis.disorder")
     .notEmpty()
     .isString()
     .withMessage("enter the disorder type of your child"),
-  body("child.*.disorder.disEstablishment")
+  body("child.*.diagnosis.establishment")
     .notEmpty()
     .isString()
     .withMessage("enter the establishment where did you get the dignostic"),
-  body("child.*.disorder.disDate")
+  body("child.*.diagnosis.date")
     .notEmpty()
     .isISO8601()
     .toDate()

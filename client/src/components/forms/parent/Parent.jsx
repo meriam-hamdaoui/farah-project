@@ -9,30 +9,28 @@ import { statusOptions, parentValues } from "../../constant/parent";
 const Parent = () => {
   return (
     <Fragment>
-      <Typography>Personal Details</Typography>
+      <Typography variant="h6" gutterBottom>
+        Personal Details
+      </Typography>
       <Formik initialValues={parentValues}>
         {(values, getFieldProps) => (
           <Form>
-            <User fields={getFieldProps} />
+            <User />
+            <br />
             <FormikController
               control="radio"
               label="Status "
               name="status"
               options={statusOptions}
             />
-            <FormikController
-              control="input"
-              name="job"
-              label="Job"
-              fields={getFieldProps}
-            />
+            <br />
+            <FormikController control="input" name="job" label="Job" />
             <br />
             <FormikController
               control="input"
               name="familyMembers"
               type="number"
               label="Number of family Members "
-              fields={getFieldProps}
             />
           </Form>
         )}

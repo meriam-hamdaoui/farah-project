@@ -87,9 +87,7 @@ const ParentTemplate = () => {
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    {activeStep === parentSteps.length - 1
-                      ? "Place order"
-                      : "Next"}
+                    {activeStep === parentSteps.length - 1 ? "Submit" : "Next"}
                   </Button>
                 </Box>
               </React.Fragment>
