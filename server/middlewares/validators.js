@@ -93,7 +93,23 @@ exports.childValidator = [
     .withMessage("is your child integrated"),
 ];
 
-exports.validation = (req, res, next) => {
+exports.loginValidator = [
+  //email validation
+  body("email")
+    .notEmpty()
+    .normalizeEmail()
+    .isEmail()
+    .withMessage("please enter a valid email"),
+  body("email")
+    .isLowercase()
+    .withMessage("your email can not have capital letters"),
+  //password
+  body("password", "your password should have 8 acracters as minimum").isLength(
+    { min: 8, max: 12 }
+  ),
+];
+
+exports.validation = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });

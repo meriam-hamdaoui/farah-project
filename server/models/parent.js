@@ -5,11 +5,20 @@ const { childSchema } = require("./child");
 const { userSchema } = require("./user");
 
 const parentSchema = new Schema({
-  user: { type: userSchema },
+  // id: { type: String },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
   status: { type: String },
   job: { type: String },
   familyMembers: { type: Number },
-  child: { type: [childSchema] },
+  child: [
+    {
+      type: childSchema,
+      required: false,
+    },
+  ],
   demandes: { type: String },
   registerDate: {
     type: Date,

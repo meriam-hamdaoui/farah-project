@@ -6,6 +6,7 @@ const cors = require("cors");
 //local packages
 const connectDB = require("./config/connectDB");
 const parentRouter = require("./routes/parent");
+const consultantRouter = require("./routes/consultant");
 
 //initiate server
 const app = express();
@@ -18,6 +19,7 @@ connectDB();
 
 //get the app to use routers
 app.use("/farah", parentRouter);
+app.use("/farah", consultantRouter);
 
 const PORT = process.env.PORT || process.env.port;
 app.listen(PORT, (err) =>

@@ -18,6 +18,10 @@ const childSchema = new Schema({
       },
     },
   },
+  // parent: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "Parent",
+  // },
   inscritDate: {
     type: Date,
     default: Date.now(),
