@@ -82,6 +82,12 @@ exports.signin = async (req, res) => {
         .send({ msg: "you don't have an account, sign up first" });
     }
 
+    if (exists) {
+      const { role, ...rest } = exists;
+      console.log("role =>", role);
+      return res.send(rest);
+    }
+
     //verify for the match fo password using the bcrypt
     // const match = await bcrypt.compare(password, exists.user.password);
     // console.log("match =>", match);

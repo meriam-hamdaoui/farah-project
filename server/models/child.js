@@ -1,6 +1,8 @@
 const { Schema, model } = require("mongoose");
 
 const childSchema = new Schema({
+  //avoir mm id que son pere
+  parent: { type: Schema.Types.ObjectId, ref: "user" },
   childFName: { type: String },
   childLName: { type: String },
   birthDate: { type: Date },
@@ -18,10 +20,6 @@ const childSchema = new Schema({
       },
     },
   },
-  // parent: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "Parent",
-  // },
   inscritDate: {
     type: Date,
     default: Date.now(),

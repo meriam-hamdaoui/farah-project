@@ -6,6 +6,7 @@ const { signConsultant, signin } = require("../controllers/consultant");
 //validators
 const {
   userValidator,
+  consultantValidator,
   validation,
   loginValidator,
 } = require("../middlewares/validators");
@@ -13,7 +14,13 @@ const {
 const consultantRouter = express.Router();
 
 //register parent
-consultantRouter.post("/sign-up/consultant", signConsultant);
+consultantRouter.post(
+  "/sign-up/consultant",
+  userValidator,
+  consultantValidator,
+  validation,
+  signConsultant
+);
 
 //login
 consultantRouter.post("/signin", loginValidator, validation, signin);
