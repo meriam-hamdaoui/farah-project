@@ -21,12 +21,8 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import DangerousOutlinedIcon from "@mui/icons-material/DangerousOutlined";
 import { Formik, Form, Field } from "formik";
-import {
-  SX_Styling,
-  handleChange,
-  signInValidation,
-  handleSubmit,
-} from "../constant/constant";
+import { SX_Styling, handleChange, handleSubmit } from "../constant/constant";
+import { signInValues, signInValidation } from "../constant/signIn";
 
 const theme = createTheme();
 
@@ -56,11 +52,7 @@ const Signin = () => {
             </Typography>
             <Box sx={{ mt: 1 }}>
               <Formik
-                initialValues={{
-                  email: "",
-                  password: "",
-                  remember: false,
-                }}
+                initialValues={signInValues}
                 handleChange={handleChange}
                 validationSchema={signInValidation}
                 onSubmit={handleSubmit}

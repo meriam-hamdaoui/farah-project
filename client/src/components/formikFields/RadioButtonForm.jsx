@@ -8,47 +8,50 @@ import {
   FormLabel,
   FormControlLabel,
   Radio,
+  Grid,
 } from "@mui/material";
 
 const RadioButtonForm = (props) => {
   const { label, name, options, ...rest } = props;
 
   return (
-    <FormControl>
-      <FormLabel>{label}</FormLabel>
-      <RadioGroup
-        aria-labelledby="demo-radio-buttons-group-label"
-        name={name}
-        defaultValue={options[0].value}
-      >
-        <Field name={name} {...rest}>
-          {({ field }) => {
-            return options.map((option) => {
-              return (
-                <React.Fragment key={option.key}>
-                  <FormControlLabel
-                    control={<Radio />}
-                    id={option.value}
-                    {...field}
-                    value={option.value}
-                    label={option.key}
-                    name={name}
-                    checked={field.value === option.value}
-                  />
-                </React.Fragment>
-              );
-            });
-          }}
-        </Field>
-      </RadioGroup>
-      <ErrorMessage name={name}>
-        {(msg) => (
-          <small style={{ color: "red" }}>
-            <DangerousOutlinedIcon /> {msg}
-          </small>
-        )}
-      </ErrorMessage>
-    </FormControl>
+    <Grid item xs={12}>
+      <FormControl>
+        <FormLabel>{label}</FormLabel>
+        <RadioGroup
+          row
+          aria-labelledby="demo-radio-buttons-group-label"
+          name={name}
+        >
+          <Field name={name} {...rest}>
+            {({ field }) => {
+              return options.map((option) => {
+                return (
+                  <React.Fragment key={option.key}>
+                    <FormControlLabel
+                      control={<Radio />}
+                      id={option.value}
+                      {...field}
+                      value={option.value}
+                      label={option.key}
+                      name={name}
+                      checked={field.value === option.value}
+                    />
+                  </React.Fragment>
+                );
+              });
+            }}
+          </Field>
+        </RadioGroup>
+        <ErrorMessage name={name}>
+          {(msg) => (
+            <small style={{ color: "red" }}>
+              <DangerousOutlinedIcon /> {msg}
+            </small>
+          )}
+        </ErrorMessage>
+      </FormControl>
+    </Grid>
   );
 };
 

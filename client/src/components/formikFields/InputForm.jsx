@@ -11,8 +11,7 @@ const InputForm = (props) => {
       <Field
         as={TextField}
         name={name}
-        value={`${values}.${name}`}
-        id={`outlined-${name}`}
+        id={name}
         label={label}
         placeholder={label}
         type={type}

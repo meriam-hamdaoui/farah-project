@@ -1,10 +1,9 @@
 const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema({
-  _id: Schema.Types.ObjectId,
   role: {
     type: Number,
-    default: 0,
+    default: 1,
   },
   firstName: { type: String },
   lastName: { type: String },
@@ -23,6 +22,9 @@ const userSchema = new Schema({
     state: { type: String },
     zipCode: { type: Number },
   },
+  category: {
+    type: String,
+    default: "parent",
+  },
 });
-const User = model("user", userSchema);
-module.exports = { User, userSchema };
+module.exports = User = model("user", userSchema);

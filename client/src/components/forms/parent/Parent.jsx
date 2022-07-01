@@ -1,23 +1,41 @@
-import React from "react";
+import React, { Fragment } from "react";
 import User from "../User";
 import { Formik, Form } from "formik";
+import { Typography } from "@mui/material";
 
-import { handleChange, handleSubmit } from "../../constant/constant";
+import FormikController from "../../formikFields/FormikController";
+import { statusOptions, parentValues } from "../../constant/parent";
 
 const Parent = () => {
   return (
-    <Formik
-      initialValues={{ parent: "" }}
-      onSubmit={handleSubmit}
-      handleChange={handleChange}
-    >
-      <Form>
-        somthing to prouve
-        {({ values, getFieldProps }) => (
-          <User values={values} getFieldProps={getFieldProps} />
+    <Fragment>
+      <Typography variant="h6" gutterBottom>
+        Personal Details
+      </Typography>
+      <Formik initialValues={parentValues}>
+        {(values, getFieldProps) => (
+          <Form>
+            <User />
+            <br />
+            <FormikController
+              control="radio"
+              label="Status "
+              name="status"
+              options={statusOptions}
+            />
+            <br />
+            <FormikController control="input" name="job" label="Job" />
+            <br />
+            <FormikController
+              control="input"
+              name="familyMembers"
+              type="number"
+              label="Number of family Members "
+            />
+          </Form>
         )}
-      </Form>
-    </Formik>
+      </Formik>
+    </Fragment>
   );
 };
 

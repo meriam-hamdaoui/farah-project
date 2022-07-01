@@ -11,19 +11,19 @@ import {
   Typography,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { parentSteps } from "../../constant/constant";
+import { parentSteps } from "../../constant/parent";
 import Parent from "./Parent";
 import Child from "./Child";
 import Clauses from "./Clauses";
 
-function getStepContent(step) {
+function getStepContent(step, props) {
   switch (step) {
     case 0:
-      return <Parent />;
+      return <Parent {...props} />;
     case 1:
-      return <Child />;
+      return <Child {...props} />;
     case 2:
-      return <Clauses />;
+      return <Clauses {...props} />;
     default:
       throw new Error("Unknown step");
   }
@@ -41,8 +41,6 @@ const ParentTemplate = () => {
     setActiveStep(activeStep - 1);
   };
 
-  getStepContent(activeStep);
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -56,12 +54,13 @@ const ParentTemplate = () => {
             Register as a Parent
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
-            {parentSteps.map((label) => (
+            {parentSteps.map((label, index) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}
           </Stepper>
+          {getStepContent(activeStep)}
           <React.Fragment>
             {activeStep === parentSteps.length ? (
               <React.Fragment>
@@ -88,9 +87,7 @@ const ParentTemplate = () => {
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    {activeStep === parentSteps.length - 1
-                      ? "Place order"
-                      : "Next"}
+                    {activeStep === parentSteps.length - 1 ? "Submit" : "Next"}
                   </Button>
                 </Box>
               </React.Fragment>

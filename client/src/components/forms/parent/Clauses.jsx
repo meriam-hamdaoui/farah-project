@@ -1,7 +1,14 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { Typography } from "@mui/material";
 
 const Clauses = () => {
-  return <div>Association Clauses</div>;
+  return (
+    <Fragment>
+      <Typography variant="h6" gutterBottom>
+        Last Step
+      </Typography>
+    </Fragment>
+  );
 };
 
 export default Clauses;

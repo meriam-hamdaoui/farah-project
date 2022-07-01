@@ -1,24 +1,33 @@
 const express = require("express");
+
 //controllers
-const { signup } = require("../controllers/parent");
-//validators
+const { signup, signin } = require("../controllers/user");
+//middlewares
 const {
   parentValidator,
   userValidator,
-  childValidator,
+  loginValidator,
   validation,
 } = require("../middlewares/validators");
+const { isAuth } = require("../middlewares/isAuth");
+
+//creater a parent router
 const parentRouter = express.Router();
 
-//post/register parent
+//posts
 parentRouter.post(
-  "/register/parent",
+  "/sign-up/parent",
   userValidator,
   parentValidator,
-  childValidator,
   validation,
   signup
 );
+parentRouter.post("/signin", loginValidator, signin);
+
+//gets
+parentRouter.get("/profile", isAuth, (req, res) => {
+  res.send(req.user);
+});
 
 //exports our router
 module.exports = parentRouter;
