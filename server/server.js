@@ -7,7 +7,7 @@ const cors = require("cors");
 const connectDB = require("./config/connectDB");
 const parentRouter = require("./routes/parent");
 const consultantRouter = require("./routes/consultant");
-const userRouter = require("./routes/user");
+const setup = require("./config/setup");
 
 //initiate server
 const app = express();
@@ -17,9 +17,11 @@ app.use(cors());
 
 //connect to DB
 connectDB();
+//setup admin
+setup();
 
 //get the app to use routers
-app.use("/farah", userRouter);
+
 app.use("/farah", parentRouter);
 app.use("/farah", consultantRouter);
 

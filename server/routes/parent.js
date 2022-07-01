@@ -2,15 +2,19 @@ const express = require("express");
 
 //controllers
 const { signup, signin } = require("../controllers/user");
-//validators
+//middlewares
 const {
   parentValidator,
   userValidator,
+  loginValidator,
   validation,
 } = require("../middlewares/validators");
+const { isAuth } = require("../middlewares/isAuth");
+
+//creater a parent router
 const parentRouter = express.Router();
 
-// //post/register parent
+//posts
 parentRouter.post(
   "/sign-up/parent",
   userValidator,
@@ -18,8 +22,12 @@ parentRouter.post(
   validation,
   signup
 );
+parentRouter.post("/signin", loginValidator, signin);
 
-parentRouter.post("/signin", signin);
+//gets
+parentRouter.get("/profile", isAuth, (req, res) => {
+  res.send(req.user);
+});
 
 //exports our router
 module.exports = parentRouter;

@@ -1,3 +1,4 @@
+//user controllers, which are common between all users
 const User = require("../models/user");
 const Parent = require("../models/parent");
 const Consultant = require("../models/consultant");
@@ -6,6 +7,7 @@ const Consultant = require("../models/consultant");
 let bcrypt = require("bcryptjs");
 let jwt = require("jsonwebtoken");
 
+//to avoid the boilerplate, I create an arrow function
 const createActor = async (newUser, actor, res) => {
   const payload = { id: actor.user._id };
   let token = jwt.sign(payload, process.env.secretOrKey);
@@ -25,6 +27,8 @@ exports.signup = async (req, res) => {
   const { email, password, category } = user;
   try {
     const exists = await User.findOne({ email });
+    console.log("exists =>", exists);
+    console.log("User =>", User);
     //1. email exist
     if (exists) return res.status(403).send("this email already exists");
 

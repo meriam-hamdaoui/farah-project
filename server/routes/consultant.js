@@ -1,7 +1,7 @@
 const express = require("express");
 
 //controllers
-const { signConsultant, signin } = require("../controllers/consultant");
+const { signup, signin } = require("../controllers/user");
 
 //validators
 const {
@@ -11,6 +11,7 @@ const {
   loginValidator,
 } = require("../middlewares/validators");
 
+//consultant router
 const consultantRouter = express.Router();
 
 //register parent
@@ -19,11 +20,11 @@ consultantRouter.post(
   userValidator,
   consultantValidator,
   validation,
-  signConsultant
+  signup
 );
 
 //login
-consultantRouter.post("/signin", loginValidator, validation, signin);
+consultantRouter.post("/signin", loginValidator, signin);
 
 //export consultant router
 module.exports = consultantRouter;
