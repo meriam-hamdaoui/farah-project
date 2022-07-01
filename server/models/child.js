@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const childSchema = new Schema({
-  //avoir mm id que son pere
+  //avoir mm id que son père userSchema
   parent: { type: Schema.Types.ObjectId, ref: "user" },
   childFName: { type: String },
   childLName: { type: String },

@@ -27,8 +27,8 @@ exports.signup = async (req, res) => {
   const { email, password, category } = user;
   try {
     const exists = await User.findOne({ email });
-    console.log("exists =>", exists);
-    console.log("User =>", User);
+    // console.log("exists =>", exists);
+    // console.log("User =>", User);
     //1. email exist
     if (exists) return res.status(403).send("this email already exists");
 
@@ -93,7 +93,13 @@ exports.signin = async (req, res) => {
       //   if(found.category === "parent") {
       //     const parent = await Parent.
       //   }
-      return res.status(200).send({ msg: "login with succes", found, token });
+      return res
+        .status(200)
+        .send({
+          msg: `logged in as  with succes as ${found.category}`,
+          found,
+          token,
+        });
     }
   } catch (errors) {
     console.error(`signin error => ${errors}`);

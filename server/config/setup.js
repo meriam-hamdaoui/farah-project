@@ -1,5 +1,6 @@
 const User = require("../models/user");
 let bcrypt = require("bcryptjs");
+let jwt = require("jsonwebtoken");
 
 const setup = async () => {
   try {
@@ -14,10 +15,18 @@ const setup = async () => {
         category: "admin",
         role: 0,
       });
-      await admin.save();
-      console.log(`your admin is created => ${admin}`);
+      const saltRound = 8;
+      const salt = bcrypt.genSaltSync(saltRound);
+      const hash = bcrypt.hashSync(admin.password, salt);
+      admin.password = hash;
+      admin.passwordConfirm = hash;
+      const payload = { id: admin._id };
+      let token = jwt.sign(payload, process.env.secretOrKey);
+      token && (await admin.save());
+      console.log(`your admin is created => ${admin} 
+      with token => ${token}`);
     } else if (isAdmin) {
-      console.log("you can't have more then admin in your app");
+      return;
     }
   } catch (error) {
     console.error(error);

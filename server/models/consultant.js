@@ -15,24 +15,37 @@ const consultantSchema = new Schema({
     {
       degree: { type: String },
       university: { type: String },
-      diploma: { type: imageSchema },
+      diploma: {
+        type: Schema.Types.ObjectId,
+        ref: "Image",
+      },
     },
   ],
   experiences: [
     {
       title: { type: String },
       company: { type: String },
-      certificate: { type: imageSchema },
+      certificate: {
+        type: Schema.Types.ObjectId,
+        ref: "Image",
+      },
     },
   ],
   internships: [
     {
       title: { type: String },
       company: { type: String },
-      certificate: { type: imageSchema },
+      certificate: {
+        type: Schema.Types.ObjectId,
+        ref: "Image",
+      },
     },
   ],
   offers: { type: String },
+  accepted: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = Consultant = model("consultant", consultantSchema);
