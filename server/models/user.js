@@ -1,6 +1,6 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
   role: {
     type: Number,
     default: 1,
@@ -27,4 +27,4 @@ const userSchema = new Schema({
     default: "parent",
   },
 });
-module.exports = User = model("user", userSchema);
+module.exports = User = mongoose.model("User", userSchema);

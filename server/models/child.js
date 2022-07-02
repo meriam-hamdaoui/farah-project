@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const childSchema = new Schema({
   //avoir mm id que son père userSchema
-  parent: { type: Schema.Types.ObjectId, ref: "user" },
+  parent: { type: Schema.Types.ObjectId, ref: "User" },
   childFName: { type: String },
   childLName: { type: String },
   birthDate: { type: Date },
@@ -26,5 +26,4 @@ const childSchema = new Schema({
   },
 });
 
-const Child = model("child", childSchema);
-module.exports = { Child, childSchema };
+module.exports = Child = model("child", childSchema);

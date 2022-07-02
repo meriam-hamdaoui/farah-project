@@ -90,16 +90,34 @@ exports.signin = async (req, res) => {
       }
       const payload = { id: found._id };
       let token = jwt.sign(payload, process.env.secretOrKey);
-      //   if(found.category === "parent") {
-      //     const parent = await Parent.
-      //   }
-      return res
-        .status(200)
-        .send({
+      if (found.category === "parent") {
+        const parent = await Parent.findOne({ user: found._id }).populate(
+          "user"
+        );
+        // console.log("parent  => ", parent);
+        return res.status(200).send({
           msg: `logged in as  with succes as ${found.category}`,
-          found,
+          parent,
           token,
         });
+      }
+
+      if (found.category === "consultant") {
+        const consultant = await Consultant.findOne({
+          user: found._id,
+        }).populate("user");
+        if (!consultant.accepted) {
+          return res
+            .status(500)
+            .send({ msg: "your request is not approuved yet" });
+        } else if (consultant.accepted) {
+          return res.status(200).send({
+            msg: `logged in as  with succes as ${found.category}`,
+            consultant,
+            token,
+          });
+        }
+      }
     }
   } catch (errors) {
     console.error(`signin error => ${errors}`);
