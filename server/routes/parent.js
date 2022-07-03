@@ -17,6 +17,7 @@ const {
   parentValidator,
   userValidator,
   loginValidator,
+  childValidator,
   validation,
 } = require("../middlewares/validators");
 const { isAuth } = require("../middlewares/isAuth");
@@ -38,14 +39,14 @@ parentRouter.post("/signin", loginValidator, signin);
 parentRouter.get("/profile", isAuth, getProfile);
 
 //puts
-parentRouter.put("/profile/:id", isAuth, updateProfile);
+parentRouter.put("/:id", updateProfile);
 
 //children routes
-parentRouter.post("/profile/add-children", isAuth, addChildren);
-parentRouter.get("/profile/children", isAuth, getChildren);
-parentRouter.get("/profile/children/:id", isAuth, getChild);
-parentRouter.put("/profile/children/:id", isAuth, updateChild);
-parentRouter.delete("/profile/children/:id", isAuth, deleteChild);
+parentRouter.post("/profile/add-children", childValidator, addChildren);
+parentRouter.get("/profile/children", getChildren);
+parentRouter.get("/profile/children/:id", getChild);
+parentRouter.put("/profile/children/:id", childValidator, updateChild);
+parentRouter.delete("/profile/children/:id", deleteChild);
 
 //exports our router
 module.exports = parentRouter;

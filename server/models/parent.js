@@ -6,7 +6,7 @@ const parentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  status: { type: String },
+  civil: { type: String },
   job: { type: String },
   familyMembers: { type: Number },
   demandes: { type: String },
