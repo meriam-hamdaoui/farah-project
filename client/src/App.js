@@ -12,9 +12,9 @@ import Contacts from "./components/pages/Contacts";
 import JoinUs from "./components/joinUs/JoinUs";
 import Signin from "./components/joinUs/Signin";
 import Signup from "./components/joinUs/Signup";
-// import Copyright from "./components/footer/Copyright";
-import Consultant from "./components/forms/consultant/Consultant";
-import ParentTemplate from "./components/forms/parent/ParentTemplate";
+import SignParent from "./components/joinUs/SignParent";
+import SignConsultant from "./components/joinUs/SignConsultant";
+import Copyright from "./components/footer/Copyright";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -31,7 +31,6 @@ function App() {
 
       <div className="main" style={{ marginLeft: show ? "10%" : "5%" }}>
         <NavBar />
-
         <Routes>
           {/*  pages routes */}
           <Route path="/" element={<Home />} />
@@ -40,16 +39,16 @@ function App() {
           <Route path="events" element={<Events />} />
           <Route path="contacts" element={<Contacts />} />
           {/* forms routes */}
-          <Route path="join-us" element={<JoinUs />}>
-            <Route index element={<Signin />} />
-            <Route path="sign-in" element={<Signin />} />
-            <Route path="sign-up" element={<Signup />} />
-          </Route>
-          <Route path="/register/parent" element={<ParentTemplate />} />
-          <Route path="/register/consultant" element={<Consultant />} />
+          {/* <Route path="join-us" element={<JoinUs />}>
+            <Route index element={<Signin />} /> */}
+          <Route path="sign-in" element={<Signin />} />
+          <Route path="sign-up" element={<Signup />} />
+          <Route path="sign-up/parent" element={<SignParent />} />
+          <Route path="sign-up/consultant" element={<SignConsultant />} />
+          {/* </Route> */}
         </Routes>
-        {/* <Copyright /> */}
       </div>
+      <Copyright />
     </div>
   );
 }

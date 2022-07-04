@@ -5,11 +5,6 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { stateOptions } from "../constant/constant";
 import FormikController from "../formikFields/FormikController";
 
-const userOptions = [
-  { key: "Parent", value: "parent" },
-  { key: "Consultant", value: "consultant" },
-];
-
 const User = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);

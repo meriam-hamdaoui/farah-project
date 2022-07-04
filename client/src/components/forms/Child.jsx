@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import { Typography, FormLabel } from "@mui/material";
 import { Formik, Form } from "formik";
-import FormikController from "../../formikFields/FormikController";
-import { initialValues, integration, childSchema } from "../../constant/child";
+import FormikController from "../formikFields/FormikController";
+import { initialValues, integration, childSchema } from "../constant/child";
 
 const Child = () => {
   return (

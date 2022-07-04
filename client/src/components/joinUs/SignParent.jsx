@@ -1,6 +1,5 @@
 import React from "react";
-import * as yup from "yup";
-import VpnKeyIcon from "@mui/icons-material/VpnKey";
+import { useNavigate } from "react-router-dom";
 import {
   Typography,
   Grid,
@@ -9,14 +8,19 @@ import {
   Avatar,
   CssBaseline,
 } from "@mui/material";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Formik } from "formik";
 import { SX_Styling } from "../constant/constant";
-import Category from "../forms/Category";
+
+import { parentValues, parentSchema } from "../constant/parent";
+import Parent from "../forms/Parent";
 
 const theme = createTheme();
 
-const Signup = () => {
+const SignParent = () => {
+  const navigate = useNavigate();
+
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -35,15 +39,13 @@ const Signup = () => {
               <VpnKeyIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign up
+              Sign up Parent
             </Typography>
             <Box sx={{ mt: 1 }}>
               <Formik
-                initialValues={{ category: "" }}
-                validationSchema={yup.object().shape({
-                  category: yup.string().required("specify who you are"),
-                })}
-                component={Category}
+                initialValues={parentValues}
+                validationSchema={parentSchema}
+                component={Parent}
               />
             </Box>
           </Box>
@@ -54,4 +56,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignParent;

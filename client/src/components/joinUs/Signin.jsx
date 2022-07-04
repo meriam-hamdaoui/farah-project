@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Typography,
   Grid,
   Box,
   Paper,
-  Link,
   Checkbox,
   Avatar,
   Button,
@@ -145,14 +145,10 @@ const Signin = () => {
               </Formik>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
+                  <Link to="google.com">Forgot password?</Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
+                  <Link to="/sign-up">{"Don't have an account? Sign Up"}</Link>
                 </Grid>
               </Grid>
             </Box>

@@ -18,7 +18,7 @@ const NavBar = () => {
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          <Nav as={Link} to="/join-us">
+          <Nav as={Link} to="/sign-in">
             Join Us
           </Nav>
         </Navbar.Collapse>
