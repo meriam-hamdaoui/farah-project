@@ -5,7 +5,8 @@ import { Form } from "formik";
 import { Button, Grid } from "@mui/material";
 import User from "../forms/User";
 import { useNavigate } from "react-router-dom";
-import { userOptions } from "../constant/signUser";
+
+export const parent = [{ key: "Parent", value: "parent" }];
 
 const Parent = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Parent = () => {
           control="radio"
           label="I'm a "
           name="category"
-          options={userOptions}
+          options={parent}
         />
         <User />
         <FormikController
@@ -35,20 +36,19 @@ const Parent = () => {
           label="Number of family Members "
         />
         <br />
-        <FormikController control="input" name="demandes" label="demandes" />
+        <FormikController control="textArea" name="demandes" label="Demandes" />
         <Grid item xs={12}>
-          <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+          <Button variant="contained" sx={{ mt: 3, mb: 2 }}>
             Submit
           </Button>
 
           <Button
             type="btn btn-danger"
-            fullWidth
-            variant=""
+            variant="warning"
             sx={{ mt: 3, mb: 2 }}
-            onClick={() => navigate("/", { replace: true })}
+            onClick={() => navigate("/sign-up", { replace: true })}
           >
-            Cancel
+            Go Back
           </Button>
         </Grid>
       </Grid>

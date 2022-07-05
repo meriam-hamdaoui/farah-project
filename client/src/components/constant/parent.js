@@ -1,5 +1,6 @@
 import * as yup from "yup";
 import { v4 as uuidv4 } from "uuid";
+
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 export const parentValues = {
@@ -55,7 +56,7 @@ export const parentSchema = yup.object().shape({
   civil: yup.string().required("choose your civil status"),
   job: yup.string().required("would you mention your job please"),
   familyMembers: yup.string().required("number of your family member"),
-  demandes: yup.string().required("How can we help you?"),
+  demandes: yup.string().required("Please mention your demandes"),
 });
 
 export const stateOptions = [

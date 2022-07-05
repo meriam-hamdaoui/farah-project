@@ -8,7 +8,7 @@ import {
 import { RiServiceLine, RiContactsLine } from "react-icons/ri";
 import { BiHomeHeart } from "react-icons/bi";
 import { FaUsers } from "react-icons/fa";
-import { MdOutlineLocalActivity, MdOutlineMenu } from "react-icons/md";
+import { MdOutlineMenu } from "react-icons/md";
 
 const SideBar = ({ show }) => {
   return (
@@ -30,10 +30,10 @@ const SideBar = ({ show }) => {
             <RiServiceLine />
             {show && <span>Services</span>}
           </NavLink>
-          <NavLink to="/events">
+          {/* <NavLink to="/events">
             <MdOutlineLocalActivity />
             {show && <span>Events</span>}
-          </NavLink>
+          </NavLink> */}
           <NavLink to="/contacts">
             <RiContactsLine />
             {show && <span>Contacts</span>}

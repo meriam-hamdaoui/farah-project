@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import {
   Typography,
   Grid,
@@ -12,15 +11,12 @@ import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Formik } from "formik";
 import { SX_Styling } from "../constant/constant";
-
 import { parentValues, parentSchema } from "../constant/parent";
 import Parent from "../forms/Parent";
 
 const theme = createTheme();
 
 const SignParent = () => {
-  const navigate = useNavigate();
-
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>

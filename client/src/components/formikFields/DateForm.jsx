@@ -11,13 +11,7 @@ const DateForm = (props) => {
     <Grid item xs={12}>
       <FormControl>
         <FormLabel>{label}</FormLabel>
-        <Field
-          name={name}
-          fullWidth
-          variant="outlined"
-          required
-          autoComplete="off"
-        >
+        <Field name={name} variant="outlined" required autoComplete="off">
           {({ form, field }) => {
             // set a value programatically in the field state
             const { setFieldValue } = form;

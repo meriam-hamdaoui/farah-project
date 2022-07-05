@@ -69,7 +69,6 @@ const Signin = () => {
                           {...getFieldProps("email")}
                           margin="normal"
                           required
-                          fullWidth
                           id="email"
                           variant="outlined"
                           autoComplete="off"
@@ -89,7 +88,6 @@ const Signin = () => {
                           type={showPassword ? "text" : "password"}
                           margin="normal"
                           required
-                          fullWidth
                           id="outlined-password-basic"
                           variant="outlined"
                           autoComplete="off"
@@ -133,7 +131,6 @@ const Signin = () => {
                       />
                       <Button
                         type="submit"
-                        fullWidth
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
                       >

@@ -1,9 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import FormikController from "../formikFields/FormikController";
-import { userOptions } from "../constant/signUp";
 import { Form } from "formik";
 import { Button, Grid } from "@mui/material";
+
+const userOptions = [
+  { key: "Parent", value: "parent" },
+  { key: "Consultant", value: "consultant" },
+];
 
 const Category = ({ values }) => {
   const navigate = useNavigate();
@@ -27,7 +31,6 @@ const Category = ({ values }) => {
         />
         <Grid item xs={12}>
           <Button
-            fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
             onClick={() => handleClick(values.category)}
@@ -37,7 +40,6 @@ const Category = ({ values }) => {
 
           <Button
             type="btn btn-danger"
-            fullWidth
             variant=""
             sx={{ mt: 3, mb: 2 }}
             onClick={() => navigate("/", { replace: true })}

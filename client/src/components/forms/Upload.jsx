@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Field, ErrorMessage } from "formik";
 import { TextField, Grid } from "@mui/material";
 import DangerousOutlinedIcon from "@mui/icons-material/DangerousOutlined";
 
-const InputForm = (props) => {
+const Upload = (props) => {
   const { name, label, placeholder, values, type, sm, errors, ...rest } = props;
-
+  const fileInput = useRef();
   return (
     <Grid item xs={12} sm={sm}>
       <Field
@@ -13,12 +13,12 @@ const InputForm = (props) => {
         name={name}
         id={name}
         label={label}
-        placeholder={label}
-        type={type}
+        type="file"
         {...rest}
         variant="outlined"
         required
         autoComplete="off"
+        ref={fileInput}
       />
       <ErrorMessage name={name}>
         {(msg) => (
@@ -31,4 +31,4 @@ const InputForm = (props) => {
   );
 };
 
-export default InputForm;
+export default Upload;

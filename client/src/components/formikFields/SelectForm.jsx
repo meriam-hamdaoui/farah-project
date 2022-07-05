@@ -19,7 +19,6 @@ const SelectForm = (props) => {
         onBlur={() => helpers.setTouched(true)}
         options={options}
         required
-        fullWidth
         variant="outlined"
         {...rest}
       >
