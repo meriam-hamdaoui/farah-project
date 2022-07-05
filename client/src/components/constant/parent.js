@@ -19,7 +19,7 @@ export const parentValues = {
   category: "parent",
   civil: "maried",
   job: "",
-  familyMembers: "",
+  familyMembers: 1,
   demandes: "",
 };
 
@@ -55,7 +55,10 @@ export const parentSchema = yup.object().shape({
   category: yup.string().required("Are you a parent?"),
   civil: yup.string().required("choose your civil status"),
   job: yup.string().required("would you mention your job please"),
-  familyMembers: yup.string().required("number of your family member"),
+  familyMembers: yup
+    .number()
+    .min(1)
+    .required("number of your family member"),
   demandes: yup.string().required("Please mention your demandes"),
 });
 

@@ -19,7 +19,7 @@ const NavBar = () => {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav as={Link} to="/sign-in">
-            Join Us
+            Sign In
           </Nav>
         </Navbar.Collapse>
       </Container>

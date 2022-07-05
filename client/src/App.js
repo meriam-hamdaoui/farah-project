@@ -8,11 +8,12 @@ import About from "./components/pages/About";
 import Services from "./components/pages/Services";
 // import Events from "./components/pages/Events";
 import Contacts from "./components/pages/Contacts";
-import Signin from "./components/joinUs/Signin";
-import Signup from "./components/joinUs/Signup";
-import SignParent from "./components/joinUs/SignParent";
-import SignConsultant from "./components/joinUs/SignConsultant";
+import Signin from "./components/signs/Signin";
+import Signup from "./components/signs/Signup";
+import SignParent from "./components/signs/SignParent";
+import SignConsultant from "./components/signs/SignConsultant";
 import Copyright from "./components/footer/Copyright";
+import ParentProfil from "./components/profiles/ParentProfil";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -37,13 +38,13 @@ function App() {
           {/* <Route path="events" element={<Events />} /> */}
           <Route path="contacts" element={<Contacts />} />
           {/* forms routes */}
-          {/* <Route path="join-us" element={<JoinUs />}>
-            <Route index element={<Signin />} /> */}
           <Route path="sign-in" element={<Signin />} />
           <Route path="sign-up" element={<Signup />} />
           <Route path="sign-up/parent" element={<SignParent />} />
           <Route path="sign-up/consultant" element={<SignConsultant />} />
           {/* </Route> */}
+          {/* parent routes */}
+          <Route path="parent/profil" element={<ParentProfil />} />
         </Routes>
       </div>
       <Copyright />
