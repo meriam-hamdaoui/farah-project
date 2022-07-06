@@ -3,26 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-export const parentValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-  phone: "",
-  address: {
-    street: "",
-    zipCode: "",
-    city: "",
-    state: "",
-  },
-  category: "parent",
-  civil: "maried",
-  job: "",
-  familyMembers: 1,
-  demandes: "",
-};
-
 export const parentSchema = yup.object().shape({
   firstName: yup.string().required("enter your first Name please"),
   lastName: yup.string().required("enter your last Name please"),

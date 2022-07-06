@@ -8,12 +8,12 @@ import About from "./components/pages/About";
 import Services from "./components/pages/Services";
 // import Events from "./components/pages/Events";
 import Contacts from "./components/pages/Contacts";
-import Signin from "./components/signs/Signin";
-import Signup from "./components/signs/Signup";
-import SignParent from "./components/signs/SignParent";
-import SignConsultant from "./components/signs/SignConsultant";
+import Authentication from "./components/templates/Authentication";
+import Signup from "./components/templates/Signup";
+import Signin from "./components/auth/Signin";
+import Parent from "./components/auth/Parent";
+import Consultant from "./components/auth/Consultant";
 import Copyright from "./components/footer/Copyright";
-import ParentProfil from "./components/profiles/ParentProfil";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -38,13 +38,30 @@ function App() {
           {/* <Route path="events" element={<Events />} /> */}
           <Route path="contacts" element={<Contacts />} />
           {/* forms routes */}
-          <Route path="sign-in" element={<Signin />} />
-          <Route path="sign-up" element={<Signup />} />
-          <Route path="sign-up/parent" element={<SignParent />} />
-          <Route path="sign-up/consultant" element={<SignConsultant />} />
-          {/* </Route> */}
-          {/* parent routes */}
-          <Route path="parent/profil" element={<ParentProfil />} />
+          <Route
+            path="sign-in"
+            element={
+              <Authentication>
+                <Signin />{" "}
+              </Authentication>
+            }
+          />
+          <Route
+            path="sign-up/parent"
+            element={
+              <Signup>
+                <Parent />
+              </Signup>
+            }
+          />
+          <Route
+            path="sign-up/consultant"
+            element={
+              <Signup>
+                <Consultant />
+              </Signup>
+            }
+          />
         </Routes>
       </div>
       <Copyright />

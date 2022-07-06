@@ -1,6 +1,4 @@
 import React from "react";
-import * as yup from "yup";
-import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import {
   Typography,
   Grid,
@@ -9,14 +7,13 @@ import {
   Avatar,
   CssBaseline,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Formik } from "formik";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
 import { SX_Styling } from "../constant/constant";
-import Category from "../forms/Category";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme();
 
-const Signup = () => {
+const Signup = (props) => {
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -32,20 +29,13 @@ const Signup = () => {
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <VpnKeyIcon />
+              <LockOpenIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign up
+              Registration Form
             </Typography>
-            <Box sx={{ mt: 1 }}>
-              <Formik
-                initialValues={{ category: "" }}
-                validationSchema={yup.object().shape({
-                  category: yup.string().required("specify who you are"),
-                })}
-                component={Category}
-              />
-            </Box>
+            <br />
+            <Box sx={{ mt: 1 }}>{props.children}</Box>
           </Box>
         </Grid>
         <Grid item xs={false} sm={4} md={7} sx={SX_Styling} />

@@ -11,21 +11,68 @@ export const SX_Styling = {
   width: "300vh",
 };
 
-export const handleChange = (e, prevValue) => {
-  // console.log(prevValue);
-  const { name, value } = e.target;
-  return {
-    ...prevValue,
-    [name]: value,
-  };
+export const parentValues = {
+  user: {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    phone: "",
+    address: {
+      street: "",
+      zipCode: "",
+      city: "",
+      state: "",
+    },
+  },
+  category: "parent",
+  civil: "",
+  job: "",
+  familyMembers: "",
+  demandes: "",
 };
 
-export const handleSubmit = (e, values, { setSubmitting }) => {
-  e.preventDefault();
-  setTimeout(() => {
-    alert(JSON.stringify(values, null, 2));
-    setSubmitting(false);
-  }, 400);
+export const consultantValues = {
+  user: {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    phone: "",
+    address: {
+      street: "",
+      zipCode: "",
+      city: "",
+      state: "",
+    },
+  },
+  category: "consultant",
+  gender: "Male",
+  domain: "",
+  education: [
+    {
+      degree: "",
+      university: "",
+      diploma: "",
+    },
+  ],
+  experiences: [
+    {
+      title: "",
+      company: "",
+      certificate: "",
+    },
+  ],
+  internships: [
+    {
+      title: "",
+      company: "",
+      certificate: "",
+    },
+  ],
+  offers: "",
 };
 
 export const stateOptions = [

@@ -1,118 +1,168 @@
-import React, { useState } from "react";
-import { IconButton, InputAdornment, FormLabel } from "@mui/material";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Row, Col, Form, FloatingLabel } from "react-bootstrap";
 import { stateOptions } from "../constant/constant";
-import FormikController from "../formikFields/FormikController";
+import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
 
-const User = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
+const User = (props) => {
+  const { category, user, handleChange } = props;
+  const navigate = useNavigate();
+  const validationCategory = () => {
+    if (category !== user.category) {
+      alert(`this form is only for ${category}`);
+      navigate("/sign-in", { replace: true });
+    }
+  };
 
   return (
     <>
-      <FormikController
-        sm={6}
-        control="input"
-        name="firstName"
-        label="first Name"
-      />
+      <Row>
+        <FormLabel className="account" id="demo-row-radio-buttons-group-label">
+          I'm
+        </FormLabel>
+        <RadioGroup
+          required
+          defaultValue={category}
+          row
+          aria-labelledby="demo-row-radio-buttons-group-label"
+          name="category"
+        >
+          <FormControlLabel
+            value="parent"
+            control={<Radio />}
+            label="Parent"
+            onClick={() => validationCategory()}
+          />
+          <FormControlLabel
+            value="consultant"
+            control={<Radio />}
+            label="Consultant"
+            onClick={() => validationCategory()}
+          />
+        </RadioGroup>
+      </Row>
+      <Row>
+        <Col>
+          <FloatingLabel
+            controlId="floatingInput"
+            label="first Name"
+            className="mb-3"
+          >
+            <Form.Control
+              required
+              type="text"
+              name="firstName"
+              // value={user.firstName}
+              onChange={handleChange}
+            />
+          </FloatingLabel>
+        </Col>
+        <Col>
+          <FloatingLabel
+            controlId="floatingInput"
+            label="last Name "
+            className="mb-3"
+          >
+            <Form.Control
+              required
+              type="text"
+              name="lastName"
+              // value={user.lastName}
+              onChange={handleChange}
+            />
+          </FloatingLabel>
+        </Col>
+      </Row>
+      <Row>
+        <FloatingLabel
+          controlId="floatingInput"
+          label="Email address"
+          className="mb-3"
+        >
+          <Form.Control
+            required
+            type="email"
+            name="email"
+            // value={user.email}
+            onChange={handleChange}
+          />
+        </FloatingLabel>
+      </Row>
+      <Row>
+        <Col>
+          <FloatingLabel controlId="floatingPassword" label="Password">
+            <Form.Control
+              required
+              type="password"
+              name="password"
+              // value={user.password}
+              onChange={handleChange}
+            />
+          </FloatingLabel>
+        </Col>
+        <Col>
+          <FloatingLabel controlId="floatingPassword" label="Confirmation">
+            <Form.Control
+              required
+              type="password"
+              name="confirmPassword"
+              // value={user.confirmPassword}
+              onChange={handleChange}
+            />
+          </FloatingLabel>
+        </Col>
+      </Row>
       <br />
-      <FormikController
-        sm={6}
-        control="input"
-        name="lastName"
-        label="last Name"
-      />
-      <br />
-      <FormikController
-        control="input"
-        name="email"
-        label="email"
-        type="email"
-      />
-      <br />
-      <FormikController
-        sm={6}
-        control="input"
-        name="password"
-        label="Password"
-        type={showPassword ? "txt" : "password"}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                edge="end"
-                onClick={() => setShowPassword(showPassword ? false : true)}
-              >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-      <br />
-      <FormikController
-        sm={6}
-        control="input"
-        name="confirmPassword"
-        label="Confirm Password "
-        type={showConfirm ? "txt" : "password"}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                edge="end"
-                onClick={() => setShowConfirm(showConfirm ? false : true)}
-              >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-      <br />
-      <FormikController
-        control="input"
-        type="phone"
-        name="phone"
-        label="phone"
-      />
+      <Row>
+        <Form.Group className="mb-3" controlId="formGridAddress2">
+          <FloatingLabel controlId="floatingAddress" label="Address">
+            <Form.Control
+              required
+              type="text"
+              name="address.street"
+              // value={address.street}
+              onChange={handleChange}
+            />
+          </FloatingLabel>
+        </Form.Group>
+        <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridCity">
+            <FloatingLabel controlId="floatingCity" label="City">
+              <Form.Control
+                required
+                type="text"
+                name="address.city"
+                // value={address.city}
+                onChange={handleChange}
+              />
+            </FloatingLabel>
+          </Form.Group>
 
-      <FormLabel style={{ marginTop: "5%", marginLeft: "5%" }}>
-        Address
-      </FormLabel>
+          <Form.Group as={Col} controlId="formGridState">
+            <FloatingLabel as={Col} controlId="floatingAddress" label="State">
+              <Form.Select required>
+                <option></option>
+                {stateOptions.map((state) => (
+                  <option key={state.id}>{state.value}</option>
+                ))}
+              </Form.Select>
+            </FloatingLabel>
+          </Form.Group>
 
-      <FormikController
-        control="input"
-        name="address.street"
-        label="street"
-        placeholder="street address"
-      />
-      <br />
-      <FormikController
-        sm={6}
-        control="input"
-        name="address.city"
-        label="city"
-        placeholder="city"
-      />
-      <br />
-      <FormikController
-        sm={6}
-        control="input"
-        name="address.zipCode"
-        label="zip Code"
-        placeholder="zip Code "
-      />
-      <br />
-      <FormikController
-        control="select"
-        name="address.state"
-        options={stateOptions}
-      />
+          <Form.Group as={Col} controlId="formGridZip">
+            <FloatingLabel controlId="floatingZip" label="Zip">
+              <Form.Control
+                required
+                type="number"
+                min="1"
+                name="address.zipCode"
+                // value={address.zipCode}
+                onChange={handleChange}
+              />
+            </FloatingLabel>
+          </Form.Group>
+        </Row>
+      </Row>
     </>
   );
 };
