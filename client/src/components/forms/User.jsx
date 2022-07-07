@@ -25,7 +25,7 @@ const User = (props) => {
           defaultValue={category}
           row
           aria-labelledby="demo-row-radio-buttons-group-label"
-          name="category"
+          name="user.category"
         >
           <FormControlLabel
             value="parent"
@@ -51,7 +51,7 @@ const User = (props) => {
             <Form.Control
               required
               type="text"
-              name="firstName"
+              name="user.firstName"
               // value={user.firstName}
               onChange={handleChange}
             />
@@ -66,7 +66,7 @@ const User = (props) => {
             <Form.Control
               required
               type="text"
-              name="lastName"
+              name="user.lastName"
               // value={user.lastName}
               onChange={handleChange}
             />
@@ -94,7 +94,7 @@ const User = (props) => {
             required
             autoComplete="false"
             type="email"
-            name="email"
+            name="user.email"
             // value={user.email}
             onChange={handleChange}
           />
@@ -106,7 +106,7 @@ const User = (props) => {
             <Form.Control
               required
               type="password"
-              name="password"
+              name="user.password"
               // value={user.password}
               onChange={handleChange}
             />
@@ -117,7 +117,7 @@ const User = (props) => {
             <Form.Control
               required
               type="password"
-              name="confirmPassword"
+              name="user.confirmPassword"
               // value={user.confirmPassword}
               onChange={handleChange}
             />
@@ -131,7 +131,7 @@ const User = (props) => {
             <Form.Control
               required
               type="text"
-              name="address.street"
+              name="user.address.street"
               // value={user.address.street}
               onChange={handleChange}
             />
@@ -143,7 +143,7 @@ const User = (props) => {
               <Form.Control
                 required
                 type="text"
-                name="address.city"
+                name="user.address.city"
                 // value={user.address.city}
                 onChange={handleChange}
               />
@@ -154,7 +154,7 @@ const User = (props) => {
             <FloatingLabel as={Col} controlId="floatingAddress" label="State">
               <Form.Select
                 required
-                name="address.city"
+                name="user.address.city"
                 // value={user.address.city}
                 onChange={handleChange}
               >
@@ -172,7 +172,7 @@ const User = (props) => {
                 required
                 type="number"
                 min="1"
-                name="address.zipCode"
+                name="user.address.zipCode"
                 // value={user.address.zipCode}
                 onChange={handleChange}
               />
