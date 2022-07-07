@@ -44,7 +44,7 @@ function App() {
             path="sign-in"
             element={
               <Authentication>
-                <Signin />{" "}
+                <Signin />
               </Authentication>
             }
           />
@@ -66,7 +66,7 @@ function App() {
           />
 
           {/* private routes */}
-          <Route path="parent/profile" element={<ParentDash />} />
+          <Route path="parent/profil" element={<ParentDash />} />
         </Routes>
       </div>
       <Copyright />

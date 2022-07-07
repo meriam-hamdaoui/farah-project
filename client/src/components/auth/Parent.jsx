@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useParams } from "react";
 import User from "../forms/User";
 import { useDispatch } from "react-redux";
 import {
@@ -12,14 +12,14 @@ import {
 import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
 import { parentValues } from "../constant/constant";
 import { postParent } from "../../api/parent";
-// import { signParent } from "../../JS/parentReducer";
-// "http://localhost:5000/farah"
+import { signParent } from "../../JS/parentReducer";
+
 const Parent = () => {
   const [parent, setParent] = useState(parentValues);
 
-  // console.log("process.env =>", process.env.REACT_APP_API_URL);
+  console.log("process.env =>", process.env.REACT_APP_API_URL);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,15 +33,13 @@ const Parent = () => {
     // value => ${value}`);
   };
 
-  const handleSubmit = (value) => {
-    // dispatch(signParent(value));
-    postParent(value);
-    setParent({});
+  const handleSubmit = async (value) => {
+    await postParent(value);
     console.log("parent =>", value);
   };
 
   return (
-    <Form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
+    <Form autoComplete="off">
       <Container>
         <User
           user={parent.user}
@@ -77,7 +75,7 @@ const Parent = () => {
               required
               type="text"
               name="job"
-              value={parent.job}
+              // value={parent.job}
               onChange={handleChange}
             />
           </FloatingLabel>
@@ -91,7 +89,7 @@ const Parent = () => {
                 type="number"
                 min="1"
                 name="familyMembers"
-                value={parent.familyMembers}
+                // value={parent.familyMembers}
                 onChange={handleChange}
               />
             </FloatingLabel>
@@ -106,7 +104,7 @@ const Parent = () => {
               as="textarea"
               rows={3}
               name="demandes"
-              value={parent.demandes}
+              // value={parent.demandes}
               onChange={handleChange}
             />
           </Form.Group>

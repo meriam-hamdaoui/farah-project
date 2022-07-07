@@ -4,19 +4,17 @@ import { v4 as uuidv4 } from "uuid";
 const initialState = [
   {
     id: uuidv4(),
-    user: {
-      firstName: "Ali",
-      lastName: "Hamdaoui",
-      email: "ali@gmail.com",
-      password: "azerty123456",
-      confirmPassword: "azerty123456",
-      phone: 99100200,
-      address: {
-        street: "streeeeet",
-        zipCode: 2052,
-        city: "ciiiiiity",
-        state: "staaaaaate",
-      },
+    firstName: "Ali",
+    lastName: "Hamdaoui",
+    email: "ali@gmail.com",
+    password: "azerty123456",
+    confirmPassword: "azerty123456",
+    phone: 99100200,
+    address: {
+      street: "streeeeet",
+      zipCode: 2052,
+      city: "ciiiiiity",
+      state: "staaaaaate",
     },
     category: "parent",
     civil: "maried",

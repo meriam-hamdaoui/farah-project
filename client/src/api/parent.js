@@ -9,7 +9,7 @@ export const fetchProfil = async () => {
 
 export const postParent = async (value) => {
   try {
-    await axios.post(`${process.env.API_PATH}/farah/sign-up/parent`, {
+    await axios.post("http://localhost:5000/farah/sign-up/parent", {
       ...value,
     });
   } catch (error) {

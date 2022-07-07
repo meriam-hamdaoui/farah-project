@@ -14,10 +14,28 @@ import {
   FormControl,
   FormLabel,
 } from "@mui/material/";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signin = () => {
-  const [category, setCategory] = React.useState("parent");
+  const [category, setCategory] = React.useState();
+
+  const handleCategory = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (category === "parent") {
+      navigate("/sign-up/parent");
+    }
+    if (category === "consultant") {
+      navigate("/sign-up/consultant");
+    }
+    if (!category) {
+      alert("please choose a for to subscribe");
+    }
+  };
 
   return (
     <Form style={{ width: "60vh" }}>
@@ -57,29 +75,27 @@ const Signin = () => {
               >
                 Don't have an account? &nbsp;
               </FormLabel>
-              <span>Sign Up As</span>
+              <button onClick={() => handleClick()}>Sign Up As</button>
             </Col>
             <Col>
               <RadioGroup
-                defaultValue="parent"
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
+                name="category"
               >
-                <Link to="/sign-up/parent">
-                  <FormControlLabel
-                    value="parent"
-                    control={<Radio />}
-                    label="Parent"
-                  />
-                </Link>
-                <Link to="/sign-up/consultant">
-                  <FormControlLabel
-                    value="consultant"
-                    control={<Radio />}
-                    label="Consultant"
-                  />
-                </Link>
+                <FormControlLabel
+                  value="parent"
+                  control={<Radio />}
+                  label="Parent"
+                  onChange={(e) => handleCategory(e)}
+                />
+
+                <FormControlLabel
+                  value="consultant"
+                  control={<Radio />}
+                  label="Consultant"
+                  onChange={(e) => handleCategory(e)}
+                />
               </RadioGroup>
             </Col>
           </FormControl>
