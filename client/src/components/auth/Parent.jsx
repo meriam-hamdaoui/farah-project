@@ -24,16 +24,6 @@ const Parent = () => {
   };
 
   const [parent, setParent] = useState(parentValues);
-  const { user, job, familyMembers, demandes } = parent;
-  const {
-    firstName,
-    lastName,
-    email,
-    phone,
-    password,
-    confirmPassword,
-    address: { street, zipCode, city, state },
-  } = user;
 
   // console.log("process.env =>", process.env.REACT_APP_API_URL);
 
@@ -53,7 +43,8 @@ const Parent = () => {
 
   const handleSubmit = async (value) => {
     await postParent(value);
-    console.log("parent =>", value);
+    console.log("parent =>", parent);
+    console.log("value =>", value);
   };
 
   return (
@@ -78,7 +69,7 @@ const Parent = () => {
             defaultValue="parent"
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
-            name="user.category"
+            name="category"
           >
             <FormControlLabel
               value="parent"
@@ -103,8 +94,8 @@ const Parent = () => {
               <Form.Control
                 required
                 type="text"
-                name="user.firstName"
-                value={parent.user.firstName}
+                name="firstName"
+                // value={parent.user.firstName}
                 onChange={(e) => handleChange(e)}
               />
             </FloatingLabel>
@@ -118,27 +109,12 @@ const Parent = () => {
               <Form.Control
                 required
                 type="text"
-                name="user.lastName"
-                value={user.lastName}
+                name="lastName"
+                // value={user.lastName}
                 onChange={handleChange}
               />
             </FloatingLabel>
           </Col>
-        </Row>
-        <Row>
-          <FloatingLabel
-            controlId="floatingInput"
-            label="Phone"
-            className="mb-3"
-          >
-            <Form.Control
-              required
-              type="phone"
-              name="phone"
-              value={user.phone}
-              onChange={handleChange}
-            />
-          </FloatingLabel>
         </Row>
         <Row>
           <FloatingLabel
@@ -150,8 +126,8 @@ const Parent = () => {
               required
               autoComplete="false"
               type="email"
-              name="user.email"
-              value={user.email}
+              name="email"
+              // value={user.email}
               onChange={handleChange}
             />
           </FloatingLabel>
@@ -162,8 +138,8 @@ const Parent = () => {
               <Form.Control
                 required
                 type="password"
-                name="user.password"
-                value={user.password}
+                name="password"
+                // value={user.password}
                 onChange={handleChange}
               />
             </FloatingLabel>
@@ -173,12 +149,28 @@ const Parent = () => {
               <Form.Control
                 required
                 type="password"
-                name="user.confirmPassword"
-                value={user.confirmPassword}
+                name="confirmPassword"
+                // value={user.confirmPassword}
                 onChange={handleChange}
               />
             </FloatingLabel>
           </Col>
+        </Row>
+        <br />
+        <Row>
+          <FloatingLabel
+            controlId="floatingInput"
+            label="Phone"
+            className="mb-3"
+          >
+            <Form.Control
+              required
+              type="phone"
+              name="phone"
+              // value={user.phone}
+              onChange={handleChange}
+            />
+          </FloatingLabel>
         </Row>
         <br />
         <Row>
@@ -187,8 +179,8 @@ const Parent = () => {
               <Form.Control
                 required
                 type="text"
-                name="user.address.street"
-                value={user.address.street}
+                name="addressStreet"
+                // value={user.address.street}
                 onChange={handleChange}
               />
             </FloatingLabel>
@@ -199,8 +191,8 @@ const Parent = () => {
                 <Form.Control
                   required
                   type="text"
-                  name="user.address.city"
-                  value={user.address.city}
+                  name="addressCity"
+                  // value={user.address.city}
                   onChange={handleChange}
                 />
               </FloatingLabel>
@@ -210,8 +202,8 @@ const Parent = () => {
               <FloatingLabel as={Col} controlId="floatingAddress" label="State">
                 <Form.Select
                   required
-                  name="user.address.city"
-                  value={user.address.city}
+                  name="addressState"
+                  // value={user.address.city}
                   onChange={handleChange}
                 >
                   <option></option>
@@ -228,8 +220,8 @@ const Parent = () => {
                   required
                   type="number"
                   min="1"
-                  name="user.address.zipCode"
-                  value={user.address.zipCode}
+                  name="addressZipCode"
+                  // value={user.address.zipCode}
                   onChange={handleChange}
                 />
               </FloatingLabel>
@@ -241,7 +233,6 @@ const Parent = () => {
           <FormLabel>My Civil Situation</FormLabel>
           <RadioGroup
             required
-            defaultValue="maried"
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="civil"
@@ -250,11 +241,13 @@ const Parent = () => {
               value="maried"
               control={<Radio />}
               label="Maried"
+              onChange={handleChange}
             />
             <FormControlLabel
               value="divorced"
               control={<Radio />}
               label="Divorced"
+              onChange={handleChange}
             />
           </RadioGroup>
         </Row>
@@ -265,7 +258,7 @@ const Parent = () => {
               required
               type="text"
               name="job"
-              value={parent.job}
+              // value={parent.job}
               onChange={handleChange}
             />
           </FloatingLabel>
@@ -279,7 +272,7 @@ const Parent = () => {
                 type="number"
                 min="1"
                 name="familyMembers"
-                value={parent.familyMembers}
+                // value={parent.familyMembers}
                 onChange={handleChange}
               />
             </FloatingLabel>
@@ -294,7 +287,7 @@ const Parent = () => {
               as="textarea"
               rows={3}
               name="demandes"
-              value={parent.demandes}
+              // value={parent.demandes}
               onChange={handleChange}
             />
           </Form.Group>
@@ -306,22 +299,7 @@ const Parent = () => {
           <Col>
             <Button
               variant="primary"
-              onClick={() =>
-                handleSubmit({
-                  user: {
-                    firstName,
-                    lastName,
-                    email,
-                    phone,
-                    password,
-                    confirmPassword,
-                    address: { street, zipCode, city, state },
-                  },
-                  job,
-                  familyMembers,
-                  demandes,
-                })
-              }
+              onClick={() => handleSubmit({ ...parent })}
             >
               Submit
             </Button>
