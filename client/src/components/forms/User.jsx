@@ -74,6 +74,17 @@ const User = (props) => {
         </Col>
       </Row>
       <Row>
+        <FloatingLabel controlId="floatingInput" label="Phone" className="mb-3">
+          <Form.Control
+            required
+            type="phone"
+            name="phone"
+            // value={user.phone}
+            onChange={handleChange}
+          />
+        </FloatingLabel>
+      </Row>
+      <Row>
         <FloatingLabel
           controlId="floatingInput"
           label="Email address"
@@ -81,6 +92,7 @@ const User = (props) => {
         >
           <Form.Control
             required
+            autoComplete="false"
             type="email"
             name="email"
             // value={user.email}
@@ -120,7 +132,7 @@ const User = (props) => {
               required
               type="text"
               name="address.street"
-              // value={address.street}
+              // value={user.address.street}
               onChange={handleChange}
             />
           </FloatingLabel>
@@ -132,7 +144,7 @@ const User = (props) => {
                 required
                 type="text"
                 name="address.city"
-                // value={address.city}
+                // value={user.address.city}
                 onChange={handleChange}
               />
             </FloatingLabel>
@@ -140,7 +152,12 @@ const User = (props) => {
 
           <Form.Group as={Col} controlId="formGridState">
             <FloatingLabel as={Col} controlId="floatingAddress" label="State">
-              <Form.Select required>
+              <Form.Select
+                required
+                name="address.city"
+                // value={user.address.city}
+                onChange={handleChange}
+              >
                 <option></option>
                 {stateOptions.map((state) => (
                   <option key={state.id}>{state.value}</option>
@@ -156,7 +173,7 @@ const User = (props) => {
                 type="number"
                 min="1"
                 name="address.zipCode"
-                // value={address.zipCode}
+                // value={user.address.zipCode}
                 onChange={handleChange}
               />
             </FloatingLabel>

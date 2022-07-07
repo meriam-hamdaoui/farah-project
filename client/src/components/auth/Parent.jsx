@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import User from "../forms/User";
+import { useDispatch } from "react-redux";
 import {
   Form,
   Row,
@@ -10,10 +11,14 @@ import {
 } from "react-bootstrap";
 import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
 import { parentValues } from "../constant/constant";
+import { postParent } from "../../api/parent";
+// import { signParent } from "../../JS/parentReducer";
 
 const Parent = () => {
   const [parent, setParent] = useState(parentValues);
 
+  // const dispatch = useDispatch();
+  console.log("process.env => ", process.env.API_PATH);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setParent((prevValue) => {
@@ -26,12 +31,15 @@ const Parent = () => {
     // value => ${value}`);
   };
 
-  const handleSubmit = () => {
-    console.log("parent =>", parent);
+  const handleSubmit = (value) => {
+    // dispatch(signParent(value));
+    postParent(value);
+    setParent({});
+    console.log("parent =>", value);
   };
 
   return (
-    <Form>
+    <Form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
       <Container>
         <User
           user={parent.user}
@@ -106,7 +114,7 @@ const Parent = () => {
             <Button variant="outline-danger">Go Back</Button>
           </Col>
           <Col>
-            <Button variant="primary" onClick={() => handleSubmit()}>
+            <Button variant="primary" onClick={() => handleSubmit(parent)}>
               Submit
             </Button>
           </Col>

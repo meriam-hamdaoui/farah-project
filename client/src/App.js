@@ -9,11 +9,13 @@ import Services from "./components/pages/Services";
 // import Events from "./components/pages/Events";
 import Contacts from "./components/pages/Contacts";
 import Authentication from "./components/templates/Authentication";
+// import Dashborad from "./components/templates/Dashborad";
 import Signup from "./components/templates/Signup";
 import Signin from "./components/auth/Signin";
 import Parent from "./components/auth/Parent";
 import Consultant from "./components/auth/Consultant";
 import Copyright from "./components/footer/Copyright";
+import ParentDash from "./components/dashbords/ParentDash.jsx";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -62,6 +64,9 @@ function App() {
               </Signup>
             }
           />
+
+          {/* private routes */}
+          <Route path="parent/profile" element={<ParentDash />} />
         </Routes>
       </div>
       <Copyright />

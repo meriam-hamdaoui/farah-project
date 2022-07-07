@@ -74,9 +74,11 @@ exports.signup = async (req, res) => {
 };
 
 exports.signin = async (req, res) => {
+  console.log("category =>", category);
   const { email, password } = req.body;
   try {
     const found = await User.findOne({ email: email });
+    // console.log("fouand =>", found);
     if (!found) {
       return res
         .status(400)
@@ -89,14 +91,17 @@ exports.signin = async (req, res) => {
         return res.status(400).send({ msg: "you have the wrong password" });
       }
       const payload = { id: found._id };
+      // console.log("payload =>", payload);
       let token = jwt.sign(payload, process.env.secretOrKey);
       if (found.category === "parent") {
-        const parent = await Parent.findOne({ user: found._id }).populate(
-          "user"
-        );
+        // const parent = await Parent.findOne({ user: found._id }).populate(
+        //   "user"
+        // );
+        const parent = await Parent.findOne(found._id).populate("user");
+
         // console.log("parent  => ", parent);
         return res.status(200).send({
-          msg: `logged in as  with succes as ${found.category}`,
+          msg: `logged in as ${found.category}  with succes `,
           parent,
           token,
         });
@@ -112,7 +117,7 @@ exports.signin = async (req, res) => {
             .send({ msg: "your request is not approuved yet" });
         } else if (consultant.accepted) {
           return res.status(200).send({
-            msg: `logged in as  with succes as ${found.category}`,
+            msg: `logged in as ${found.category} with succes`,
             consultant,
             token,
           });

@@ -101,3 +101,19 @@ export const stateOptions = [
   { id: uuidv4(), value: "Guebili", label: "Guebili" },
   { id: uuidv4(), value: "Tataouine", label: "Tataouine" },
 ];
+
+export const childValues = {
+  childFName: "",
+  childLName: "",
+  birthDate: null,
+  disorder: {
+    disType: "",
+    disEstablishment: "",
+    disDate: null,
+  },
+  integration: {
+    integrated: "",
+    integEstablishment: "",
+  },
+  inscritDate: Date.now(),
+};

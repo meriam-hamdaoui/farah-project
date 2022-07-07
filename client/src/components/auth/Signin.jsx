@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 
 const Signin = () => {
   const [category, setCategory] = React.useState("parent");
+
   return (
     <Form style={{ width: "60vh" }}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -56,7 +57,7 @@ const Signin = () => {
               >
                 Don't have an account? &nbsp;
               </FormLabel>
-              <Link to={`/sign-up/${category}`}>Sign Up As</Link>
+              <span>Sign Up As</span>
             </Col>
             <Col>
               <RadioGroup
@@ -65,18 +66,20 @@ const Signin = () => {
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
               >
-                <FormControlLabel
-                  value="parent"
-                  control={<Radio />}
-                  label="Parent"
-                  onChange={() => setCategory("parent")}
-                />
-                <FormControlLabel
-                  value="consultant"
-                  control={<Radio />}
-                  label="Consultant"
-                  onChange={() => setCategory("consultant")}
-                />
+                <Link to="/sign-up/parent">
+                  <FormControlLabel
+                    value="parent"
+                    control={<Radio />}
+                    label="Parent"
+                  />
+                </Link>
+                <Link to="/sign-up/consultant">
+                  <FormControlLabel
+                    value="consultant"
+                    control={<Radio />}
+                    label="Consultant"
+                  />
+                </Link>
               </RadioGroup>
             </Col>
           </FormControl>
