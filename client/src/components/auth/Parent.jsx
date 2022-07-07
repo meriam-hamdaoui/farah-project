@@ -13,12 +13,14 @@ import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
 import { parentValues } from "../constant/constant";
 import { postParent } from "../../api/parent";
 // import { signParent } from "../../JS/parentReducer";
-
+// "http://localhost:5000/farah"
 const Parent = () => {
   const [parent, setParent] = useState(parentValues);
 
+  // console.log("process.env =>", process.env.REACT_APP_API_URL);
+
   // const dispatch = useDispatch();
-  console.log("process.env => ", process.env.API_PATH);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setParent((prevValue) => {
