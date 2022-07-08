@@ -46,10 +46,7 @@ exports.parentValidator = [
   //job
   body("job", "enter your current job please").isString().notEmpty(),
   //status
-  body("civilStatus")
-    .isString()
-    .notEmpty()
-    .withMessage("choose your current status"),
+  body("civil").isString().notEmpty().withMessage("choose your current status"),
   //family member
   body("familyMembers")
     .isNumeric()

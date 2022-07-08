@@ -25,7 +25,7 @@ const User = (props) => {
           defaultValue={category}
           row
           aria-labelledby="demo-row-radio-buttons-group-label"
-          name="user.category"
+          name="category"
         >
           <FormControlLabel
             value="parent"
@@ -51,7 +51,7 @@ const User = (props) => {
             <Form.Control
               required
               type="text"
-              name="user.firstName"
+              name="firstName"
               // value={user.firstName}
               onChange={handleChange}
             />
@@ -66,23 +66,12 @@ const User = (props) => {
             <Form.Control
               required
               type="text"
-              name="user.lastName"
+              name="lastName"
               // value={user.lastName}
               onChange={handleChange}
             />
           </FloatingLabel>
         </Col>
-      </Row>
-      <Row>
-        <FloatingLabel controlId="floatingInput" label="Phone" className="mb-3">
-          <Form.Control
-            required
-            type="phone"
-            name="phone"
-            // value={user.phone}
-            onChange={handleChange}
-          />
-        </FloatingLabel>
       </Row>
       <Row>
         <FloatingLabel
@@ -94,7 +83,7 @@ const User = (props) => {
             required
             autoComplete="false"
             type="email"
-            name="user.email"
+            name="email"
             // value={user.email}
             onChange={handleChange}
           />
@@ -106,7 +95,7 @@ const User = (props) => {
             <Form.Control
               required
               type="password"
-              name="user.password"
+              name="password"
               // value={user.password}
               onChange={handleChange}
             />
@@ -117,7 +106,7 @@ const User = (props) => {
             <Form.Control
               required
               type="password"
-              name="user.confirmPassword"
+              name="confirmPassword"
               // value={user.confirmPassword}
               onChange={handleChange}
             />
@@ -126,12 +115,24 @@ const User = (props) => {
       </Row>
       <br />
       <Row>
+        <FloatingLabel controlId="floatingInput" label="Phone" className="mb-3">
+          <Form.Control
+            required
+            type="phone"
+            name="phone"
+            // value={user.phone}
+            onChange={handleChange}
+          />
+        </FloatingLabel>
+      </Row>
+      <br />
+      <Row>
         <Form.Group className="mb-3" controlId="formGridAddress2">
           <FloatingLabel controlId="floatingAddress" label="Address">
             <Form.Control
               required
               type="text"
-              name="user.address.street"
+              name="street"
               // value={user.address.street}
               onChange={handleChange}
             />
@@ -143,7 +144,7 @@ const User = (props) => {
               <Form.Control
                 required
                 type="text"
-                name="user.address.city"
+                name="city"
                 // value={user.address.city}
                 onChange={handleChange}
               />
@@ -154,7 +155,7 @@ const User = (props) => {
             <FloatingLabel as={Col} controlId="floatingAddress" label="State">
               <Form.Select
                 required
-                name="user.address.city"
+                name="state"
                 // value={user.address.city}
                 onChange={handleChange}
               >
@@ -172,7 +173,7 @@ const User = (props) => {
                 required
                 type="number"
                 min="1"
-                name="user.address.zipCode"
+                name="zipCode"
                 // value={user.address.zipCode}
                 onChange={handleChange}
               />

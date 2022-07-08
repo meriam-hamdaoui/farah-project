@@ -12,20 +12,21 @@ export const SX_Styling = {
 };
 
 export const parentValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-  phone: "",
-
-  addressStreet: "",
-  addressZipCode: "",
-  addressCity: "",
-  addressState: "",
-
-  category: "parent",
-
+  user: {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    phone: "",
+    address: {
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
+    },
+    category: "parent",
+  },
   civil: "",
   job: "",
   familyMembers: "",
