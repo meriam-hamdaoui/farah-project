@@ -26,6 +26,7 @@ export const parentValues = {
       zipCode: "",
     },
     category: "parent",
+    agrement: "",
   },
   civil: "",
   job: "",
@@ -47,8 +48,9 @@ export const consultantValues = {
       city: "",
       state: "",
     },
+    category: "consultant",
+    agrement: "",
   },
-  category: "consultant",
   gender: "Male",
   domain: "",
   education: [

@@ -5,20 +5,14 @@ import { stateOptions } from "../constant/constant";
 import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
 
 const User = (props) => {
-  const { category, user, handleChange } = props;
+  const { category, user, handleChange, children } = props;
   const navigate = useNavigate();
-  const validationCategory = () => {
-    if (category !== user.category) {
-      alert(`this form is only for ${category}`);
-      navigate("/sign-in", { replace: true });
-    }
-  };
 
   return (
     <>
       <Row>
         <FormLabel className="account" id="demo-row-radio-buttons-group-label">
-          I'm
+          For
         </FormLabel>
         <RadioGroup
           required
@@ -27,18 +21,19 @@ const User = (props) => {
           aria-labelledby="demo-row-radio-buttons-group-label"
           name="category"
         >
-          <FormControlLabel
-            value="parent"
-            control={<Radio />}
-            label="Parent"
-            onClick={() => validationCategory()}
-          />
-          <FormControlLabel
-            value="consultant"
-            control={<Radio />}
-            label="Consultant"
-            onClick={() => validationCategory()}
-          />
+          {category === "parent" ? (
+            <FormControlLabel
+              value="parent"
+              control={<Radio />}
+              label="Parent"
+            />
+          ) : (
+            <FormControlLabel
+              value="consultant"
+              control={<Radio />}
+              label="Consultant"
+            />
+          )}
         </RadioGroup>
       </Row>
       <Row>
@@ -181,6 +176,10 @@ const User = (props) => {
           </Form.Group>
         </Row>
       </Row>
+      {children}
+      <Form.Group className="mb-3">
+        <Form.Check required label="Agree to terms and conditions" />
+      </Form.Group>
     </>
   );
 };
