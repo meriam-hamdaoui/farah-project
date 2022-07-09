@@ -17,7 +17,7 @@ import { signParent } from "../../JS/parentReducer";
 
 const Parent = () => {
   const navigate = useNavigate();
-
+  const [validated, setValidated] = useState(false);
   let test = { ...parentValues };
 
   const [parent, setParent] = useState({ ...test });
@@ -66,14 +66,25 @@ const Parent = () => {
     console.log("test => ", test);
   };
 
-  const handleSubmit = async (value) => {
+  const handleSubmit = async (event, value) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
     dispatch(signParent(value));
-    // await postParent(value);
-    console.log("parent =>", parent);
+    setValidated(true);
+    console.log("submit parent =>", parent);
   };
 
+  // const handleSubmit = async (value) => {
+  //   dispatch(signParent(value));
+  //   // await postParent(value);
+  //   console.log("parent =>", parent);
+  // };
+
   return (
-    <Form autoComplete="off">
+    <Form autoComplete="off" noValidate validated={validated}>
       <Container>
         <User
           name="user"
@@ -101,6 +112,9 @@ const Parent = () => {
                 label="Divorced"
                 onChange={handleChange}
               />
+              <Form.Control.Feedback type="invalid">
+                Yochoose your current situation
+              </Form.Control.Feedback>
             </RadioGroup>
           </Row>
           <br />
@@ -117,6 +131,9 @@ const Parent = () => {
                 // value={parent.job}
                 onChange={handleChange}
               />
+              <Form.Control.Feedback type="invalid">
+                required.
+              </Form.Control.Feedback>
             </FloatingLabel>
           </Row>
           <br />
@@ -131,6 +148,9 @@ const Parent = () => {
                   // value={parent.familyMembers}
                   onChange={handleChange}
                 />
+                <Form.Control.Feedback type="invalid">
+                  required. it must be a number
+                </Form.Control.Feedback>
               </FloatingLabel>
             </Form.Group>
           </Row>
@@ -149,6 +169,9 @@ const Parent = () => {
                 // value={parent.demandes}
                 onChange={handleChange}
               />
+              <Form.Control.Feedback type="invalid">
+                required.
+              </Form.Control.Feedback>
             </Form.Group>
           </Row>
         </User>
@@ -164,7 +187,7 @@ const Parent = () => {
           <Col>
             <Button
               variant="primary"
-              onClick={() => handleSubmit({ ...parent })}
+              onClick={(e) => handleSubmit(e, { ...parent })}
             >
               Submit
             </Button>

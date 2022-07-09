@@ -50,6 +50,9 @@ const User = (props) => {
               // value={user.firstName}
               onChange={handleChange}
             />
+            <Form.Control.Feedback type="invalid">
+              required.
+            </Form.Control.Feedback>
           </FloatingLabel>
         </Col>
         <Col>
@@ -65,6 +68,9 @@ const User = (props) => {
               // value={user.lastName}
               onChange={handleChange}
             />
+            <Form.Control.Feedback type="invalid">
+              required.
+            </Form.Control.Feedback>
           </FloatingLabel>
         </Col>
       </Row>
@@ -82,6 +88,9 @@ const User = (props) => {
             // value={user.email}
             onChange={handleChange}
           />
+          <Form.Control.Feedback type="invalid">
+            enter a valid email.
+          </Form.Control.Feedback>
         </FloatingLabel>
       </Row>
       <Row>
@@ -91,9 +100,13 @@ const User = (props) => {
               required
               type="password"
               name="password"
+              pattern="^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*_=+-]).{8,24}$"
               // value={user.password}
               onChange={handleChange}
             />
+            <Form.Control.Feedback type="invalid">
+              required.
+            </Form.Control.Feedback>
           </FloatingLabel>
         </Col>
         <Col>
@@ -102,9 +115,13 @@ const User = (props) => {
               required
               type="password"
               name="confirmPassword"
+              pattern="^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*_=+-]).{8,24}$"
               // value={user.confirmPassword}
               onChange={handleChange}
             />
+            <Form.Control.Feedback type="invalid">
+              required.
+            </Form.Control.Feedback>
           </FloatingLabel>
         </Col>
       </Row>
@@ -118,6 +135,9 @@ const User = (props) => {
             // value={user.phone}
             onChange={handleChange}
           />
+          <Form.Control.Feedback type="invalid">
+            required.
+          </Form.Control.Feedback>
         </FloatingLabel>
       </Row>
       <br />
@@ -131,6 +151,9 @@ const User = (props) => {
               // value={user.address.street}
               onChange={handleChange}
             />
+            <Form.Control.Feedback type="invalid">
+              required.
+            </Form.Control.Feedback>
           </FloatingLabel>
         </Form.Group>
         <Row className="mb-3">
@@ -143,6 +166,9 @@ const User = (props) => {
                 // value={user.address.city}
                 onChange={handleChange}
               />
+              <Form.Control.Feedback type="invalid">
+                required.
+              </Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>
 
@@ -159,6 +185,9 @@ const User = (props) => {
                   <option key={state.id}>{state.value}</option>
                 ))}
               </Form.Select>
+              <Form.Control.Feedback type="invalid">
+                Select your resident state.
+              </Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>
 
@@ -172,13 +201,24 @@ const User = (props) => {
                 // value={user.address.zipCode}
                 onChange={handleChange}
               />
+              <Form.Control.Feedback type="invalid">
+                required, it must be a number
+              </Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>
         </Row>
       </Row>
       {children}
       <Form.Group className="mb-3">
-        <Form.Check required label="Agree to terms and conditions" />
+        <Form.Check
+          required
+          name="agrement"
+          value="agreed"
+          label="Agree to terms and conditions"
+          feedback="You must agree before submitting."
+          feedbackType="invalid"
+          onChange={handleChange}
+        />
       </Form.Group>
     </>
   );
