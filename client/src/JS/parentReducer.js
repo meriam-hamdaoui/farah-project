@@ -18,6 +18,7 @@ const initialState = [
         state: "staaaaaate",
       },
       category: "parent",
+      agrement: "",
     },
     civil: "maried",
     job: "the job",

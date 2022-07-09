@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import User from "../forms/User";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   Form,
@@ -11,51 +12,112 @@ import {
 } from "react-bootstrap";
 import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
 import { consultantValues } from "../constant/constant";
+import { signConsultant } from "../../JS/consultantReducer";
 
 const Consultant = () => {
-  const [consultant, setConsultant] = useState(consultantValues);
-
   const navigate = useNavigate();
+  //validation state
+  const [validated, setValidated] = useState(false);
 
-  const handleChange = (e) => {
+  let test = { ...consultantValues };
+
+  const [consultant, setConsultant] = useState({ ...test });
+
+  const dispatch = useDispatch();
+
+  //handle change for nested consultant object
+  const handleConsultant = (e) => {
     const { name, value } = e.target;
-    setConsultant((prevValue) => {
-      return {
-        ...prevValue,
-        [name]: value,
+    if (
+      name === "street" ||
+      name === "state" ||
+      name === "city" ||
+      name === "zipCode"
+    ) {
+      test = {
+        ...consultant,
+        user: {
+          ...consultant.user,
+          address: {
+            ...consultant.user.address,
+            [name]: value,
+          },
+        },
       };
-    });
-    // console.log(`name => ${name}
-    // value => ${value}`);
+      setConsultant(test);
+    } else if (name === "gender" || name === "domain" || name === "offers") {
+      test = { ...consultant, [name]: value };
+      setConsultant(test);
+    } else if (
+      name === "degree" ||
+      name === "university" ||
+      name === "graduation"
+    ) {
+      test = {
+        ...consultant,
+        educations: { ...consultant.educations, [name]: value },
+      };
+      setConsultant(test);
+    } else {
+      test = {
+        ...consultant,
+        user: {
+          ...consultant.user,
+          [name]: value,
+        },
+      };
+      setConsultant(test);
+    }
+    // console.log(name, value);
+    // console.log(parent);
+    console.log("test => ", test);
+  };
+
+  const handleSubmit = async (event, value) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    dispatch(signConsultant(value));
+    // add postConsultant
+    setValidated(true);
+    console.log("submit consultant =>", consultant);
   };
 
   return (
-    <Form>
+    <Form autoComplete="off" noValidate validated={validated}>
       <Container>
         <User
+          name="user"
           user={consultant.user}
           category={"consultant"}
-          handleChange={handleChange}
+          handleChange={handleConsultant}
         >
           <Row>
-            <FormLabel
-              className="account"
-              id="demo-row-radio-buttons-group-label"
-            >
-              Gender
-            </FormLabel>
+            <FormLabel>Gender</FormLabel>
             <RadioGroup
               defaultValue="male"
               row
+              required
               aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
+              name="gender"
             >
-              <FormControlLabel value="male" control={<Radio />} label="male" />
+              <FormControlLabel
+                value="male"
+                control={<Radio />}
+                label="Male"
+                onChange={handleConsultant}
+              />
               <FormControlLabel
                 value="female"
                 control={<Radio />}
-                label="female"
+                label="Female"
+                onChange={handleConsultant}
               />
+              <Form.Control.Feedback type="invalid">
+                choose your gender
+              </Form.Control.Feedback>
             </RadioGroup>
           </Row>
           <br />
@@ -65,7 +127,69 @@ const Consultant = () => {
               label="Domaine"
               className="mb-3"
             >
-              <Form.Control type="text" />
+              <Form.Control
+                required
+                type="text"
+                name="domain"
+                onChange={handleConsultant}
+              />
+              <Form.Control.Feedback type="invalid">
+                required
+              </Form.Control.Feedback>
+            </FloatingLabel>
+          </Row>
+          {/* eductions */}
+          <Row>
+            <Col>
+              <FloatingLabel
+                controlId="floatingInput"
+                label="Degree"
+                className="mb-3"
+              >
+                <Form.Control
+                  required
+                  type="text"
+                  name="degree"
+                  onChange={handleConsultant}
+                />
+                <Form.Control.Feedback type="invalid">
+                  required
+                </Form.Control.Feedback>
+              </FloatingLabel>
+            </Col>
+            <Col>
+              <FloatingLabel
+                controlId="floatingInput"
+                label="University"
+                className="mb-3"
+              >
+                <Form.Control
+                  required
+                  type="text"
+                  name="university"
+                  onChange={handleConsultant}
+                />
+                <Form.Control.Feedback type="invalid">
+                  required
+                </Form.Control.Feedback>
+              </FloatingLabel>
+            </Col>
+          </Row>
+          <Row>
+            <FloatingLabel
+              controlId="floatingInput"
+              label="Graduation Date"
+              className="mb-3"
+            >
+              <Form.Control
+                required
+                type="date"
+                name="graduation"
+                onChange={handleConsultant}
+              />
+              <Form.Control.Feedback type="invalid">
+                required
+              </Form.Control.Feedback>
             </FloatingLabel>
           </Row>
         </User>
@@ -79,7 +203,12 @@ const Consultant = () => {
             </Button>
           </Col>
           <Col>
-            <Button variant="primary">Submit</Button>
+            <Button
+              variant="primary"
+              onClick={(e) => handleSubmit(e, { ...consultant })}
+            >
+              Submit
+            </Button>
           </Col>
         </Row>
       </Container>

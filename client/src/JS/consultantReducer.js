@@ -15,29 +15,30 @@ const initialState = [
       zipCode: 2052,
       city: "ciiiiiity",
       state: "staaaaaate",
+      category: "consultant",
+      agrement: "",
     },
-    category: "consultant",
     gender: "Male",
     domain: "eduction",
-    education: [
+    educations: [
       {
-        degree: "Master",
+        degree: "degree",
         university: "university",
-        diploma: "",
+        graduation: "",
       },
     ],
     experiences: [
       {
-        title: "Teacher",
-        company: "Primary School",
-        certificate: "",
+        job: "job",
+        society: "society",
+        dateExp: "",
       },
     ],
     internships: [
       {
-        title: "Teacher",
-        company: "Primary School",
-        certificate: "",
+        title: "title",
+        company: "company",
+        dateInt: "",
       },
     ],
     offers: "I can help",
@@ -48,12 +49,12 @@ const consultantSlice = createSlice({
   name: "consultant",
   initialState,
   reducers: {
-    signParent: (state, action) => {
-      const newParent = {
+    signConsultant: (state, action) => {
+      const newConsultant = {
         id: uuidv4(),
         ...action.payload,
       };
-      return [...state, newParent];
+      return [...state, newConsultant];
     },
     signin: (state, action) => {
       return action.payload;

@@ -26,5 +26,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "parent",
   },
+  agrement: { type: String },
 });
 module.exports = User = mongoose.model("User", userSchema);

@@ -17,13 +17,16 @@ import { signParent } from "../../JS/parentReducer";
 
 const Parent = () => {
   const navigate = useNavigate();
+  //validatiion state
   const [validated, setValidated] = useState(false);
+
   let test = { ...parentValues };
 
   const [parent, setParent] = useState({ ...test });
 
   const dispatch = useDispatch();
 
+  //handle change for nested parent object
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (
@@ -72,8 +75,17 @@ const Parent = () => {
       event.preventDefault();
       event.stopPropagation();
     }
-    dispatch(signParent(value));
     setValidated(true);
+    if (validated) {
+      // dispatch(signParent(value));
+      await postParent(value);
+      alert("success");
+      navigate("/sign-in", { replcae: true });
+    } else {
+      alert("failed");
+    }
+
+    // await postParent(value);
     console.log("submit parent =>", parent);
   };
 
@@ -113,7 +125,7 @@ const Parent = () => {
                 onChange={handleChange}
               />
               <Form.Control.Feedback type="invalid">
-                Yochoose your current situation
+                choose your current situation
               </Form.Control.Feedback>
             </RadioGroup>
           </Row>

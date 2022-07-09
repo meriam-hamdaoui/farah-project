@@ -11,41 +11,34 @@ const consultantSchema = new Schema({
   },
   gender: { type: String },
   domain: { type: String },
-  education: [
-    {
-      degree: { type: String },
-      university: { type: String },
-      diploma: {
-        type: Schema.Types.ObjectId,
-        ref: "Image",
-      },
-    },
-  ],
+  educations: {
+    degree: { type: String },
+    university: { type: String },
+    graduation: { type: Date },
+  },
+
   experiences: [
     {
-      title: { type: String },
-      company: { type: String },
-      certificate: {
-        type: Schema.Types.ObjectId,
-        ref: "Image",
-      },
+      job: { type: String },
+      society: { type: String },
+      dateExp: { type: Date },
     },
   ],
   internships: [
     {
       title: { type: String },
       company: { type: String },
-      certificate: {
-        type: Schema.Types.ObjectId,
-        ref: "Image",
-      },
+      dateInt: { type: Date },
     },
   ],
   offers: { type: String },
-  accepted: {
-    type: Boolean,
-    default: false,
-  },
+  certificates: [
+    { type: Schema.Types.ObjectId, ref: "Image", required: false },
+  ],
+  // accepted: {
+  //   type: Boolean,
+  //   default: false,
+  // },
 });
 
 module.exports = Consultant = model("consultant", consultantSchema);

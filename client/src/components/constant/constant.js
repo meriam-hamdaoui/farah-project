@@ -53,27 +53,12 @@ export const consultantValues = {
   },
   gender: "Male",
   domain: "",
-  education: [
-    {
-      degree: "",
-      university: "",
-      diploma: "",
-    },
-  ],
-  experiences: [
-    {
-      title: "",
-      company: "",
-      certificate: "",
-    },
-  ],
-  internships: [
-    {
-      title: "",
-      company: "",
-      certificate: "",
-    },
-  ],
+  educations: {
+    degree: "",
+    university: "",
+    graduation: "",
+  },
+
   offers: "",
 };
 

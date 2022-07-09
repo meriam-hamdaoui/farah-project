@@ -40,6 +40,10 @@ exports.userValidator = [
     .isString()
     .notEmpty()
     .withMessage("specify how would you join us"),
+  body("user.agrement")
+    .isString()
+    .notEmpty()
+    .withMessage("You must agree before submitting."),
 ];
 
 exports.parentValidator = [

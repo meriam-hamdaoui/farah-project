@@ -1,12 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { Row, Col, Form, FloatingLabel } from "react-bootstrap";
 import { stateOptions } from "../constant/constant";
 import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
 
 const User = (props) => {
   const { category, user, handleChange, children } = props;
-  const navigate = useNavigate();
 
   return (
     <>
