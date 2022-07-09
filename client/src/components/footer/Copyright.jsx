@@ -7,6 +7,8 @@ const Copyright = () => {
       {"Copyright © "}
       <small color="inherit"> Farah Association </small>
       <small> {new Date().getFullYear()} </small>
+      <br />
+      <small>by HAMDAOUI Mariem</small>
     </Typography>
   );
 };
