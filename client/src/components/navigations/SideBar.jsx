@@ -20,15 +20,15 @@ const SideBar = ({ show }) => {
         <div className="asidebar-top">
           <NavLink to="/">
             <BiHomeHeart />
-            {show && <span>Home</span>}
+            {show && <span>Accueil</span>}
           </NavLink>
           <NavLink to="/about-us">
             <FaUsers />
-            {show && <span>About Us</span>}
+            {show && <span>A propos</span>}
           </NavLink>
           <NavLink to="/services">
             <RiServiceLine />
-            {show && <span>Services</span>}
+            {show && <span>Nos Services</span>}
           </NavLink>
           {/* <NavLink to="/events">
             <MdOutlineLocalActivity />

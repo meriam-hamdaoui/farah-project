@@ -31,7 +31,10 @@ function App() {
       </div>
 
       <div className="main" style={{ marginLeft: show ? "10%" : "5%" }}>
-        <NavBar />
+        <div className="sticky">
+          <NavBar />
+        </div>
+
         <Routes>
           {/*  pages routes */}
           <Route path="/" element={<Home />} />
@@ -43,7 +46,7 @@ function App() {
           <Route
             path="sign-in"
             element={
-              <Authentication>
+              <Authentication label={"se connecter"}>
                 <Signin />
               </Authentication>
             }
@@ -69,7 +72,9 @@ function App() {
           <Route path="parent/profil" element={<ParentDash />} />
         </Routes>
       </div>
-      <Copyright />
+      <div className="footer">
+        <Copyright />
+      </div>
     </div>
   );
 }

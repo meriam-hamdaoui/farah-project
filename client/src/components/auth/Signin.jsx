@@ -52,7 +52,7 @@ const Signin = () => {
       </Form.Group>
       <br />
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Remerber me" />
+        <Form.Check type="checkbox" label="Enregistre le compte" />
       </Form.Group>
       <Container>
         <Row>
@@ -62,7 +62,7 @@ const Signin = () => {
             </Button>
           </Col>
           <Col>
-            <Link to="www.google.com">Forgot password?</Link>
+            <Link to="www.google.com">Mot de passe oublier?</Link>
           </Col>
         </Row>
         <br />
@@ -73,16 +73,11 @@ const Signin = () => {
                 className="account"
                 id="demo-row-radio-buttons-group-label"
               >
-                Don't have an account? &nbsp;
+                J'ai pas du compte? &nbsp; Je suis
               </FormLabel>
-              <button onClick={() => handleClick()}>Sign Up As</button>
             </Col>
             <Col>
-              <RadioGroup
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="category"
-              >
+              <RadioGroup required row name="category">
                 <FormControlLabel
                   value="parent"
                   control={<Radio />}
@@ -99,6 +94,9 @@ const Signin = () => {
               </RadioGroup>
             </Col>
           </FormControl>
+          <Button variant="outline-primary" onClick={() => handleClick()}>
+            Créer Un
+          </Button>
         </Row>
       </Container>
     </Form>

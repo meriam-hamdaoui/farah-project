@@ -105,7 +105,7 @@ const Parent = () => {
           handleChange={handleChange}
         >
           <Row>
-            <FormLabel>My Civil Situation</FormLabel>
+            <FormLabel>Etat Civil</FormLabel>
             <RadioGroup
               required
               row
@@ -115,13 +115,13 @@ const Parent = () => {
               <FormControlLabel
                 value="maried"
                 control={<Radio />}
-                label="Maried"
+                label="Marier"
                 onChange={handleChange}
               />
               <FormControlLabel
                 value="divorced"
                 control={<Radio />}
-                label="Divorced"
+                label="Divorcer"
                 onChange={handleChange}
               />
               <Form.Control.Feedback type="invalid">
@@ -133,7 +133,7 @@ const Parent = () => {
           <Row>
             <FloatingLabel
               controlId="floatingInput"
-              label="Job"
+              label="Emploi"
               className="mb-3"
             >
               <Form.Control
@@ -148,10 +148,12 @@ const Parent = () => {
               </Form.Control.Feedback>
             </FloatingLabel>
           </Row>
-          <br />
           <Row>
             <Form.Group>
-              <FloatingLabel controlId="floatingZip" label="family Members">
+              <FloatingLabel
+                controlId="floatingZip"
+                label="Nombre de Members de la famille"
+              >
                 <Form.Control
                   required
                   type="number"
@@ -172,7 +174,7 @@ const Parent = () => {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>How can we help you? </Form.Label>
+              <Form.Label>Comment pouvons-nous vous aider? </Form.Label>
               <Form.Control
                 required
                 as="textarea"

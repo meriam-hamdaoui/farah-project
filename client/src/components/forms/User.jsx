@@ -38,7 +38,7 @@ const User = (props) => {
         <Col>
           <FloatingLabel
             controlId="floatingInput"
-            label="first Name"
+            label="Prénom"
             className="mb-3"
           >
             <Form.Control
@@ -56,7 +56,7 @@ const User = (props) => {
         <Col>
           <FloatingLabel
             controlId="floatingInput"
-            label="last Name "
+            label="Nom "
             className="mb-3"
           >
             <Form.Control
@@ -73,11 +73,7 @@ const User = (props) => {
         </Col>
       </Row>
       <Row>
-        <FloatingLabel
-          controlId="floatingInput"
-          label="Email address"
-          className="mb-3"
-        >
+        <FloatingLabel controlId="floatingInput" label="Email" className="mb-3">
           <Form.Control
             required
             autoComplete="false"
@@ -125,7 +121,11 @@ const User = (props) => {
       </Row>
       <br />
       <Row>
-        <FloatingLabel controlId="floatingInput" label="Phone" className="mb-3">
+        <FloatingLabel
+          controlId="floatingInput"
+          label="Tel Mobile"
+          className="mb-3"
+        >
           <Form.Control
             required
             type="phone"
@@ -156,7 +156,7 @@ const User = (props) => {
         </Form.Group>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridCity">
-            <FloatingLabel controlId="floatingCity" label="City">
+            <FloatingLabel controlId="floatingCity" label="Ville">
               <Form.Control
                 required
                 type="text"
@@ -171,7 +171,11 @@ const User = (props) => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridState">
-            <FloatingLabel as={Col} controlId="floatingAddress" label="State">
+            <FloatingLabel
+              as={Col}
+              controlId="floatingAddress"
+              label="Gouvernant"
+            >
               <Form.Select
                 required
                 name="state"
@@ -190,7 +194,7 @@ const User = (props) => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridZip">
-            <FloatingLabel controlId="floatingZip" label="Zip">
+            <FloatingLabel controlId="floatingZip" label="Postal">
               <Form.Control
                 required
                 type="number"
@@ -212,7 +216,7 @@ const User = (props) => {
           required
           name="agrement"
           value="agreed"
-          label="Agree to terms and conditions"
+          label="Accepter les terms et les conditions"
           feedback="You must agree before submitting."
           feedbackType="invalid"
           onChange={handleChange}

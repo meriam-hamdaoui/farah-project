@@ -63,23 +63,28 @@ span {
 .navBar {
   /* border: 1px solid black; */
   background-color: white;
-  box-shadow: 0 0 15px rgb(247, 167, 21);
+  box-shadow: 0 0 5px rgb(247, 196, 102);
+  columns: 100vh auto;
 }
 .navBar a {
   text-decoration: none;
   color: #1480a3;
 }
-/* signin form */
-/* .logs {
-  border: 1px solid red;
-} */
-.field-wrap {
-  position: relative;
-  margin-bottom: 40px;
-}
 
-.InputForm[type="number"]::-webkit-inner-spin-button,
-.InputForm[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.sticky {
+  /* border: 1px solid black; */
+  background-color: white;
+  box-shadow: 0 0 15px rgb(249, 196, 96);
+  position: sticky;
+  transition: 0.4s;
+  width: 100%;
+  top: 0;
+  z-index: 99;
+}
+.footer {
+  /* border: 1px solid black; */
+  position: sticky;
+  transition: 0.4s;
+  width: 100%;
+  margin: auto;
 }
