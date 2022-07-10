@@ -65,7 +65,7 @@ h1 {
 .imgs {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .card-partener {
@@ -73,16 +73,18 @@ h1 {
 }
 
 .partner {
-  width: 1rem;
-  height: 1rem;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   position: relative;
   margin-right: 2rem;
+  display: inline-flex;
+  margin-bottom: 25px;
 }
 .partner img {
   border: 1px solid black;
   border-radius: 50%;
-  width: inherit;
-  height: auto;
+  width: 150px;
+  height: 150px;
   position: absolute;
 }
