@@ -77,7 +77,7 @@ const Parent = () => {
     }
     setValidated(true);
     if (validated) {
-      // dispatch(signParent(value));
+      dispatch(signParent(value));
       await postParent(value);
       alert("success");
       navigate("/sign-in", { replcae: true });

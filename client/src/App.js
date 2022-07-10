@@ -22,58 +22,60 @@ function App() {
 
   return (
     <div className="App">
-      <div
-        className="sideBar"
-        onMouseOver={() => setShow(true)}
-        onMouseOut={() => setShow(false)}
-      >
-        <SideBar show={show} />
-      </div>
-
-      <div className="main" style={{ marginLeft: show ? "10%" : "5%" }}>
-        <div className="sticky">
-          <NavBar />
+      <div>
+        <div
+          className="sideBar"
+          onMouseOver={() => setShow(true)}
+          onMouseOut={() => setShow(false)}
+        >
+          <SideBar show={show} />
         </div>
 
-        <Routes>
-          {/*  pages routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="about-us" element={<About />} />
-          <Route path="services" element={<Services />} />
-          {/* <Route path="events" element={<Events />} /> */}
-          <Route path="contacts" element={<Contacts />} />
-          {/* forms routes */}
-          <Route
-            path="sign-in"
-            element={
-              <Authentication label={"se connecter"}>
-                <Signin />
-              </Authentication>
-            }
-          />
-          <Route
-            path="sign-up/parent"
-            element={
-              <Signup>
-                <Parent />
-              </Signup>
-            }
-          />
-          <Route
-            path="sign-up/consultant"
-            element={
-              <Signup>
-                <Consultant />
-              </Signup>
-            }
-          />
+        <div className="main" style={{ marginLeft: show ? "10%" : "5%" }}>
+          <div className="sticky">
+            <NavBar />
+          </div>
 
-          {/* private routes */}
-          <Route path="parent/profil" element={<ParentDash />} />
-        </Routes>
-      </div>
-      <div className="footer">
-        <Copyright />
+          <Routes>
+            {/*  pages routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="about-us" element={<About />} />
+            <Route path="services" element={<Services />} />
+            {/* <Route path="events" element={<Events />} /> */}
+            <Route path="contacts" element={<Contacts />} />
+            {/* forms routes */}
+            <Route
+              path="sign-in"
+              element={
+                <Authentication label={"se connecter"}>
+                  <Signin />
+                </Authentication>
+              }
+            />
+            <Route
+              path="sign-up/parent"
+              element={
+                <Signup>
+                  <Parent />
+                </Signup>
+              }
+            />
+            <Route
+              path="sign-up/consultant"
+              element={
+                <Signup>
+                  <Consultant />
+                </Signup>
+              }
+            />
+
+            {/* private routes */}
+            <Route path="parent/profil" element={<ParentDash />} />
+          </Routes>
+        </div>
+        <div className="footer">
+          <Copyright />
+        </div>
       </div>
     </div>
   );

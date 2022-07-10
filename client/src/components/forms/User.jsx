@@ -4,7 +4,7 @@ import { stateOptions } from "../constant/constant";
 import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
 
 const User = (props) => {
-  const { category, user, handleChange, children } = props;
+  const { category, handleChange, children } = props;
 
   return (
     <>
