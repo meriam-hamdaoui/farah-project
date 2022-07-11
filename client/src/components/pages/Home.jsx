@@ -2,8 +2,8 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { partners } from "../constant/partners";
-import Autisme from "../templates/Autisme";
-import Partner from "../templates/Partner";
+import Autisme from "../items/Autisme";
+import Partner from "../items/Partner";
 import { v4 as uuidv4 } from "uuid";
 
 const Home = () => {
