@@ -2,6 +2,7 @@
 const User = require("../models/user");
 const Parent = require("../models/parent");
 const Consultant = require("../models/consultant");
+const Child = require("../models/child");
 
 //third-party models
 let bcrypt = require("bcryptjs");
@@ -74,58 +75,86 @@ exports.signup = async (req, res) => {
 };
 
 exports.signin = async (req, res) => {
-  console.log("category =>", category);
   const { email, password } = req.body;
   try {
-    const found = await User.findOne({ email: email });
-    // console.log("fouand =>", found);
-    if (!found) {
+    const exists = await User.findOne({ email });
+    console.log("exists signin =>", exists);
+
+    if (!exists) {
       return res
-        .status(400)
-        .send({ msg: "you don't have an account, sign up first" });
-    } else {
-      // verify for the match fo password using the bcrypt
-      const match = await bcrypt.compare(password, found.password);
-      // console.log("match =>", match);
-      if (!match) {
-        return res.status(400).send({ msg: "you have the wrong password" });
-      }
-      const payload = { id: found._id };
-      // console.log("payload =>", payload);
-      let token = jwt.sign(payload, process.env.secretOrKey);
-      if (found.category === "parent") {
-        // const parent = await Parent.findOne({ user: found._id }).populate(
-        //   "user"
-        // );
-        const parent = await Parent.findOne(found._id).populate("user");
-
-        // console.log("parent  => ", parent);
-        return res.status(200).send({
-          msg: `logged in as ${found.category}  with succes `,
-          parent,
-          token,
-        });
-      }
-
-      if (found.category === "consultant") {
-        const consultant = await Consultant.findOne({
-          user: found._id,
-        }).populate("user");
-        if (!consultant.accepted) {
-          return res
-            .status(500)
-            .send({ msg: "your request is not approuved yet" });
-        } else if (consultant.accepted) {
-          return res.status(200).send({
-            msg: `logged in as ${found.category} with succes`,
-            consultant,
-            token,
-          });
-        }
-      }
+        .status(404)
+        .send({ msg: "there's not account with this email" });
     }
-  } catch (errors) {
-    console.error(`signin error => ${errors}`);
-    return res.status(500).send({ msg: "you can't login ", error: errors });
+
+    const match = await bcrypt.compare(password, exists.password);
+    if (!match) {
+      return res
+        .status(401)
+        .send({ msg: "did you you forget your password??" });
+    }
+
+    const payload = { id: exists._id };
+    const token = jwt.sign(payload, process.env.secretOrKey);
+    res.status(200).send({ msg: "welcom a board ", exists, token });
+  } catch (error) {
+    console.error("signin error =>", error);
+    res.status(500).send({ msg: "OUPS!!! signin error", error });
   }
 };
+
+// exports.signin = async (req, res) => {
+//   console.log("category =>", category);
+//   const { email, password } = req.body;
+//   try {
+//     const found = await User.findOne({ email: email });
+//     // console.log("fouand =>", found);
+//     if (!found) {
+//       return res
+//         .status(400)
+//         .send({ msg: "you don't have an account, sign up first" });
+//     } else {
+//       // verify for the match fo password using the bcrypt
+//       const match = await bcrypt.compare(password, found.password);
+//       // console.log("match =>", match);
+//       if (!match) {
+//         return res.status(400).send({ msg: "you have the wrong password" });
+//       }
+//       const payload = { id: found._id };
+//       // console.log("payload =>", payload);
+//       let token = jwt.sign(payload, process.env.secretOrKey);
+//       if (found.category === "parent") {
+//         // const parent = await Parent.findOne({ user: found._id }).populate(
+//         //   "user"
+//         // );
+//         const parent = await Parent.findOne(found._id).populate("user");
+
+//         // console.log("parent  => ", parent);
+//         return res.status(200).send({
+//           msg: `logged in as ${found.category}  with succes `,
+//           parent,
+//           token,
+//         });
+//       }
+
+//       if (found.category === "consultant") {
+//         const consultant = await Consultant.findOne({
+//           user: found._id,
+//         }).populate("user");
+//         if (!consultant.accepted) {
+//           return res
+//             .status(500)
+//             .send({ msg: "your request is not approuved yet" });
+//         } else if (consultant.accepted) {
+//           return res.status(200).send({
+//             msg: `logged in as ${found.category} with succes`,
+//             consultant,
+//             token,
+//           });
+//         }
+//       }
+//     }
+//   } catch (errors) {
+//     console.error(`signin error => ${errors}`);
+//     return res.status(500).send({ msg: "you can't login ", error: errors });
+//   }
+// };

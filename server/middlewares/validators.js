@@ -68,7 +68,6 @@ exports.parentValidator = [
 exports.consultantValidator = [
   body("gender").isString().notEmpty().withMessage("specify your gender"),
   body("domain").isString().notEmpty().withMessage("specify your domain"),
-  body("accepted").isBoolean(),
 ];
 
 exports.childValidator = [

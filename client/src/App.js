@@ -68,9 +68,6 @@ function App() {
                 </Signup>
               }
             />
-
-            {/* private routes */}
-            <Route path="parent/profil" element={<ParentDash />} />
           </Routes>
         </div>
         <div className="footer">

@@ -27,7 +27,7 @@ consultantRouter.post(
 );
 
 //login
-consultantRouter.post("/signin", loginValidator, signin);
+// consultantRouter.post("/signin", loginValidator, signin);
 
 //gets
 consultantRouter.get("/profile", isAuth, getProfile);

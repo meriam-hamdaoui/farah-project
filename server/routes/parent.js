@@ -33,7 +33,7 @@ parentRouter.post(
   validation,
   signup
 );
-parentRouter.post("/signin", loginValidator, signin);
+// parentRouter.post("/signin", loginValidator, signin);
 
 //gets
 parentRouter.get("parent/profil", isAuth, getProfile);

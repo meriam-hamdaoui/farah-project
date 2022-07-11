@@ -13,7 +13,7 @@ const childSchema = new Schema({
   },
   integration: {
     integrated: { type: Boolean },
-    establishment: {
+    school: {
       type: String,
       required: () => {
         return this.integrated === true;
