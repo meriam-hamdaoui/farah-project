@@ -66,7 +66,7 @@ const Parent = () => {
     }
     // console.log(name, value);
     // console.log(parent);
-    console.log("test => ", test);
+    // console.log("test => ", test);
   };
 
   const handleSubmit = async (event, value) => {
