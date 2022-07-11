@@ -10,7 +10,7 @@ const Home = () => {
   const [adds, setAdds] = React.useState([]);
 
   return (
-    <Container fluid>
+    <Container>
       <Row>
         <div className="banner">
           <h4 className="header">
@@ -21,7 +21,7 @@ const Home = () => {
       </Row>
       <Container className="home" flex="true">
         <Row>
-          <Col fluid xs={24} md={10} className="content-home">
+          <Col xs={24} md={10} className="content-home">
             <Row>
               <div className="card-prq">
                 <div className="inner-card">

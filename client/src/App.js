@@ -11,11 +11,13 @@ import Contacts from "./components/pages/Contacts";
 import Authentication from "./components/templates/Authentication";
 // import Dashborad from "./components/templates/Dashborad";
 import Signup from "./components/templates/Signup";
-import Signin from "./components/auth/Signin";
+import Login from "./components/auth/Login";
 import Parent from "./components/auth/Parent";
 import Consultant from "./components/auth/Consultant";
 import Copyright from "./components/footer/Copyright";
 import ParentDash from "./components/dashbords/ParentDash.jsx";
+import { BiLogIn } from "react-icons/bi";
+import ParentProfil from "./components/profils/ParentProfil";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -48,7 +50,7 @@ function App() {
               path="sign-in"
               element={
                 <Authentication label={"se connecter"}>
-                  <Signin />
+                  <Login />
                 </Authentication>
               }
             />
@@ -68,6 +70,8 @@ function App() {
                 </Signup>
               }
             />
+            {/* privater routes */}
+            <Route path="/parent/profil" element={<ParentProfil />} />
           </Routes>
         </div>
         <div className="footer">

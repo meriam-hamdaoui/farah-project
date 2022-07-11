@@ -94,7 +94,6 @@ const User = (props) => {
               required
               type="password"
               name="password"
-              pattern="^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*_=+-]).{8,24}$"
               // value={user.password}
               onChange={handleChange}
             />
@@ -109,7 +108,6 @@ const User = (props) => {
               required
               type="password"
               name="confirmPassword"
-              pattern="^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*_=+-]).{8,24}$"
               // value={user.confirmPassword}
               onChange={handleChange}
             />
