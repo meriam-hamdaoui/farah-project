@@ -107,6 +107,27 @@ exports.getChild = async (req, res) => {
   }
 };
 
-exports.updateChild = async (req, res) => {};
+exports.updateChild = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const editChild = await Child.findByIdAndUpdate(id, {
+      $set: { ...req.body },
+    });
+    // console.log("editChild =>", editChild);
+    return res.status(200).json({ msg: "updated with succes" });
+  } catch (error) {
+    console.error("edit child error =>", error);
+    return res.status(500).json({ ...error });
+  }
+};
 
-exports.deleteChild = async (req, res) => {};
+exports.deleteChild = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const childDeleted = await Child.findByIdAndDelete(id);
+    return res.status(200).json({ msg: "delete child successefully" });
+  } catch (error) {
+    console.error("deleteChild error =>", error);
+    return res.status(500).json({ ...error });
+  }
+};
