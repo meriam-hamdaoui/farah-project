@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const { childSchema } = require("./child");
 
 const parentSchema = new Schema({
   // id: { type: String },
@@ -14,13 +15,6 @@ const parentSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
-  child: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Child",
-      required: false,
-    },
-  ],
 });
 
 module.exports = Parent = model("parent", parentSchema);

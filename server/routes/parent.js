@@ -43,7 +43,7 @@ parentRouter.put("/parent/:id", isAuth, updateProfile);
 
 //children routes
 parentRouter.post(
-  "/parent/profil/add-children",
+  "/parent/profil/add-child",
   isAuth,
   childValidator,
   addChildren

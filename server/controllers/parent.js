@@ -2,8 +2,9 @@
 const Schema = require("mongoose");
 const User = require("../models/user");
 const Parent = require("../models/parent");
+const Child = require("../models/child");
 
-//parent
+//parent à modifier
 exports.getProfile = async (req, res) => {
   // console.log("getProfile req =>", req.user);
   try {
@@ -54,11 +55,57 @@ exports.updateProfile = async (req, res) => {
 };
 
 //children
-exports.addChildren = async (req, res) => {};
+exports.addChildren = async (req, res) => {
+  try {
+    const child = req.body;
+    // console.log("child =>", child);
+    const children = await Child.find({ parent: req.user._id });
+    console.log("children=>", children);
 
-exports.getChildren = async (req, res) => {};
+    let exists = children.find((el) => {
+      if (
+        el.childFName === child.childFName &&
+        el.childLName === child.childLName
+      ) {
+        return true;
+      }
+    });
+    if (exists) {
+      return res.status(403).send({ msg: "you did add this child", exists });
+    }
+    const newChild = await new Child({
+      parent: req.user._id,
+      ...child,
+    });
+    newChild.save();
+    res.status(200).send({ msg: "add children succes", newChild });
+  } catch (error) {
+    console.error("addChildren error =>", error);
+    return res.status(500).json({ ...error });
+  }
+};
 
-exports.getChild = async (req, res) => {};
+exports.getChildren = async (req, res) => {
+  try {
+    const children = await Child.find({ parent: req.user._id });
+
+    return res.status(200).json({ msg: "your children", children });
+  } catch (error) {
+    console.error("error getChildren =>", error);
+    return res.status(500).json({ ...error });
+  }
+};
+
+exports.getChild = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const theChild = await Child.findById(id);
+    return res.status(200).json({ msg: "your child by ID", theChild });
+  } catch (error) {
+    console.error("get child error =>", error);
+    return res.status(500).json({ ...error });
+  }
+};
 
 exports.updateChild = async (req, res) => {};
 
