@@ -24,8 +24,14 @@ const createActor = async (newUser, actor, res) => {
 };
 
 exports.signup = async (req, res) => {
+  // console.log("req.url =>", req.url);
+
+  const path = req.url;
+  const category = path.slice(path.lastIndexOf("/") + 1);
+  // console.log("category =>", category);
+
   const { user, ...rest } = req.body;
-  const { email, password, category } = user;
+  const { email } = user;
   try {
     const exists = await User.findOne({ email });
     // console.log("exists =>", exists);
@@ -52,13 +58,13 @@ exports.signup = async (req, res) => {
 
     /*befor create the new actor and save it 
     we need  to specify which one: parent or consultant*/
-    if (newUser.category === "parent") {
+    if (newUser.category === "parent" && category === "parent") {
       const newParent = await new Parent({
         user: newUser._id,
         ...rest,
       });
       createActor(newUser, newParent, res);
-    } else if (newUser.category === "consultant") {
+    } else if (newUser.category === "consultant" && category === "consultant") {
       newUser.role = 2;
       const newConsultant = await new Consultant({
         user: newUser._id,
