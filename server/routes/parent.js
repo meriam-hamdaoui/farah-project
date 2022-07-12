@@ -39,7 +39,7 @@ parentRouter.post(
 parentRouter.get("/parent/profil", isAuth, getProfile);
 
 //puts
-parentRouter.put("/parent/:id", isAuth, updateProfile);
+parentRouter.put("/parent/profil/:id", isAuth, updateProfile);
 
 //children routes
 parentRouter.post(

@@ -30,10 +30,10 @@ consultantRouter.post(
 // consultantRouter.post("/signin", loginValidator, signin);
 
 //gets
-consultantRouter.get("/profile", isAuth, getProfile);
+consultantRouter.get("/consultant/profil", isAuth, getProfile);
 
 //puts
-consultantRouter.put("/profile/:id", isAuth, updateProfile);
+consultantRouter.put("/consultant/profil/:id", isAuth, updateProfile);
 
 //export consultant router
 module.exports = consultantRouter;
