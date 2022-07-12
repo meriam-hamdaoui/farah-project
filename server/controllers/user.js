@@ -84,7 +84,7 @@ exports.signin = async (req, res) => {
   const { email, password } = req.body;
   try {
     const exists = await User.findOne({ email });
-    console.log("exists signin =>", exists);
+    // console.log("exists signin =>", exists);
 
     if (!exists) {
       return res
