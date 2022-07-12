@@ -42,7 +42,12 @@ parentRouter.get("/parent/profil", isAuth, getProfile);
 parentRouter.put("/parent/:id", updateProfile);
 
 //children routes
-parentRouter.post("/parent/profil/add-children", childValidator, addChildren);
+parentRouter.post(
+  "/parent/profil/add-children",
+  isAuth,
+  childValidator,
+  addChildren
+);
 parentRouter.get("/parent/profil/children", getChildren);
 parentRouter.get("/parent/profil/children/:id", getChild);
 parentRouter.put("/parent/profil/children/:id", childValidator, updateChild);

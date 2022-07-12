@@ -7,12 +7,26 @@ export const fetchProfil = async () => {
   return data;
 };
 
+// export const postParent = async (value) => {
+//   try {
+//     await axios.post(`${process.env.REACT_APP_API_URL}/farah/sign-up/parent`, {
+//       ...value,
+//     });
+//   } catch (error) {
+//     console.error(`postParent => ${error}`);
+//   }
+// };
+
 export const postParent = async (value) => {
-  try {
-    await axios.post(`${process.env.REACT_APP_API_URL}/farah/sign-up/parent`, {
-      ...value,
-    });
-  } catch (error) {
-    console.error(`postParent => ${error}`);
-  }
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await axios.post(
+    `${process.env.REACT_APP_API_URL}/farah/sign-up/parent`,
+    { ...value },
+    config
+  );
+  return response;
 };

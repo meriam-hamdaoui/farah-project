@@ -69,21 +69,25 @@ const Parent = () => {
     // console.log("test => ", test);
   };
 
-  const handleSubmit = async (event, value) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    setValidated(true);
-    if (validated) {
-      dispatch(signParent(value));
-      await postParent(value);
-      alert("success");
-      navigate("/sign-in", { replcae: true });
-    } else {
-      alert("failed");
-    }
+  const handleSubmit = () => {
+    // const form = event.currentTarget;
+    // if (form.checkValidity() === false) {
+    //   event.preventDefault();
+    //   event.stopPropagation();
+    // }
+    //   setValidated(true);
+
+    postParent({ ...parent })
+      .then((res) => {
+        console.log("postParent res =>", res);
+        setParent({ ...parentValues });
+        alert("success");
+        navigate("/sign-in", { replace: true });
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("failed");
+      });
 
     // await postParent(value);
     console.log("submit parent =>", parent);
@@ -199,10 +203,7 @@ const Parent = () => {
             </Button>
           </Col>
           <Col>
-            <Button
-              variant="primary"
-              onClick={(e) => handleSubmit(e, { ...parent })}
-            >
+            <Button variant="primary" onClick={() => handleSubmit()}>
               Submit
             </Button>
           </Col>
