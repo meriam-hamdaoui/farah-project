@@ -39,7 +39,7 @@ parentRouter.post(
 parentRouter.get("/parent/profil", isAuth, getProfile);
 
 //puts
-parentRouter.put("/parent/:id", updateProfile);
+parentRouter.put("/parent/:id", isAuth, updateProfile);
 
 //children routes
 parentRouter.post(
@@ -48,10 +48,15 @@ parentRouter.post(
   childValidator,
   addChildren
 );
-parentRouter.get("/parent/profil/children", getChildren);
-parentRouter.get("/parent/profil/children/:id", getChild);
-parentRouter.put("/parent/profil/children/:id", childValidator, updateChild);
-parentRouter.delete("/parent/profil/children/:id", deleteChild);
+parentRouter.get("/parent/profil/children", isAuth, getChildren);
+parentRouter.get("/parent/profil/children/:id", isAuth, getChild);
+parentRouter.put(
+  "/parent/profil/children/:id",
+  isAuth,
+  childValidator,
+  updateChild
+);
+parentRouter.delete("/parent/profil/children/:id", isAuth, deleteChild);
 
 //exports our router
 module.exports = parentRouter;
