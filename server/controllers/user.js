@@ -1,4 +1,5 @@
-//user controllers, which are common between all users
+const Schema = require("mongoose");
+
 const User = require("../models/user");
 const Parent = require("../models/parent");
 const Consultant = require("../models/consultant");

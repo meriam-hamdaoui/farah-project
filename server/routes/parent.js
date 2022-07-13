@@ -3,7 +3,7 @@ const express = require("express");
 //controllers
 const { signup, getProfile } = require("../controllers/user");
 const {
-  updateProfile,
+  updateParent,
   addChildren,
   getChildren,
   getChild,
@@ -37,7 +37,7 @@ parentRouter.post(
 parentRouter.get("/parent/profil", isAuth, getProfile);
 
 //puts
-parentRouter.put("/parent/profil/:id", isAuth, updateProfile);
+parentRouter.put("/parent/profil/:id", isAuth, updateParent);
 
 //children routes
 parentRouter.post(

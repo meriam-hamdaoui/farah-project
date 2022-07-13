@@ -3,7 +3,7 @@ const express = require("express");
 //controllers
 const { signup, getProfile } = require("../controllers/user");
 
-const { updateProfile } = require("../controllers/consultant");
+const { updateConsultant } = require("../controllers/consultant");
 
 //validators
 const {
@@ -29,7 +29,7 @@ consultantRouter.post(
 consultantRouter.get("/consultant/profil", isAuth, getProfile);
 
 //puts
-consultantRouter.put("/consultant/profil/:id", isAuth, updateProfile);
+consultantRouter.put("/consultant/profil/:id", isAuth, updateConsultant);
 
 //export consultant router
 module.exports = consultantRouter;
