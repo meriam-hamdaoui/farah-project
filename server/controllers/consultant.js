@@ -2,11 +2,6 @@ const Schema = require("mongoose");
 const User = require("../models/user");
 const Consultant = require("../models/consultant");
 
-//the get profil need modification for the both actor
-exports.getProfile = (req, res) => {
-  res.send(req.user);
-};
-
 exports.updateProfile = async (req, res) => {
   //get the profil id from the req param
   const { id } = req.params;

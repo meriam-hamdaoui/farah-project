@@ -26,16 +26,16 @@ const createActor = async (newUser, actor, res) => {
 exports.signup = async (req, res) => {
   // console.log("req.url =>", req.url);
 
+  //for more securité
   const path = req.url;
-  const category = path.slice(path.lastIndexOf("/") + 1);
+  const destination = path.slice(path.lastIndexOf("/") + 1);
   // console.log("category =>", category);
 
   const { user, ...rest } = req.body;
   const { email } = user;
   try {
     const exists = await User.findOne({ email });
-    // console.log("exists =>", exists);
-    // console.log("User =>", User);
+
     //1. email exist
     if (exists) return res.status(403).send("this email already exists");
 
@@ -49,8 +49,6 @@ exports.signup = async (req, res) => {
     const salt = bcrypt.genSaltSync(saltRound);
     //hash the password
     const hash = bcrypt.hashSync(newUser.password, salt);
-    // console.log("salt =>", salt);
-    // console.log("hash =>", hash);
 
     //we add the hash to the user password
     newUser.password = hash;
@@ -58,13 +56,16 @@ exports.signup = async (req, res) => {
 
     /*befor create the new actor and save it 
     we need  to specify which one: parent or consultant*/
-    if (newUser.category === "parent" && category === "parent") {
+    if (newUser.category === "parent" && destination === "parent") {
       const newParent = await new Parent({
         user: newUser._id,
         ...rest,
       });
       createActor(newUser, newParent, res);
-    } else if (newUser.category === "consultant" && category === "consultant") {
+    } else if (
+      newUser.category === "consultant" &&
+      destination === "consultant"
+    ) {
       newUser.role = 2;
       const newConsultant = await new Consultant({
         user: newUser._id,
@@ -105,6 +106,32 @@ exports.signin = async (req, res) => {
   } catch (error) {
     console.error("signin error =>", error);
     res.status(500).send({ msg: "OUPS!!! signin error", error });
+  }
+};
+
+exports.getProfile = async (req, res) => {
+  const { role, _id } = req.user;
+  // console.log("role =>", role);
+  try {
+    if (role === 1) {
+      const parent = await Parent.findOne({ user: _id }).populate("user");
+      req.user = parent;
+    }
+
+    if (role === 2) {
+      const consultant = await Consultant.findOne({ user: _id }).populate(
+        "user"
+      );
+      req.user = consultant;
+    }
+
+    const profil = req.user;
+    return res
+      .status(200)
+      .send({ msg: `${profil.user.category} profil`, profil });
+  } catch (error) {
+    console.error("getProfile =>", error);
+    return res.status(500).send({ msg: "getProfile  user=>", error });
   }
 };
 

@@ -1,9 +1,8 @@
 const express = require("express");
 
 //controllers
-const { signup, signin } = require("../controllers/user");
+const { signup, getProfile } = require("../controllers/user");
 const {
-  getProfile,
   updateProfile,
   addChildren,
   getChildren,
@@ -16,7 +15,6 @@ const {
 const {
   parentValidator,
   userValidator,
-  loginValidator,
   childValidator,
   validation,
 } = require("../middlewares/validators");

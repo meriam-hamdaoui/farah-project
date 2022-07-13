@@ -1,16 +1,15 @@
 const express = require("express");
 
 //controllers
-const { signup, signin } = require("../controllers/user");
+const { signup, getProfile } = require("../controllers/user");
 
-const { getProfile, updateProfile } = require("../controllers/consultant");
+const { updateProfile } = require("../controllers/consultant");
 
 //validators
 const {
   userValidator,
   consultantValidator,
   validation,
-  loginValidator,
 } = require("../middlewares/validators");
 const { isAuth } = require("../middlewares/isAuth");
 
@@ -25,9 +24,6 @@ consultantRouter.post(
   validation,
   signup
 );
-
-//login
-// consultantRouter.post("/signin", loginValidator, signin);
 
 //gets
 consultantRouter.get("/consultant/profil", isAuth, getProfile);

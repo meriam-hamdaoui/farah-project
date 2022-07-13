@@ -4,24 +4,6 @@ const User = require("../models/user");
 const Parent = require("../models/parent");
 const Child = require("../models/child");
 
-//parent à modifier
-exports.getProfile = async (req, res) => {
-  // console.log("getProfile req =>", req.user);
-  try {
-    if (req.user.category === "parent") {
-      const parent = await Parent.findOne({ user: req.user._id }).populate(
-        "user"
-      );
-      // console.log("getProfile parent =>", parent);
-      req.user = parent;
-      return res.status(200).send(parent);
-    }
-  } catch (error) {
-    console.error("getProfile =>", error);
-    return res.status(500).send({ msg: "getProfile =>", error });
-  }
-};
-
 exports.updateProfile = async (req, res) => {
   //get the profil id from the req param
   const { id } = req.params;
