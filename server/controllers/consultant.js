@@ -41,3 +41,61 @@ exports.updateConsultant = async (req, res) => {
     res.status(500).send({ msg: "updateProfile error", error });
   }
 };
+
+exports.addExperience = async (req, res) => {
+  try {
+    const { _id } = req.user;
+    const consultant = await Consultant.findOne({ user: _id }).populate("user");
+    consultant.experiences.push(req.body);
+    // console.log("consultant =>", consultant);
+    consultant.save();
+    return res.send(consultant);
+  } catch (error) {
+    console.error("addExperiences error =>", error);
+    return res.status(500).json({ ...error });
+  }
+};
+
+exports.deleteExperience = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { _id } = req.user;
+
+    const consultant = await Consultant.findOne({ user: _id }).populate("user");
+    consultant.experiences.pull({ _id: id });
+    consultant.save();
+    return res.status(200).send(consultant);
+  } catch (error) {
+    console.error("deleteExperience error =>", error);
+    return res.status(500).json({ ...error });
+  }
+};
+
+exports.addInternship = async (req, res) => {
+  try {
+    const { _id } = req.user;
+    const consultant = await Consultant.findOne({ user: _id }).populate("user");
+    consultant.internships.push(req.body);
+    // console.log("consultant =>", consultant);
+    consultant.save();
+    return res.status(200).send(consultant);
+  } catch (error) {
+    console.error("addExperiences error =>", error);
+    return res.status(500).json({ ...error });
+  }
+};
+
+exports.deleteInternship = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { _id } = req.user;
+
+    const consultant = await Consultant.findOne({ user: _id }).populate("user");
+    consultant.internships.pull({ _id: id });
+    consultant.save();
+    return res.status(200).send(consultant);
+  } catch (error) {
+    console.error("deleteExperience error =>", error);
+    return res.status(500).json({ ...error });
+  }
+};
