@@ -17,6 +17,10 @@ const {
   parentById,
   consultantById,
   childById,
+  deleteUser,
+  deleteParent,
+  deleteConsultant,
+  deleteChild,
 } = require("../controllers/admin");
 
 // adminRouter.post("/sign-in", loginValidator, signin);
@@ -24,7 +28,7 @@ adminRouter.get("/dashboard", isAdmin, (req, res) => {
   res.send(req.user);
 });
 //update profile
-adminRouter.put("/dashboard/profil", isAdmin, updateAdmin);
+adminRouter.put("/dashboard/admin", isAdmin, updateAdmin);
 
 //the gets
 adminRouter.get("/dashboard/users", isAdmin, displayUsers);
@@ -37,5 +41,11 @@ adminRouter.get("/dashboard/users/:id", isAdmin, userById);
 adminRouter.get("/dashboard/parents/:id", isAdmin, parentById);
 adminRouter.get("/dashboard/consultants/:id", isAdmin, consultantById);
 adminRouter.get("/dashboard/children/:id", isAdmin, childById);
+
+//delete
+adminRouter.delete("/dashboard/users/:id", isAdmin, deleteUser);
+adminRouter.delete("/dashboard/parents/:id", isAdmin, deleteParent);
+adminRouter.delete("/dashboard/consultants/:id", isAdmin, deleteConsultant);
+adminRouter.delete("/dashboard/children/:id", isAdmin, deleteChild);
 
 module.exports = adminRouter;

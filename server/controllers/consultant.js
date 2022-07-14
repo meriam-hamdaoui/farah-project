@@ -45,6 +45,7 @@ exports.updateConsultant = async (req, res) => {
 exports.addExperience = async (req, res) => {
   try {
     const { _id } = req.user;
+    // console.log("id =>", _id);
     const consultant = await Consultant.findOne({ user: _id }).populate("user");
     consultant.experiences.push(req.body);
     // console.log("consultant =>", consultant);

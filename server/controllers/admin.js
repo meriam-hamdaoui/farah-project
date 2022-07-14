@@ -67,13 +67,13 @@ exports.displayChildren = async (req, res) => {
   }
 };
 
-//didn't work
+//get by id
 exports.userById = async (req, res) => {
   try {
     let found;
     const { id } = req.params;
     const user = await User.findById(id);
-    console.log("my fucking user =>", user);
+    console.log("my user =>", user);
     if (user.category === "parent") {
       found = await Parent.findOne({ user: user._id }).populate("user");
     }
@@ -120,5 +120,80 @@ exports.childById = async (req, res) => {
   } catch (error) {
     console.error("childById error=>", error);
     res.status(500).send("there is no such a child ");
+  }
+};
+
+//deletes
+exports.deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userToDelete = await User.findById(id);
+    if (userToDelete.category === "parent") {
+      const children = await Child.findOneAndDelete({
+        parent: userToDelete._id,
+      });
+      await Parent.findOneAndDelete({
+        user: userToDelete._id,
+      });
+    }
+
+    if (userToDelete.category === "consultant") {
+      await Consultant.findOneAndDelete({
+        user: userToDelete._id,
+      });
+    }
+    await User.findByIdAndDelete(id);
+
+    return res.status(200).json({ msg: "deleteUser success" });
+  } catch (error) {
+    console.error("deleteUser error=>", error);
+    res.status(500).send({ msg: "delete user failed", error });
+  }
+};
+exports.deleteParent = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userToDelete = await User.findById(id);
+
+    const children = await Child.findOneAndDelete({
+      parent: userToDelete._id,
+    });
+    await Parent.findOneAndDelete({
+      user: userToDelete._id,
+    });
+
+    await User.findByIdAndDelete(id);
+
+    return res.status(200).json({ msg: "deleteParent success" });
+  } catch (error) {
+    console.error("deleteParent error=>", error);
+    res.status(500).send({ msg: "deleteParent failed", error });
+  }
+};
+exports.deleteConsultant = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userToDelete = await User.findById(id);
+
+    await Consultant.findOneAndDelete({
+      user: userToDelete._id,
+    });
+
+    await User.findByIdAndDelete(id);
+
+    return res.status(200).json({ msg: "deleteUser success" });
+  } catch (error) {
+    console.error("deleteConsultant error=>", error);
+    res.status(500).send({ msg: "deleteConsultant failed", error });
+  }
+};
+exports.deleteChild = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Child.findByIdAndDelete(id);
+    return res.status(200).json({ msg: "deleteChild success" });
+  } catch (error) {
+    console.error("deleteChild error=>", error);
+    res.status(500).send({ msg: "deleteChild failed", error });
   }
 };

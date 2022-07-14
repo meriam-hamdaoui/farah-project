@@ -38,7 +38,7 @@ exports.addChildren = async (req, res) => {
     const child = req.body;
     // console.log("child =>", child);
     const children = await Child.find({ parent: req.user._id });
-    console.log("children=>", children);
+    // console.log("children=>", children);
 
     let exists = children.find((el) => {
       if (
@@ -56,7 +56,7 @@ exports.addChildren = async (req, res) => {
       ...child,
     });
     newChild.save();
-    res.status(200).send({ msg: "add children succes", newChild });
+    return res.status(200).send({ msg: "add children succes", newChild });
   } catch (error) {
     console.error("addChildren error =>", error);
     return res.status(500).json({ ...error });

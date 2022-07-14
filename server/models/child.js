@@ -5,6 +5,7 @@ const childSchema = new Schema({
   parent: { type: Schema.Types.ObjectId, ref: "User" },
   childFName: { type: String },
   childLName: { type: String },
+  gender: { type: String },
   birthDate: { type: Date },
   diagnosis: {
     disorder: { type: String },

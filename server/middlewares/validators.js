@@ -79,6 +79,11 @@ exports.childValidator = [
     .notEmpty()
     .isString()
     .withMessage("enter your child last name"),
+  body("child.*.gender")
+    .isString()
+    .notEmpty()
+    .withMessage("specify the gender"),
+
   body("child.*.birthDate")
     .notEmpty()
     .isISO8601()
