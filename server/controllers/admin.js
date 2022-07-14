@@ -3,8 +3,9 @@ const User = require("../models/user");
 const Parent = require("../models/parent");
 const Consultant = require("../models/consultant");
 const Child = require("../models/child");
+const Ad = require("../models/ads");
 
-//update profile
+//update admin
 exports.updateAdmin = async (req, res) => {
   try {
     const { id } = req.user._id;
@@ -21,7 +22,7 @@ exports.updateAdmin = async (req, res) => {
   }
 };
 
-//display all users
+//display all
 exports.displayUsers = async (req, res) => {
   try {
     const parents = await Parent.find().populate("user");
@@ -36,7 +37,6 @@ exports.displayUsers = async (req, res) => {
   }
 };
 
-//display parents
 exports.displayParents = async (req, res) => {
   try {
     const parents = await Parent.find().populate("user");
@@ -195,5 +195,61 @@ exports.deleteChild = async (req, res) => {
   } catch (error) {
     console.error("deleteChild error=>", error);
     res.status(500).send({ msg: "deleteChild failed", error });
+  }
+};
+
+//ads
+exports.createAd = async (req, res) => {
+  try {
+    const newAd = await new Ad(req.body);
+    newAd.save();
+    return res.status(200).json(newAd);
+  } catch (error) {
+    console.error("createAd error =>", error);
+    return res.status(500).send({ msg: "createAd error", error });
+  }
+};
+//all
+exports.getAds = async (req, res) => {
+  try {
+    const ads = await Ad.find();
+    return res.status(200).json(ads);
+  } catch (error) {
+    console.error("getAds error=>", error);
+    return res.status(500).send({ msg: "getAds error", error });
+  }
+};
+//by id
+exports.getAd = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const ad = await Ad.findById(id);
+    return res.status(200).json({ msg: "ad by id", ad });
+  } catch (error) {
+    console.error("ad error=>", error);
+    return res.status(500).send({ msg: "getAd error", error });
+  }
+};
+
+exports.updateAd = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedAd = await Ad.findByIdAndUpdate(id, { ...req.body });
+    updatedAd.save();
+    return res.status(200).json({ msg: "updated with sucesse", updatedAd });
+  } catch (error) {
+    console.error("updatedAd error=>", error);
+    return res.status(500).json({ ...error });
+  }
+};
+
+exports.deleteAd = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Ad.findByIdAndDelete(id);
+    return res.status(200).json({ msg: "deleteAd success" });
+  } catch (error) {
+    console.error("deleteAd =>", error);
+    return res.status(500).send({ msg: "deleteAd =>", error });
   }
 };

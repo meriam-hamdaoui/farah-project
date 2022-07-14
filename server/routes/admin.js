@@ -1,12 +1,12 @@
 const { Router } = require("express");
-
 const adminRouter = Router();
-
-//controllers
-const { signin } = require("../controllers/user");
 
 //middlewares
 const { isAdmin } = require("../middlewares/isAdmin");
+const { adValidator } = require("../middlewares/validators");
+
+//controllers
+const { signin } = require("../controllers/user");
 const {
   updateAdmin,
   displayUsers,
@@ -21,6 +21,11 @@ const {
   deleteParent,
   deleteConsultant,
   deleteChild,
+  createAd,
+  updateAd,
+  deleteAd,
+  getAds,
+  getAd,
 } = require("../controllers/admin");
 
 // adminRouter.post("/sign-in", loginValidator, signin);
@@ -47,5 +52,12 @@ adminRouter.delete("/dashboard/users/:id", isAdmin, deleteUser);
 adminRouter.delete("/dashboard/parents/:id", isAdmin, deleteParent);
 adminRouter.delete("/dashboard/consultants/:id", isAdmin, deleteConsultant);
 adminRouter.delete("/dashboard/children/:id", isAdmin, deleteChild);
+
+//ads
+adminRouter.post("/dashboard/ads/create", isAdmin, adValidator, createAd);
+adminRouter.get("/dashboard/ads", isAdmin, getAds);
+adminRouter.get("/dashboard/ads/:id", isAdmin, getAd);
+adminRouter.put("/dashboard/ads/:id", isAdmin, adValidator, updateAd);
+adminRouter.delete("/dashboard/ads/:id", isAdmin, deleteAd);
 
 module.exports = adminRouter;

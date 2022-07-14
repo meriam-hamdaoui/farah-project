@@ -124,6 +124,15 @@ exports.loginValidator = [
   ),
 ];
 
+exports.adValidator = [
+  body("title").isString().notEmpty().withMessage("enter a title for this ad"),
+  body("discription")
+    .isString()
+    .notEmpty()
+    .withMessage("what about a litle discription"),
+  body("link").notEmpty().isURL().withMessage("enter a valid URL"),
+];
+
 exports.validation = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
