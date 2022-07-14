@@ -69,23 +69,56 @@ exports.displayChildren = async (req, res) => {
 
 //didn't work
 exports.userById = async (req, res) => {
-  const { id } = req.params;
   try {
     let found;
+    const { id } = req.params;
     const user = await User.findById(id);
-    // console.log("user log", user);
-    // const userId = Schema.Types.ObjectId(id);
-
+    console.log("my fucking user =>", user);
     if (user.category === "parent") {
-      found = Parent.findOne({ user: user._id }).populate("user");
+      found = await Parent.findOne({ user: user._id }).populate("user");
     }
-    console.log("found userById=>", found);
-    // return res.status(200).send({ found });
-  } catch (err) {
+    if (user.category === "consultant") {
+      found = await Consultant.findOne({ user: user._id }).populate("user");
+    }
+    return res.status(200).json(found);
+  } catch (error) {
     console.error("userById error=>", error);
-    res.status(500).send("there is no getting naw ");
+    res.status(500).send("there is no such a user ");
   }
 };
-exports.parentById = async (req, res) => {};
-exports.consultantById = async (req, res) => {};
-exports.childById = async (req, res) => {};
+exports.parentById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id);
+
+    const parent = await Parent.findOne({ user: user._id }).populate("user");
+    return res.status(200).json(parent);
+  } catch (error) {
+    console.error("parentById error=>", error);
+    res.status(500).send("there is no such a parent ");
+  }
+};
+exports.consultantById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    const consultant = await Consultant.findOne({ user: user._id }).populate(
+      "user"
+    );
+    return res.status(200).json(consultant);
+  } catch (error) {
+    console.error("consultantById error=>", error);
+    res.status(500).send("there is no such a consultant ");
+  }
+};
+
+exports.childById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const child = await Child.findById(id).populate("parent");
+    res.status(200).send({ msg: "your child", child });
+  } catch (error) {
+    console.error("childById error=>", error);
+    res.status(500).send("there is no such a child ");
+  }
+};
