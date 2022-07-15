@@ -55,7 +55,7 @@ adminRouter.delete("/dashboard/children/:id", isAdmin, deleteChild);
 
 //ads
 adminRouter.post("/dashboard/ads/create", isAdmin, adValidator, createAd);
-adminRouter.get("/dashboard/ads", isAdmin, getAds);
+// adminRouter.get("/dashboard/ads", isAdmin, getAds);
 adminRouter.get("/dashboard/ads/:id", isAdmin, getAd);
 adminRouter.put("/dashboard/ads/:id", isAdmin, adValidator, updateAd);
 adminRouter.delete("/dashboard/ads/:id", isAdmin, deleteAd);

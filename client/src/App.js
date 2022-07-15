@@ -15,9 +15,9 @@ import Login from "./components/auth/Login";
 import Parent from "./components/auth/Parent";
 import Consultant from "./components/auth/Consultant";
 import Copyright from "./components/footer/Copyright";
-import ParentDash from "./components/dashbords/ParentDash.jsx";
-import { BiLogIn } from "react-icons/bi";
+// import ParentDash from "./components/dashbords/ParentDash.jsx";
 import ParentProfil from "./components/profils/ParentProfil";
+import PrivateRoute from "./components/auth/PrivateRoute";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -71,7 +71,7 @@ function App() {
               }
             />
             {/* privater routes */}
-            <Route path="/parent/profil" element={<ParentProfil />} />
+            <Route path="/parent/profil" element={<PrivateRoute />} />
           </Routes>
         </div>
         <div className="footer">

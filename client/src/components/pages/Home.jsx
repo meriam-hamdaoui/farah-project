@@ -1,13 +1,27 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { partners } from "../constant/partners";
 import Autisme from "../items/Autisme";
 import Partner from "../items/Partner";
 import { v4 as uuidv4 } from "uuid";
+import { fetchAds } from "../../api/admin";
+import { setAds } from "../../JS/adminReducer";
+import Ad from "../items/Ad";
 
 const Home = () => {
-  const [adds, setAdds] = React.useState([]);
+  const Ads = useSelector((state) => state.admin.ads);
+  const dispatch = useDispatch();
+
+  const displayAds = async () => {
+    const adsTab = await fetchAds();
+    dispatch(setAds(adsTab.ads));
+  };
+
+  useEffect(() => {
+    displayAds();
+  }, []);
 
   return (
     <Container>
@@ -62,8 +76,12 @@ const Home = () => {
               </div>
             </Row>
           </Col>
-          {adds.length !== 0 && (
-            <Col className="adds">Keep watching you may join us soon</Col>
+          {displayAds.length !== 0 && (
+            <Col className="ads">
+              {displayAds.map((el) => (
+                <Ad ad={el} />
+              ))}
+            </Col>
           )}
         </Row>
       </Container>

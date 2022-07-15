@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import User from "../forms/User";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   Form,
@@ -13,7 +13,7 @@ import {
 import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
 import { parentValues } from "../constant/constant";
 import { postParent } from "../../api/parent";
-import { signParent } from "../../JS/parentReducer";
+// import { signParent } from "../../JS/parentReducer";
 
 const Parent = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Parent = () => {
 
   const [parent, setParent] = useState({ ...test });
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   //handle change for nested parent object
   const handleChange = (e) => {

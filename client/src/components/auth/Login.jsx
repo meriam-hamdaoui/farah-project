@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import {
   Form,
   Container,
@@ -7,7 +8,6 @@ import {
   FloatingLabel,
   Button,
 } from "react-bootstrap";
-import { useDispatch } from "react-redux";
 import { Radio, RadioGroup, FormControlLabel } from "@mui/material/";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -15,6 +15,16 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [category, setCategory] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "email") {
+      setEmail(value);
+    }
+    if (name === "password") {
+      setPassword(value);
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -30,6 +40,27 @@ const Login = () => {
     }
   };
 
+  const inscrit = {
+    email: "khaled@yahoo.fr",
+    password: "azerty123456",
+  };
+
+  const loginSubmit = async () => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/farah/sign-in`,
+        inscrit
+      );
+      console.log("second => ", inscrit);
+
+      console.log("response =>", response);
+      // await localStorage.setItem("token", response.data.token);
+      // navigate("/parent/profil");
+    } catch (error) {
+      console.error("submit login", error);
+    }
+  };
+
   return (
     <Form>
       <Container>
@@ -41,7 +72,7 @@ const Login = () => {
               type="email"
               name="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => handleChange(e)}
             />
           </FloatingLabel>
         </Row>
@@ -52,13 +83,17 @@ const Login = () => {
               type="password"
               name="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => handleChange(e)}
             />
           </FloatingLabel>
         </Row>
         <Row>
           <Col>
-            <Button variant="primary" type="submit">
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={() => loginSubmit()}
+            >
               Submit
             </Button>
           </Col>

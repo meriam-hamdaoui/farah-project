@@ -9,6 +9,7 @@ const Achievement = () => {
         <Col>
           <div style={divStyle}>
             <iframe
+              title="num1"
               loading="lazy"
               style={iframStyle}
               src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFGEGgrnag&#x2F;view?embed"
@@ -20,6 +21,7 @@ const Achievement = () => {
         <Col>
           <div style={divStyle}>
             <iframe
+              title="num2"
               loading="lazy"
               style={iframStyle}
               src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFGEAEYnZE&#x2F;view?embed"

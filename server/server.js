@@ -8,7 +8,7 @@ const connectDB = require("./config/connectDB");
 const parentRouter = require("./routes/parent");
 const consultantRouter = require("./routes/consultant");
 const adminRouter = require("./routes/admin");
-// const userRouter = require("./routes/user");
+const userRouter = require("./routes/user");
 const { signin } = require("./controllers/user");
 const { loginValidator } = require("./middlewares/validators");
 const setup = require("./config/setup");
@@ -25,7 +25,8 @@ connectDB();
 setup();
 
 //get the app to use routers
-app.use("/farah/sign-in", signin);
+
+app.use("/farah", userRouter);
 app.use("/farah", adminRouter);
 app.use("/farah", parentRouter);
 app.use("/farah", consultantRouter);
