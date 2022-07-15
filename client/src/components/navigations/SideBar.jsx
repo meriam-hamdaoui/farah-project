@@ -15,6 +15,7 @@ const SideBar = ({ show }) => {
     <div className="sideBar">
       <div className="menu-toggle">
         <MdOutlineMenu />
+        {show && <span>Menu</span>}
       </div>
       <div className="asidebar-nav">
         <div className="asidebar-top">
@@ -46,6 +47,7 @@ const SideBar = ({ show }) => {
             href="https://www.facebook.com/associationfarahintegrationenfantsautistes/"
           >
             <AiFillFacebook />
+            {show && <span>Facebook</span>}
           </a>
           <a
             target="_blank"
@@ -53,6 +55,7 @@ const SideBar = ({ show }) => {
             href="https://www.instagram.com/association.farah/"
           >
             <AiFillInstagram />
+            {show && <span>Instagram</span>}
           </a>
           <a
             target="_blank"
@@ -60,6 +63,7 @@ const SideBar = ({ show }) => {
             href="https://www.linkedin.com/in/association-farah-pour-autistes-6369b0171/"
           >
             <AiFillLinkedin />
+            {show && <span>Linkedin</span>}
           </a>
         </div>
       </div>

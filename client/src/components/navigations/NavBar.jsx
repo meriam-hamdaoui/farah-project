@@ -4,19 +4,19 @@ import { Nav, Navbar, Container } from "react-bootstrap";
 
 const NavBar = () => {
   return (
-    <Navbar className="navBar navbar navbar-expand-lg">
+    <Navbar>
       <Container className="container">
-        <Navbar.Brand>
+        <Navbar.Collapse>
           <img
             alt=""
-            src="../logo.png"
+            src="/navbar.png"
             width="40"
             height="35"
             className="d-inline align-top"
           />
           Association Farah des Enfants Autistes et à Difficultés
           d'apprentissage
-        </Navbar.Brand>
+        </Navbar.Collapse>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav as={Link} to="/sign-in">

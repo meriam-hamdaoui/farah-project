@@ -36,10 +36,13 @@ span {
   flex-direction: column;
   justify-content: space-between;
 }
+.menu-toggle {
+  color: white;
+}
 .asidebar-top a {
   /* border: 1px solid red; */
   text-decoration: none;
-  color: #e2ac7c;
+  color: white;
   margin-bottom: 50%;
 }
 .asidebar-bottom {
@@ -53,7 +56,7 @@ span {
 }
 .asidebar-bottom a {
   text-decoration: none;
-  color: #e2ac7c;
+  color: white;
 }
 .sideBar a:hover {
   color: rgb(247, 167, 21);
