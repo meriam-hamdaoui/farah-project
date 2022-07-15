@@ -212,11 +212,11 @@ exports.createAd = async (req, res) => {
 //all
 exports.getAds = async (req, res) => {
   try {
-    const ads = await Ad.find();
-    return res.status(200).json(ads);
+    const adsToGet = await Ad.find();
+    return res.status(200).json(adsToGet);
   } catch (error) {
     console.error("getAds error=>", error);
-    return res.status(500).send({ msg: "getAds error", error });
+    return res.status(500).send({ msg: "getAds back error", error });
   }
 };
 //by id

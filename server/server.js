@@ -12,6 +12,7 @@ const userRouter = require("./routes/user");
 const { signin } = require("./controllers/user");
 const { loginValidator } = require("./middlewares/validators");
 const setup = require("./config/setup");
+const { getAd, getAds } = require("./controllers/admin");
 
 //initiate server
 const app = express();
@@ -25,7 +26,7 @@ connectDB();
 setup();
 
 //get the app to use routers
-
+app.get("/farah", getAds);
 app.use("/farah", userRouter);
 app.use("/farah", adminRouter);
 app.use("/farah", parentRouter);

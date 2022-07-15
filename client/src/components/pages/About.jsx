@@ -5,6 +5,7 @@ import AboutUs from "../items/AboutUs";
 import Organigram from "../items/Organigram";
 import Objectifs from "../items/Objectifs";
 import Achievement from "../items/Achievement";
+import "./about.css";
 
 const About = () => {
   const [organigram, setOrganigram] = useState(false);

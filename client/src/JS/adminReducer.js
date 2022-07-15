@@ -1,14 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  theAdmin: {
-    firstName: "Mariem",
-    lastName: "Hamdaoui",
-    email: "meriam.hamdaoui@gmail.com",
-  },
-  parents: [{}],
-  consultants: [{}],
-  children: [{}],
+  firstName: "Mareim",
+  lastName: "Hamdaoui",
+  email: "meriam.hamdaoui@gmail.com",
   ads: [
     {
       title: "first ad reducer",
@@ -17,7 +12,6 @@ const initialState = {
     },
   ],
 };
-
 const adminSlice = createSlice({
   name: "admin",
   initialState,
@@ -28,11 +22,17 @@ const adminSlice = createSlice({
     getAdmin: (state, action) => {
       return action.payload;
     },
-    setAds: (state, action) => {
+    setAdsReducer: (state, action) => {
       return action.payload;
+    },
+    setAdsReducer: (state, action) => {
+      return {
+        ...state,
+        ads: [...state.ads, action.payload],
+      };
     },
   },
 });
 
-export const { signin, getAdmin, setAds } = adminSlice.actions;
+export const { signin, getAdmin, setAdsReducer } = adminSlice.actions;
 export default adminSlice.reducer;

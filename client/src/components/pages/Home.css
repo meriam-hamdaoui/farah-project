@@ -1,0 +1,21 @@
+.home-acceuil {
+  /* border: 1px solid red; */
+  background: url("./LOGO-ASSOSATION-ENFANTS.jpg") no-repeat center center fixed;
+  background-size: 80%;
+  -webkit-background-size: 80%;
+  -moz-background-size: 80%;
+  -o-background-size: 80%;
+  width: 100%;
+  height: 100vh;
+}
+
+.home-disposition {
+  /* border: 1px solid red; */
+  width: 50%;
+  margin: 19.5rem;
+}
+.home-disposition {
+  font-family: "Grape Nuts", cursive;
+  font-size: x-large;
+  font-weight: 500;
+}
