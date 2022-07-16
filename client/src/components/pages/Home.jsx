@@ -57,7 +57,7 @@ const Home = () => {
       <Row>
         <Col xs={24} md={10} className="content-home">
           <Row>
-            <div className="card-prq">
+            <div className="home-prq">
               <div className="inner-card">
                 <h1>Pourquoi Nous?</h1>
                 <p className="quote mb-3">
