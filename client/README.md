@@ -1,3 +1,6 @@
+//add it to packge.json client
+"proxy": "http://localhost:5000"
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

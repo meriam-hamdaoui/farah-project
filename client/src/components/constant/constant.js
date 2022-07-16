@@ -129,3 +129,13 @@ export const iframStyle = {
   padding: 0,
   margin: 0,
 };
+
+export const SX_Contact = {
+  backgroundImage: "url(/logo.png)",
+  backgroundRepeat: "no-repeat",
+  backgroundColor: "white",
+  //(t) => t.palette.mode === "light" ? t.palette.grey[50] : t.palette.grey[900],
+  backgroundSize: "100%",
+  backgroundPosition: "center",
+  width: "300vh",
+};
