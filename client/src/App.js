@@ -74,9 +74,6 @@ function App() {
             <Route path="/parent/profil" element={<PrivateRoute />} />
           </Routes>
         </div>
-        <div className="footer">
-          <Copyright />
-        </div>
       </div>
     </div>
   );
