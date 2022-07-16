@@ -139,3 +139,32 @@ export const SX_Contact = {
   backgroundPosition: "center",
   width: "300vh",
 };
+
+export const bureauTab = [
+  {
+    key: uuidv4(),
+    name: "Manouba",
+    maps: "404 Not Found",
+  },
+  {
+    key: uuidv4(),
+    name: "Bizert",
+    maps:
+      "https://www.google.tn/maps/place/Association+farah+bizerte/@37.2174966,10.1180706,17z/data=!4m12!1m6!3m5!1s0x12e2e9895a4d41b7:0xb9ba8fa00de7e467!2sAssociation+farah+bizerte!8m2!3d37.2174923!4d10.1202593!3m4!1s0x12e2e9895a4d41b7:0xb9ba8fa00de7e467!8m2!3d37.2174923!4d10.1202593?hl=en",
+  },
+  {
+    key: uuidv4(),
+    name: "Nabeul",
+    maps: "404 Not Found",
+  },
+  {
+    key: uuidv4(),
+    name: "El-Jam",
+    maps: "404 Not Found",
+  },
+  {
+    key: uuidv4(),
+    name: "Gabes",
+    maps: "404 Not Found",
+  },
+];

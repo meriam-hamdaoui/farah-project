@@ -1,6 +1,5 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
-
+import { bureauTab } from "../constant/constant";
 import {
   Container,
   Row,
@@ -12,39 +11,6 @@ import {
 import { GrLocation } from "react-icons/gr";
 import { BsPhone } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
-
-const bureauTab = [
-  {
-    key: uuidv4(),
-    name: "Manouba",
-    maps:
-      "https://www.google.tn/maps/place/Association+farah+bizerte/@37.2174966,10.1180706,17z/data=!4m12!1m6!3m5!1s0x12e2e9895a4d41b7:0xb9ba8fa00de7e467!2sAssociation+farah+bizerte!8m2!3d37.2174923!4d10.1202593!3m4!1s0x12e2e9895a4d41b7:0xb9ba8fa00de7e467!8m2!3d37.2174923!4d10.1202593?hl=en",
-  },
-  {
-    key: uuidv4(),
-    name: "Bizert",
-    maps:
-      "https://www.google.tn/maps/place/Association+farah+bizerte/@37.2174966,10.1180706,17z/data=!4m12!1m6!3m5!1s0x12e2e9895a4d41b7:0xb9ba8fa00de7e467!2sAssociation+farah+bizerte!8m2!3d37.2174923!4d10.1202593!3m4!1s0x12e2e9895a4d41b7:0xb9ba8fa00de7e467!8m2!3d37.2174923!4d10.1202593?hl=en",
-  },
-  {
-    key: uuidv4(),
-    name: "Nabeul",
-    maps:
-      "https://www.google.tn/maps/place/Association+farah+bizerte/@37.2174966,10.1180706,17z/data=!4m12!1m6!3m5!1s0x12e2e9895a4d41b7:0xb9ba8fa00de7e467!2sAssociation+farah+bizerte!8m2!3d37.2174923!4d10.1202593!3m4!1s0x12e2e9895a4d41b7:0xb9ba8fa00de7e467!8m2!3d37.2174923!4d10.1202593?hl=en",
-  },
-  {
-    key: uuidv4(),
-    name: "El-Jam",
-    maps:
-      "https://www.google.tn/maps/place/Association+farah+bizerte/@37.2174966,10.1180706,17z/data=!4m12!1m6!3m5!1s0x12e2e9895a4d41b7:0xb9ba8fa00de7e467!2sAssociation+farah+bizerte!8m2!3d37.2174923!4d10.1202593!3m4!1s0x12e2e9895a4d41b7:0xb9ba8fa00de7e467!8m2!3d37.2174923!4d10.1202593?hl=en",
-  },
-  {
-    key: uuidv4(),
-    name: "Gabes",
-    maps:
-      "https://www.google.tn/maps/place/Association+farah+bizerte/@37.2174966,10.1180706,17z/data=!4m12!1m6!3m5!1s0x12e2e9895a4d41b7:0xb9ba8fa00de7e467!2sAssociation+farah+bizerte!8m2!3d37.2174923!4d10.1202593!3m4!1s0x12e2e9895a4d41b7:0xb9ba8fa00de7e467!8m2!3d37.2174923!4d10.1202593?hl=en",
-  },
-];
 
 const renderTooltip = (props) => (
   <Tooltip id="button-tooltip" {...props}>
