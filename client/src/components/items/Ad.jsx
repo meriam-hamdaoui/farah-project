@@ -7,9 +7,9 @@ const Ad = ({ ad }) => {
       <Card.Body>
         <Card.Title>{ad.title}</Card.Title>
         <Card.Text>{ad.description}</Card.Text>
-        <Nav>
-          <NavItem href={ad.link}>visitez le lien </NavItem>
-        </Nav>
+        <a href={ad.link} target="_blank" rel="noopener noreferrer">
+          visitez le lien
+        </a>
       </Card.Body>
     </Card>
   );

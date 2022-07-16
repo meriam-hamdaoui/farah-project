@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,35 +6,25 @@ import { partners } from "../constant/partners";
 import Autisme from "../items/Autisme";
 import Partner from "../items/Partner";
 import { v4 as uuidv4 } from "uuid";
-import { fetchAds } from "../../api/admin";
-import { setAdsReducer } from "../../JS/adminReducer";
+import { fetchAds } from "../../api/fetchs";
+import { setAds } from "../../JS/adReducer";
 import Ad from "../items/Ad";
 import "./Home.css";
+import Copyright from "../footer/Copyright";
 
 const Home = () => {
-  //state
-  const adsToDispaly = useSelector((state) => state.admin.ads);
-  // console.log("adsToDispaly => ", adsToDispaly);
-
+  const adsFromReducer = useSelector((state) => state.ad);
+  // console.log("adsFromReducer =>", adsFromReducer);
   const dispatch = useDispatch();
 
-  const getTheAds = async () => {
+  const getAllAds = async () => {
     const data = await fetchAds();
-    console.log("data => ", data);
-    dispatch(setAdsReducer(data.adsToGet));
+    dispatch(setAds(data));
   };
 
-  // const displayAds = async () => {
-  //   const data = await fetchAds();
-  //   console.log("data => ", data);
-  //   dispatch(setAds(data.adsToGet));
-  // };
-  // console.log("displayAds => ", displayAds);
-
   useEffect(() => {
-    getTheAds();
-    console.log("adsToDispaly => ", adsToDispaly);
-  }, []);
+    getAllAds();
+  }, [adsFromReducer]);
 
   return (
     <Container>
@@ -46,16 +36,9 @@ const Home = () => {
             <span>Nous sommes à votre disposition</span>
           </h4>
         </div>
-        {/* <div className="a">
-          <h4 className="header">
-            Vous avez un enfant avec des besoins spéciaux??
-            <br /> Nous sommes à votre disposition
-          </h4>
-        </div> */}
       </Row>
-
       <Row>
-        <Col xs={24} md={10} className="content-home">
+        <Col xs={adsFromReducer ? 12 : 24} md={adsFromReducer ? 8 : 10}>
           <Row>
             <div className="home-prq">
               <div className="inner-card">
@@ -96,14 +79,19 @@ const Home = () => {
             </div>
           </Row>
         </Col>
-        {/* {adState.ads.length !== 0 && (
-          <Col className="ads">
-            {adState.ads.map((el) => (
-              <Ad key={uuidv4()} ad={el} />
-            ))}
+        {adsFromReducer && (
+          <Col xs={6} md={4}>
+            <div style={{ marginTop: "10rem", marginLeft: "5rem" }}>
+              {adsFromReducer.map((el) => (
+                <Ad key={uuidv4()} ad={el} />
+              ))}
+            </div>
           </Col>
-        )} */}
+        )}
       </Row>
+      <div className="services-footer">
+        <Copyright />
+      </div>
     </Container>
   );
 };

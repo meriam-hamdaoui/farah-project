@@ -4,13 +4,6 @@ const initialState = {
   firstName: "Mareim",
   lastName: "Hamdaoui",
   email: "meriam.hamdaoui@gmail.com",
-  ads: [
-    {
-      title: "first ad reducer",
-      description: "fetch ads from reducer",
-      link: "https://www.hamdaoui.com",
-    },
-  ],
 };
 const adminSlice = createSlice({
   name: "admin",
@@ -22,17 +15,8 @@ const adminSlice = createSlice({
     getAdmin: (state, action) => {
       return action.payload;
     },
-    setAdsReducer: (state, action) => {
-      return action.payload;
-    },
-    setAdsReducer: (state, action) => {
-      return {
-        ...state,
-        ads: [...state.ads, action.payload],
-      };
-    },
   },
 });
 
-export const { signin, getAdmin, setAdsReducer } = adminSlice.actions;
+export const { signin, getAdmin } = adminSlice.actions;
 export default adminSlice.reducer;
