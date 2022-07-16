@@ -13,6 +13,7 @@ import { MdContactMail } from "react-icons/md";
 import ContactUs from "../forms/ContactUs";
 import Details from "../items/Details";
 import { Container, Row } from "react-bootstrap";
+import Copyright from "../footer/Copyright";
 
 const theme = createTheme();
 
@@ -57,6 +58,9 @@ const Contacts = () => {
             </Grid>
           </Grid>
         </ThemeProvider>
+        <div className="services-footer">
+          <Copyright />
+        </div>
       </Row>
     </Container>
   );

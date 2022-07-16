@@ -6,6 +6,7 @@ import Organigram from "../items/Organigram";
 import Objectifs from "../items/Objectifs";
 import Achievement from "../items/Achievement";
 import "./about.css";
+import Copyright from "../footer/Copyright";
 
 const About = () => {
   const [organigram, setOrganigram] = useState(false);
@@ -87,6 +88,9 @@ const About = () => {
         {objectif && <Objectifs />}
         {achievement && <Achievement />}
       </Row>
+      <div className="services-footer">
+        <Copyright />
+      </div>
     </Container>
   );
 };
