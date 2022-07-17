@@ -27,7 +27,7 @@
   -webkit-box-shadow: 31px 33px 35px -18px rgb(240, 185, 82);
   -moz-box-shadow: 31px 33px 35px -18px rgb(240, 185, 82);
 }
-.inner-card h1 + p,
+.inner-card,
 .card-autisme h1,
 .card-partener h1 {
   text-align: center;
@@ -42,13 +42,12 @@
   margin: 2rem 5rem;
 }
 .partner {
-  /* border: 1px solid red; */
   width: fit-content;
   border-radius: 50%;
 }
 
 .partner img {
-  /* border: 1px solid violet; */
+  border: 1px solid rgb(247, 167, 21);
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -58,10 +57,4 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-}
-
-.left-home-page {
-  border: 1px solid red;
-  display: flex;
-  align-items: flex-start;
 }

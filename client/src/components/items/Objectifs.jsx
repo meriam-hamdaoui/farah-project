@@ -1,10 +1,11 @@
 import React from "react";
 import { Tab, Tabs, Card } from "react-bootstrap";
+import "../pages/About.css";
 
 const Objectifs = () => {
   return (
     <Card>
-      <h3>Nos Objectifs</h3>
+      <h3 className="objectifs">Nos Objectifs</h3>
       <Tabs
         defaultActiveKey="intégration"
         id="fill-tab-example"

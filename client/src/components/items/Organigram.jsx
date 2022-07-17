@@ -1,11 +1,12 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { divStyle, iframStyle } from "../constant/constant";
+import "../pages/About.css";
 
 const Organigram = () => {
   return (
     <Card>
-      <h3>l'hiérarchie de notre équipe</h3>
+      <h3 className="organigram">l'hiérarchie de notre équipe</h3>
       <div style={divStyle}>
         <iframe
           title="organigram"

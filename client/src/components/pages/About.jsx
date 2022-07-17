@@ -5,7 +5,7 @@ import AboutUs from "../items/AboutUs";
 import Organigram from "../items/Organigram";
 import Objectifs from "../items/Objectifs";
 import Achievement from "../items/Achievement";
-import "./about.css";
+import "./About.css";
 import Copyright from "../footer/Copyright";
 
 const About = () => {
@@ -36,22 +36,25 @@ const About = () => {
           <Association />
         </Col>
         <Col>
-          <h1>Qui Sommes Nous?</h1>
-          <h6>
-            Association Farah pour les Enfants Autistes et des Besions Spéciaux
-          </h6>
-          <p>
-            Notre association veut s'assuer que tout le monde en Tunisie sâche
-            ce qu'est l'autisme et comment y faire face.
-            <br />
-            Notre objectif principal est de fournir les soins et les droits pour
-            chaque enfants autistes et ceux ayant des besoins spéciaux pour
-            qu'ils soient indépendents et faire partie de notre sociéte.
-          </p>
-          <p>
-            Association fondée depuis Janvier 2018, par Mr Neji Sessi, et
-            publiée au JORT le 01 Mai du même année.
-          </p>
+          <div className="about-intro">
+            <h1>Qui Sommes Nous?</h1>
+            <h6>
+              Association Farah pour les Enfants Autistes et des Besions
+              Spéciaux
+            </h6>
+            <p>
+              Notre association veut s'assuer que tout le monde en Tunisie sâche
+              ce qu'est l'autisme et comment y faire face.
+              <br />
+              Notre objectif principal est de fournir les soins et les droits
+              pour chaque enfants autistes et ceux ayant des besoins spéciaux
+              pour qu'ils soient indépendents et faire partie de notre sociéte.
+            </p>
+            <p>
+              Association fondée depuis Janvier 2018, par Mr Neji Sessi, et
+              publiée au JORT le 01 Mai du même année.
+            </p>
+          </div>
         </Col>
       </Row>
       <Row>
@@ -67,7 +70,7 @@ const About = () => {
         <Col>
           <button onClick={() => ShowObjectif()}>
             <AboutUs
-              imgSrc="images/objectifs.jpg"
+              imgSrc="images/objectif.png"
               name="objectifs"
               tool="Objectifs"
             />
