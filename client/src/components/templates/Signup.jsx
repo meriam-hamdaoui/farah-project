@@ -8,7 +8,7 @@ import {
   CssBaseline,
 } from "@mui/material";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
-import { SX_Styling } from "../constant/constant";
+import { SX_Parent } from "../constant/constant";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme();
@@ -38,7 +38,7 @@ const Signup = (props) => {
             <Box sx={{ mt: 1 }}>{props.children}</Box>
           </Box>
         </Grid>
-        <Grid item xs={false} sm={4} md={7} sx={SX_Styling} />
+        <Grid item xs={false} sm={4} md={7} sx={SX_Parent} />
       </Grid>
     </ThemeProvider>
   );

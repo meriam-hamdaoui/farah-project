@@ -7,7 +7,7 @@ import {
   Avatar,
   CssBaseline,
 } from "@mui/material";
-import { SX_Contact } from "../constant/constant";
+import { SX_Styling } from "../constant/constant";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { MdContactMail } from "react-icons/md";
 import ContactUs from "../forms/ContactUs";
@@ -27,7 +27,7 @@ const Contacts = () => {
         <ThemeProvider theme={theme}>
           <Grid container component="main" sx={{ height: "100vh" }}>
             <CssBaseline />
-            <Grid item xs={false} sm={4} md={7} sx={SX_Contact}></Grid>
+            <Grid item xs={false} sm={4} md={7} sx={SX_Styling}></Grid>
             <Grid
               item
               xs={12}

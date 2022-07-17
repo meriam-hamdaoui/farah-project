@@ -12,6 +12,15 @@ export const SX_Styling = {
   width: "300vh",
 };
 
+export const SX_Parent = {
+  backgroundImage: "url(/images/autiste_parent.jpg)",
+  backgroundRepeat: "no-repeat",
+  backgroundColor: "white",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  width: "100vh",
+};
+
 export const parentValues = {
   user: {
     firstName: "",
@@ -128,16 +137,6 @@ export const iframStyle = {
   border: "none",
   padding: 0,
   margin: 0,
-};
-
-export const SX_Contact = {
-  backgroundImage: "url(/logo.png)",
-  backgroundRepeat: "no-repeat",
-  backgroundColor: "white",
-  //(t) => t.palette.mode === "light" ? t.palette.grey[50] : t.palette.grey[900],
-  backgroundSize: "100%",
-  backgroundPosition: "center",
-  width: "300vh",
 };
 
 export const bureauTab = [
