@@ -6,7 +6,7 @@ const initialState = [
     id: uuidv4(),
     childFName: "zakria",
     childLName: "zakria",
-    gender: "boy",
+    gender: "garçon",
     birthDate: "01/01/2015",
     diagnosis: {
       disorder: "disorder 1",
