@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Card, Nav, NavItem } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 const Ad = ({ ad }) => {
   return (

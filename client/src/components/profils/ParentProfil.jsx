@@ -1,40 +1,45 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
-
-import { Container, Row, Col, Card, Form } from "react-bootstrap";
+import "./Profil.css";
+import UserCard from "./UserCard";
 import { useSelector } from "react-redux";
+import { Card, Nav } from "react-bootstrap";
+import UpdateParent from "../forms/UpdateParent";
+import { NavLink, Outlet } from "react-router-dom";
+import ChildCard from "./ChildCard";
+import { v4 as uuidv4 } from "uuid";
+import Child from "../forms/Child";
 
 const ParentProfil = () => {
   const parents = useSelector((state) => state.parent);
-  //   console.log("parent profil =>", parent);
+  const children = useSelector((state) => state.child);
+  // console.log("parents =>", parents);
+  // const [children, setChildren] = React.useState([]);
+
   return (
-    <div className="main-container">
-      {parents.map((el) => {
-        return (
-          <Container key={uuidv4()}>
-            <Container className="container-drt">
-              <Row>
-                <Card.Img variant="top" src="holder.js/100px180" />
-              </Row>
-              <Row>
-                <Col>
-                  <Form.Control
-                    type="text"
-                    disabled
-                    value={el.user.firstName}
-                  />
-                  <Form.Control type="text" disabled value={el.user.lastName} />
-                </Col>
-                <Col>
-                  <Form.Control type="text" disabled value={el.user.email} />
-                  <Form.Control type="text" disabled value={el.user.password} />
-                </Col>
-              </Row>
-            </Container>
-            <Container className="container-gch"></Container>
-          </Container>
-        );
-      })}
+    <div className="parent_profil">
+      <div className="parent_details">
+        {parents.map((parent) => (
+          <UserCard key={parent.user.id} user={parent.user}>
+            <Card.Text> Etat Civil : {parent.civil} </Card.Text>
+            <Card.Text> Emploi : {parent.job} </Card.Text>
+            <Card.Text> Nombre de familles : {parent.familyMembers} </Card.Text>
+            <Card.Text> Mes demandes : {parent.demandes} </Card.Text>
+            <div style={{ display: "flex", justifyContent: "space-around" }}>
+              <UpdateParent parent={parent} />
+              <Child label={"ajouter un enfant"} />
+            </div>
+          </UserCard>
+        ))}
+      </div>
+      <div>
+        {children.length !== 0 ? (
+          children.map((el) => {
+            return <ChildCard key={uuidv4()} child={el} />;
+          })
+        ) : (
+          <h1>compeleter votre profil par ajouter un enfant ou plus</h1>
+        )}
+      </div>
     </div>
   );
 };

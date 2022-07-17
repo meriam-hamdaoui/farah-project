@@ -1,0 +1,33 @@
+.parent_profil {
+  margin: 1rem;
+  display: flex;
+}
+
+.circle-img {
+  border-radius: 50%;
+  border: 7px solid #fff;
+  width: 40vh;
+  height: 40vh;
+}
+.editable input {
+  /* padding: 0.5rem; */
+  border-radius: 8px;
+  border: none;
+  background-color: transparent;
+  height: 2rem;
+  width: auto;
+}
+.editable input:disabled {
+  background-color: transparent;
+}
+/* .user_card {
+  border: 1px solid red;
+  width: 150vh;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+} */
+.parent_details {
+  width: max-content;
+  margin-right: 2rem;
+}

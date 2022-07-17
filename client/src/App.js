@@ -9,15 +9,13 @@ import Services from "./components/pages/Services";
 // import Events from "./components/pages/Events";
 import Contacts from "./components/pages/Contacts";
 import Authentication from "./components/templates/Authentication";
-// import Dashborad from "./components/templates/Dashborad";
 import Signup from "./components/templates/Signup";
 import Login from "./components/auth/Login";
 import Parent from "./components/auth/Parent";
 import Consultant from "./components/auth/Consultant";
-import Copyright from "./components/footer/Copyright";
-// import ParentDash from "./components/dashbords/ParentDash.jsx";
 import ParentProfil from "./components/profils/ParentProfil";
-import PrivateRoute from "./components/auth/PrivateRoute";
+// import PrivateRoute from "./components/auth/PrivateRoute";
+import Child from "./components/forms/Child";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -71,7 +69,16 @@ function App() {
               }
             />
             {/* privater routes */}
-            <Route path="/parent/profil" element={<PrivateRoute />} />
+            <Route path="/parent/profil" element={<ParentProfil />} />
+            <Route path="/parent/profil/children" element={<ParentProfil />} />
+            <Route
+              path="/parent/profil/add-child"
+              element={
+                <ParentProfil>
+                  <Child />
+                </ParentProfil>
+              }
+            />
           </Routes>
         </div>
       </div>
