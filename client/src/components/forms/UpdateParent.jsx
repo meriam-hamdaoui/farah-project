@@ -2,14 +2,60 @@ import React, { useState } from "react";
 import { Modal, Form, Button, Row, FloatingLabel, Col } from "react-bootstrap";
 import { stateOptions } from "../constant/constant";
 import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
+import { useDispatch } from "react-redux";
+import { updateParent } from "../../JS/parentReducer";
 
-const UpdateParent = () => {
+const UpdateParent = ({ parent }) => {
+  const { user } = parent;
+  //the model actions
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  //handle changes
+  let updates = { ...parent };
+  const [modify, setModify] = useState({ ...updates });
+  const handleChanges = (e) => {
+    const { name, value } = e.target;
+
+    if (
+      name === "street" ||
+      name === "state" ||
+      name === "city" ||
+      name === "zipCode"
+    ) {
+      updates = {
+        ...modify,
+        user: {
+          ...modify.user,
+          address: {
+            ...modify.user.address,
+            [name]: value,
+          },
+        },
+      };
+      setModify(updates);
+    } else if (name === "civil" || name === "job" || name === "familyMembers") {
+      updates = { ...modify, [name]: value };
+      setModify(updates);
+    } else {
+      updates = {
+        ...modify,
+        user: {
+          ...modify.user,
+          [name]: value,
+        },
+      };
+      setModify(updates);
+    }
+  };
+
+  //handle the save button
+  const dispatch = useDispatch();
+  const id = parent.id;
   const handleClick = () => {
+    console.log("handle modify =>", modify);
+    dispatch(updateParent({ id, modify }));
     handleClose();
   };
 
@@ -29,7 +75,12 @@ const UpdateParent = () => {
                   label="Prénom"
                   className="mb-3"
                 >
-                  <Form.Control type="text" name="firstName" />
+                  <Form.Control
+                    type="text"
+                    name="firstName"
+                    defaultValue={user.firstName}
+                    onChange={(e) => handleChanges(e)}
+                  />
                 </FloatingLabel>
               </Col>
               <Col>
@@ -38,14 +89,23 @@ const UpdateParent = () => {
                   label="Nom "
                   className="mb-3"
                 >
-                  <Form.Control type="text" name="lastName" />
+                  <Form.Control
+                    type="text"
+                    name="lastName"
+                    defaultValue={user.lastName}
+                    onChange={(e) => handleChanges(e)}
+                  />
                 </FloatingLabel>
               </Col>
             </Row>
             <Row>
               <Col>
                 <FloatingLabel controlId="floatingPassword" label="Password">
-                  <Form.Control type="password" name="password" />
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    onChange={(e) => handleChanges(e)}
+                  />
                 </FloatingLabel>
               </Col>
               <Col>
@@ -53,7 +113,11 @@ const UpdateParent = () => {
                   controlId="floatingPassword"
                   label="Confirmation"
                 >
-                  <Form.Control type="password" name="confirmPassword" />
+                  <Form.Control
+                    type="password"
+                    name="confirmPassword"
+                    onChange={(e) => handleChanges(e)}
+                  />
                 </FloatingLabel>
               </Col>
             </Row>
@@ -64,19 +128,34 @@ const UpdateParent = () => {
                 label="Tel Mobile"
                 className="mb-3"
               >
-                <Form.Control type="phone" name="phone" />
+                <Form.Control
+                  type="phone"
+                  name="phone"
+                  defaultValue={user.phone}
+                  onChange={(e) => handleChanges(e)}
+                />
               </FloatingLabel>
             </Row>
             <Row>
               <Form.Group className="mb-3" controlId="formGridAddress2">
                 <FloatingLabel controlId="floatingAddress" label="Address">
-                  <Form.Control type="text" name="street" />
+                  <Form.Control
+                    type="text"
+                    name="street"
+                    defaultValue={user.address.street}
+                    onChange={(e) => handleChanges(e)}
+                  />
                 </FloatingLabel>
               </Form.Group>
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridCity">
                   <FloatingLabel controlId="floatingCity" label="Ville">
-                    <Form.Control type="text" name="city" />
+                    <Form.Control
+                      type="text"
+                      name="city"
+                      defaultValue={user.address.city}
+                      onChange={(e) => handleChanges(e)}
+                    />
                   </FloatingLabel>
                 </Form.Group>
 
@@ -86,8 +165,11 @@ const UpdateParent = () => {
                     controlId="floatingAddress"
                     label="Gouvernant"
                   >
-                    <Form.Select name="state">
-                      <option></option>
+                    <Form.Select
+                      name="state"
+                      onChange={(e) => handleChanges(e)}
+                    >
+                      <option>{user.address.state}</option>
                       {stateOptions.map((state) => (
                         <option key={state.id}>{state.value}</option>
                       ))}
@@ -97,7 +179,13 @@ const UpdateParent = () => {
 
                 <Form.Group as={Col} controlId="formGridZip">
                   <FloatingLabel controlId="floatingZip" label="Postal">
-                    <Form.Control type="number" min="1" name="zipCode" />
+                    <Form.Control
+                      type="number"
+                      min="1"
+                      name="zipCode"
+                      defaultValue={user.address.zipCode}
+                      onChange={(e) => handleChanges(e)}
+                    />
                   </FloatingLabel>
                 </Form.Group>
               </Row>
@@ -105,7 +193,6 @@ const UpdateParent = () => {
             <Row>
               <FormLabel>Etat Civil</FormLabel>
               <RadioGroup
-                required
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="civil"
@@ -114,11 +201,13 @@ const UpdateParent = () => {
                   value="maried"
                   control={<Radio />}
                   label="Marier"
+                  onChange={(e) => handleChanges(e)}
                 />
                 <FormControlLabel
                   value="divorced"
                   control={<Radio />}
                   label="Divorcer"
+                  onChange={(e) => handleChanges(e)}
                 />
               </RadioGroup>
             </Row>
@@ -128,7 +217,12 @@ const UpdateParent = () => {
                 label="Emploi"
                 className="mb-3"
               >
-                <Form.Control type="text" name="job" />
+                <Form.Control
+                  type="text"
+                  name="job"
+                  defaultValue={parent.job}
+                  onChange={(e) => handleChanges(e)}
+                />
               </FloatingLabel>
             </Row>
             <Row>
@@ -137,7 +231,13 @@ const UpdateParent = () => {
                   controlId="floatingZip"
                   label="Nombre de Members de la famille"
                 >
-                  <Form.Control type="number" min="1" name="familyMembers" />
+                  <Form.Control
+                    type="number"
+                    min="1"
+                    name="familyMembers"
+                    defaultValue={parent.familyMembers}
+                    onChange={(e) => handleChanges(e)}
+                  />
                 </FloatingLabel>
               </Form.Group>
             </Row>

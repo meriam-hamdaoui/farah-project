@@ -102,15 +102,16 @@ export const stateOptions = [
 export const childValues = {
   childFName: "",
   childLName: "",
-  birthDate: null,
-  disorder: {
-    disType: "",
-    disEstablishment: "",
-    disDate: null,
+  gender: "",
+  birthDate: "",
+  diagnosis: {
+    disorder: "",
+    establishment: "",
+    date: "",
   },
   integration: {
     integrated: "",
-    integEstablishment: "",
+    school: "",
   },
   inscritDate: Date.now(),
 };

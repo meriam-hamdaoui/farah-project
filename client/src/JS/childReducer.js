@@ -28,6 +28,9 @@ const childSlice = createSlice({
     setChild: (state, action) => {
       return action.payload;
     },
+    addChild: (state, action) => {
+      return [...state, action.payload];
+    },
   },
 });
 

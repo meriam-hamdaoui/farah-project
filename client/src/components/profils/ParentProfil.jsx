@@ -2,18 +2,19 @@ import React from "react";
 import "./Profil.css";
 import UserCard from "./UserCard";
 import { useSelector } from "react-redux";
-import { Card, Nav } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import UpdateParent from "../forms/UpdateParent";
-import { NavLink, Outlet } from "react-router-dom";
 import ChildCard from "./ChildCard";
 import { v4 as uuidv4 } from "uuid";
 import Child from "../forms/Child";
+import { useParams } from "react-router-dom";
 
 const ParentProfil = () => {
   const parents = useSelector((state) => state.parent);
   const children = useSelector((state) => state.child);
   // console.log("parents =>", parents);
   // const [children, setChildren] = React.useState([]);
+  const { id } = useParams();
 
   return (
     <div className="parent_profil">
@@ -25,7 +26,7 @@ const ParentProfil = () => {
             <Card.Text> Nombre de familles : {parent.familyMembers} </Card.Text>
             <Card.Text> Mes demandes : {parent.demandes} </Card.Text>
             <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <UpdateParent parent={parent} />
+              <UpdateParent id={id} parent={parent} />
               <Child label={"ajouter un enfant"} />
             </div>
           </UserCard>

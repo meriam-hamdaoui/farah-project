@@ -1,32 +1,43 @@
 import React, { useState } from "react";
 import { Modal, Button, Row, Col, Form, FloatingLabel } from "react-bootstrap";
 import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
-
-// birthDate: { type: Date },
-// diagnosis: {
-//   disorder: { type: String },
-//   establishment: { type: String },
-//   date: { type: Date },
-// },
-// integration: {
-//   integrated: { type: Boolean },
-//   school: {
-//     type: String,
-//     required: () => {
-//       return this.integrated === true;
-//     },
-//   },
-// },
-// inscritDate: {
-//   type: Date,
-//   default: Date.now(),
-// },
+import { childValues } from "../constant/constant";
 
 const Child = ({ label }) => {
+  let fields = { ...childValues };
   const [show, setShow] = useState(false);
-
+  const [child, setChild] = useState({ ...fields });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "disorder" || name === "establishment" || name === "date") {
+      fields = {
+        ...child,
+        diagnosis: {
+          ...child.diagnosis,
+          [name]: value,
+        },
+      };
+      setChild(fields);
+    } else if (name === "integrated" || name === "school") {
+      fields = {
+        ...child,
+        integration: {
+          ...child.integration,
+          [name]: value,
+        },
+      };
+      setChild(fields);
+    } else {
+      fields = {
+        ...child,
+        [name]: value,
+      };
+      setChild(fields);
+    }
+  };
 
   const handleClick = () => {
     handleClose();
@@ -45,14 +56,16 @@ const Child = ({ label }) => {
               <FormLabel>Sex</FormLabel>
               <RadioGroup row name="gender">
                 <FormControlLabel
-                  value="boy"
+                  value="garçon"
                   control={<Radio />}
                   label="Garçon"
+                  onChange={(e) => handleChange(e)}
                 />
                 <FormControlLabel
-                  value="girl"
+                  value="fille"
                   control={<Radio />}
                   label="Fille"
+                  onChange={(e) => handleChange(e)}
                 />
               </RadioGroup>
             </Row>
@@ -63,7 +76,12 @@ const Child = ({ label }) => {
                   label="Prénom"
                   className="mb-3"
                 >
-                  <Form.Control required type="text" name="firstName" />
+                  <Form.Control
+                    required
+                    type="text"
+                    name="firstName"
+                    onChange={(e) => handleChange(e)}
+                  />
                 </FloatingLabel>
               </Col>
               <Col>
@@ -72,7 +90,12 @@ const Child = ({ label }) => {
                   label="Nom"
                   className="mb-3"
                 >
-                  <Form.Control required type="text" name="firstName" />
+                  <Form.Control
+                    required
+                    type="text"
+                    name="firstName"
+                    onChange={(e) => handleChange(e)}
+                  />
                 </FloatingLabel>
               </Col>
             </Row>
@@ -83,7 +106,11 @@ const Child = ({ label }) => {
                 label="date de naissance"
                 className="mb-3"
               >
-                <Form.Control type="date" name="birthDate" />
+                <Form.Control
+                  type="date"
+                  name="birthDate"
+                  onChange={(e) => handleChange(e)}
+                />
               </FloatingLabel>
             </Row>
             <Row>
@@ -93,7 +120,12 @@ const Child = ({ label }) => {
                   label="Type disorder"
                   className="mb-3"
                 >
-                  <Form.Control required type="text" name="disorder" />
+                  <Form.Control
+                    required
+                    type="text"
+                    name="disorder"
+                    onChange={(e) => handleChange(e)}
+                  />
                 </FloatingLabel>
               </Col>
               <Col>
@@ -102,7 +134,12 @@ const Child = ({ label }) => {
                   label="Etablisement"
                   className="mb-3"
                 >
-                  <Form.Control required type="text" name="establishment" />
+                  <Form.Control
+                    required
+                    type="text"
+                    name="establishment"
+                    onChange={(e) => handleChange(e)}
+                  />
                 </FloatingLabel>
               </Col>
             </Row>
@@ -112,7 +149,11 @@ const Child = ({ label }) => {
                 label="Date de diagnostique"
                 className="mb-3"
               >
-                <Form.Control type="date" name="date" />
+                <Form.Control
+                  type="date"
+                  name="date"
+                  onChange={(e) => handleChange(e)}
+                />
               </FloatingLabel>
             </Row>
             <Row>
@@ -123,11 +164,13 @@ const Child = ({ label }) => {
                     value="true"
                     control={<Radio />}
                     label="Oui"
+                    onChange={(e) => handleChange(e)}
                   />
                   <FormControlLabel
                     value="false"
                     control={<Radio />}
                     label="Non"
+                    onChange={(e) => handleChange(e)}
                   />
                 </RadioGroup>
               </Col>
@@ -138,7 +181,12 @@ const Child = ({ label }) => {
                   label="Ecole"
                   className="mb-3"
                 >
-                  <Form.Control required type="text" name="school" />
+                  <Form.Control
+                    required
+                    type="text"
+                    name="school"
+                    onChange={(e) => handleChange(e)}
+                  />
                 </FloatingLabel>
               </Col>
             </Row>

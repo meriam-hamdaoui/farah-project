@@ -32,11 +32,7 @@ const parentSlice = createSlice({
   initialState,
   reducers: {
     signParent: (state, action) => {
-      const newParent = {
-        id: uuidv4(),
-        ...action.payload,
-      };
-      return [...state, newParent];
+      return [...state, action.payload];
     },
     signin: (state, action) => {
       return action.payload;
@@ -44,8 +40,27 @@ const parentSlice = createSlice({
     setParent: (state, action) => {
       return action.payload;
     },
+    updateParent: (state, action) => {
+      const modifier = {
+        ...action.payload,
+      };
+      return state.map((parent) => {
+        if (parent.id === action.payload.id) {
+          return {
+            ...parent,
+            ...modifier,
+          };
+        }
+        return parent;
+      });
+    },
   },
 });
 
-export const { signParent, signin, setParent } = parentSlice.actions;
+export const {
+  signParent,
+  signin,
+  setParent,
+  updateParent,
+} = parentSlice.actions;
 export default parentSlice.reducer;
