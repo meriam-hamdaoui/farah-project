@@ -13,6 +13,7 @@ import {
 import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
 import { consultantValues } from "../constant/constant";
 import { signConsultant } from "../../JS/consultantReducer";
+import { postConsultant } from "../../api/consultant";
 
 const Consultant = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Consultant = () => {
   const dispatch = useDispatch();
 
   //handle change for nested consultant object
-  const handleConsultant = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     if (
       name === "street" ||
@@ -73,15 +74,25 @@ const Consultant = () => {
     console.log("test => ", test);
   };
 
-  const handleSubmit = async (event, value) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-    dispatch(signConsultant(value));
+  const handleSubmit = async () => {
+    // const form = event.currentTarget;
+    // if (form.checkValidity() === false) {
+    //   event.preventDefault();
+    //   event.stopPropagation();
+    // }
+    // setValidated(true);
+    dispatch(signConsultant({ ...consultant }));
+    postConsultant({ ...consultant })
+      .then((res) => {
+        console.log("postConsultant res=> ", res);
+        return alert("success");
+      })
+      .then((err) => {
+        console.error("postConsultant error=>", err);
+        return alert("false");
+      });
+
     // add postConsultant
-    setValidated(true);
     console.log("submit consultant =>", consultant);
   };
 
@@ -92,7 +103,7 @@ const Consultant = () => {
           name="user"
           user={consultant.user}
           category={"consultant"}
-          handleChange={handleConsultant}
+          handleChange={handleChange}
         >
           <Row>
             <FormLabel>Gender</FormLabel>
@@ -107,13 +118,13 @@ const Consultant = () => {
                 value="male"
                 control={<Radio />}
                 label="Male"
-                onChange={handleConsultant}
+                onChange={handleChange}
               />
               <FormControlLabel
                 value="female"
                 control={<Radio />}
                 label="Female"
-                onChange={handleConsultant}
+                onChange={handleChange}
               />
               <Form.Control.Feedback type="invalid">
                 choose your gender
@@ -131,7 +142,7 @@ const Consultant = () => {
                 required
                 type="text"
                 name="domain"
-                onChange={handleConsultant}
+                onChange={handleChange}
               />
               <Form.Control.Feedback type="invalid">
                 required
@@ -150,7 +161,7 @@ const Consultant = () => {
                   required
                   type="text"
                   name="degree"
-                  onChange={handleConsultant}
+                  onChange={handleChange}
                 />
                 <Form.Control.Feedback type="invalid">
                   required
@@ -167,7 +178,7 @@ const Consultant = () => {
                   required
                   type="text"
                   name="university"
-                  onChange={handleConsultant}
+                  onChange={handleChange}
                 />
                 <Form.Control.Feedback type="invalid">
                   required
@@ -185,7 +196,7 @@ const Consultant = () => {
                 required
                 type="date"
                 name="graduation"
-                onChange={handleConsultant}
+                onChange={handleChange}
               />
               <Form.Control.Feedback type="invalid">
                 required
@@ -203,10 +214,7 @@ const Consultant = () => {
             </Button>
           </Col>
           <Col>
-            <Button
-              variant="primary"
-              onClick={(e) => handleSubmit(e, { ...consultant })}
-            >
+            <Button variant="primary" onClick={(e) => handleSubmit()}>
               Submit
             </Button>
           </Col>

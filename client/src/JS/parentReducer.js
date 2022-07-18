@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const initialState = [
   {
+    id: uuidv4(),
     user: {
       id: uuidv4(),
       firstName: "Ali",
