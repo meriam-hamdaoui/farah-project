@@ -17,6 +17,7 @@ const Login = () => {
     password: "",
   });
   const [category, setCategory] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,8 +29,7 @@ const Login = () => {
     });
   };
 
-  const navigate = useNavigate();
-
+  //move for the registration for depending on category
   const handleRegister = () => {
     if (category === "parent") {
       navigate("/sign-up/parent");
@@ -43,27 +43,27 @@ const Login = () => {
   };
 
   const loginSubmit = async (e) => {
-    // try {
-    e.preventDefault();
-    const response = await axios.post(
-      "http://localhost:5000/farah/sign-in",
-      values
-    );
-    console.log("response from login=>", response);
-    await localStorage.setItem("token", response.data.token);
-    const role = response.data.exists;
-    if (role === 1) {
-      alert(`welcome parent`);
+    try {
+      e.preventDefault();
+      const res = await axios.post(
+        "http://localhost:5000/farah/sign-in",
+        values
+      );
+      // console.log("response from login=>", response);
+      localStorage.setItem("token", res.data.token);
+      const { role } = res.data.exists;
+      if (role === 0) {
+        navigate("/dashboard");
+      }
+      if (role === 1) {
+        navigate("/parent/profil");
+      }
+      if (role === 2) {
+        navigate("/consultant/profil");
+      }
+    } catch (error) {
+      console.error("submit login", error);
     }
-    if (role === 2) {
-      alert("welcome consultant");
-    }
-    if (role === 0) {
-      alert("i'm the admin");
-    }
-    // } catch (error) {
-    //   console.error("submit login", error);
-    // }
   };
 
   return (
@@ -96,7 +96,7 @@ const Login = () => {
           <Col>
             <Button
               variant="primary"
-              type="submit"
+              type="button"
               onClick={(e) => loginSubmit(e)}
             >
               Submit
