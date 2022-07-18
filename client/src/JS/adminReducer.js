@@ -12,11 +12,11 @@ const adminSlice = createSlice({
     signin: (state, action) => {
       return action.payload;
     },
-    getAdmin: (state, action) => {
+    setAdmin: (state, action) => {
       return action.payload;
     },
   },
 });
 
-export const { signin, getAdmin } = adminSlice.actions;
+export const { signin, setAdmin } = adminSlice.actions;
 export default adminSlice.reducer;

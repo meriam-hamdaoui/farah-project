@@ -5,6 +5,18 @@ const Consultant = require("../models/consultant");
 const Child = require("../models/child");
 const Ad = require("../models/ads");
 
+exports.getAdmin = async (req, res) => {
+  try {
+    const role = req.user;
+    if (role === 0) {
+      return res.status(200).json(req.user);
+    }
+  } catch (error) {
+    console.error("getAdmin =>", error);
+    res.status(500).send({ msg: "getAdmin", error });
+  }
+};
+
 //update admin
 exports.updateAdmin = async (req, res) => {
   try {

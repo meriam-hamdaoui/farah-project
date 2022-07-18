@@ -47,15 +47,14 @@ const Login = () => {
 
   const loginSubmit = async () => {
     try {
-      const response = await axios.post(
-        `http://localhost:5000/farah/sign-in`,
-        inscrit
-      );
-      console.log("second => ", inscrit);
+      const response = await axios.post(`http://localhost:5000/farah/sign-in`, {
+        email,
+        password,
+      });
+      // console.log("second => ", inscrit);
 
       console.log("response =>", response);
-      // await localStorage.setItem("token", response.data.token);
-      // navigate("/parent/profil");
+      await localStorage.setItem("token", response.data.token);
     } catch (error) {
       console.error("submit login", error);
     }
