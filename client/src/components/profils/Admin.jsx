@@ -31,10 +31,11 @@ const Admin = (props) => {
         </Card>
       </div>
       <div>
-        <Nav>
+        <Nav style={{ display: "flex", justifyContent: "space-around" }}>
           <NavLink to="/dashboard">dashboard</NavLink>
           <NavLink to="/dashboard/children">enfants</NavLink>
-          <NavLink to="/dashboard/children">enfants</NavLink>
+          <NavLink to="/dashboard/parents">parents</NavLink>
+          <NavLink to="/dashboard/consultants">consultants</NavLink>
         </Nav>
       </div>
       <div>

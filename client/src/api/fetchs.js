@@ -28,3 +28,17 @@ export const fetchChildren = async () => {
   );
   return data;
 };
+
+export const fetchAllParents = async () => {
+  const { data } = await axios.get(
+    "http://localhost:5000/farah/dashboard/parents"
+  );
+  return data;
+};
+
+export const fetchAllConsultants = async () => {
+  const { data } = await axios.get(
+    "http://localhost:5000/farah/dashboard/consultants"
+  );
+  return data;
+};

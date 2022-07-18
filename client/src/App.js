@@ -18,6 +18,8 @@ import PrivateRoute from "./components/auth/PrivateRoute";
 import Child from "./components/forms/Child";
 import Admin from "./components/profils/Admin";
 import Children from "./components/items/Children";
+import Parents from "./components/items/Parents";
+import Consultants from "./components/items/Consultants";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -89,6 +91,22 @@ function App() {
               element={
                 <Admin>
                   <Children />
+                </Admin>
+              }
+            />
+            <Route
+              path="/dashboard/parents"
+              element={
+                <Admin>
+                  <Parents />
+                </Admin>
+              }
+            />
+            <Route
+              path="/dashboard/consultants"
+              element={
+                <Admin>
+                  <Consultants />
                 </Admin>
               }
             />

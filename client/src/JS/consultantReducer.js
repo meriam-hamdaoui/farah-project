@@ -45,8 +45,15 @@ const consultantSlice = createSlice({
     signin: (state, action) => {
       return action.payload;
     },
+    setConsultant: (state, action) => {
+      return action.payload;
+    },
   },
 });
 
-export const { signConsultant, signin } = consultantSlice.actions;
+export const {
+  signConsultant,
+  signin,
+  setConsultant,
+} = consultantSlice.actions;
 export default consultantSlice.reducer;
