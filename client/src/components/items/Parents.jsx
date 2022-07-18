@@ -21,10 +21,12 @@ const Parents = () => {
     <>
       {parents.map((parent) => (
         <UserCard key={parent.user.id} user={parent.user}>
-          <Card.Text> Etat Civil : {parent.civil} </Card.Text>
-          <Card.Text> Emploi : {parent.job} </Card.Text>
-          <Card.Text> Nombre de familles : {parent.familyMembers} </Card.Text>
-          <Card.Text> Mes demandes : {parent.demandes} </Card.Text>
+          <div key={parent.id}>
+            <Card.Text> Etat Civil : {parent.civil} </Card.Text>
+            <Card.Text> Emploi : {parent.job} </Card.Text>
+            <Card.Text> Nombre de familles : {parent.familyMembers} </Card.Text>
+            <Card.Text> Mes demandes : {parent.demandes} </Card.Text>
+          </div>
         </UserCard>
       ))}
     </>

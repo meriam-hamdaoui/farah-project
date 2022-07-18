@@ -20,7 +20,8 @@ const Children = () => {
   return (
     <div>
       {children.map((child) => (
-        <Card>
+        <Card key={child.id}>
+          <button>delete</button>
           <div>
             <Card.Img variant="top" src="/avatar.png" className="circle-img" />
             <Card.Title>

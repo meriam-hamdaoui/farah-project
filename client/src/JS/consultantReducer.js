@@ -5,6 +5,7 @@ const initialState = [
   {
     id: uuidv4(),
     user: {
+      id: uuidv4(),
       firstName: "zohra",
       lastName: "Hamdaoui",
       email: "zohra@gmail.com",

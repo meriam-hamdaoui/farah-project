@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 import "./Profil.css";
 
 const UserCard = ({ user, children }) => {
+  const currentLocation = useLocation().pathname;
+  // console.log("currentLocation =>", currentLocation);
+
   return (
     <Card className="user_card">
+      <div>
+        {(currentLocation === "/dashboard/parents" ||
+          currentLocation === "/dashboard/consultants") && (
+          <button>delete</button>
+        )}
+      </div>
+
       <div>
         <Card.Img variant="top" src="/avatar.png" className="circle-img" />
         <Card.Title>

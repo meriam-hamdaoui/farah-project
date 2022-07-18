@@ -22,16 +22,20 @@ const Consultants = () => {
     <>
       {consultants.map((consultant) => (
         <UserCard key={consultant.user.id} user={consultant.user}>
-          <Card.Text> gender : {consultant.gender}</Card.Text>
-          <Card.Text> domaine : {consultant.domain}</Card.Text>
-          <Card.Text>
-            niveau universitaire : {consultant.educations.degree}
-          </Card.Text>
-          <Card.Text>université : {consultant.educations.university}</Card.Text>
-          <Card.Text>
-            Date de diplome : {consultant.educations.graduation}
-          </Card.Text>
-          <Card.Text> offre : {consultant.offers} </Card.Text>
+          <div key={consultant.id}>
+            <Card.Text> gender : {consultant.gender}</Card.Text>
+            <Card.Text> domaine : {consultant.domain}</Card.Text>
+            <Card.Text>
+              niveau universitaire : {consultant.educations.degree}
+            </Card.Text>
+            <Card.Text>
+              université : {consultant.educations.university}
+            </Card.Text>
+            <Card.Text>
+              Date de diplome : {consultant.educations.graduation}
+            </Card.Text>
+            <Card.Text> offre : {consultant.offres} </Card.Text>
+          </div>
         </UserCard>
       ))}
     </>
