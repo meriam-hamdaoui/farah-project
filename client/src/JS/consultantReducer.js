@@ -21,7 +21,7 @@ const initialState = [
       category: "consultant",
       agrement: "",
     },
-    gender: "Male",
+    gender: "female",
     domain: "eduction",
     educations: {
       degree: "degree",

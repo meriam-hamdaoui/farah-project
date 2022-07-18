@@ -7,6 +7,6 @@ const { loginValidator } = require("../middlewares/validators");
 const userRouter = express.Router();
 
 // userRouter.get("/", getAds);
-userRouter.post("/sign-in", loginValidator, signin);
+userRouter.post("/sign-in", signin);
 
 module.exports = userRouter;

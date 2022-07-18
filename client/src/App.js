@@ -10,7 +10,7 @@ import Services from "./components/pages/Services";
 import Contacts from "./components/pages/Contacts";
 import Authentication from "./components/templates/Authentication";
 import Signup from "./components/templates/Signup";
-import Login from "./components/auth/Login";
+// import Login from "./components/auth/Login";
 import Parent from "./components/auth/Parent";
 import Consultant from "./components/auth/Consultant";
 import ParentProfil from "./components/profils/ParentProfil";
@@ -20,6 +20,9 @@ import Admin from "./components/profils/Admin";
 import Children from "./components/items/Children";
 import Parents from "./components/items/Parents";
 import Consultants from "./components/items/Consultants";
+import Signin from "./components/auth/Signin";
+import Test from "./components/items/Test";
+import ConsultantProfil from "./components/profils/ConsultantProfil";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -48,11 +51,13 @@ function App() {
             {/* <Route path="events" element={<Events />} /> */}
             <Route path="contacts" element={<Contacts />} />
             {/* forms routes */}
+            <Route path="/test" element={<Test />} />
+
             <Route
               path="sign-in"
               element={
                 <Authentication label={"se connecter"}>
-                  <Login />
+                  <Signin />
                 </Authentication>
               }
             />
@@ -72,7 +77,7 @@ function App() {
                 </Signup>
               }
             />
-            {/* privater routes */}
+            {/* parent routes */}
             <Route path="/parent/profil" element={<PrivateRoute />} />
 
             <Route path="/parent/profil/children" element={<ParentProfil />} />
@@ -84,7 +89,10 @@ function App() {
                 </ParentProfil>
               }
             />
+            {/* consultant */}
+            <Route path="/consultant/profil" element={<ConsultantProfil />} />
 
+            {/* admin */}
             <Route path="/dashboard" element={<Admin />} />
             <Route
               path="/dashboard/children"

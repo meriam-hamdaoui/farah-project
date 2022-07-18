@@ -12,18 +12,20 @@ import { Radio, RadioGroup, FormControlLabel } from "@mui/material/";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
   const [category, setCategory] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "email") {
-      setEmail(value);
-    }
-    if (name === "password") {
-      setPassword(value);
-    }
+    setValues((prevValue) => {
+      return {
+        ...prevValue,
+        [name]: value,
+      };
+    });
   };
 
   const navigate = useNavigate();
@@ -40,24 +42,28 @@ const Login = () => {
     }
   };
 
-  const inscrit = {
-    email: "khaled@yahoo.fr",
-    password: "azerty123456",
-  };
-
-  const loginSubmit = async () => {
-    try {
-      const response = await axios.post(`http://localhost:5000/farah/sign-in`, {
-        email,
-        password,
-      });
-      // console.log("second => ", inscrit);
-
-      console.log("response =>", response);
-      await localStorage.setItem("token", response.data.token);
-    } catch (error) {
-      console.error("submit login", error);
+  const loginSubmit = async (e) => {
+    // try {
+    e.preventDefault();
+    const response = await axios.post(
+      "http://localhost:5000/farah/sign-in",
+      values
+    );
+    console.log("response from login=>", response);
+    await localStorage.setItem("token", response.data.token);
+    const role = response.data.exists;
+    if (role === 1) {
+      alert(`welcome parent`);
     }
+    if (role === 2) {
+      alert("welcome consultant");
+    }
+    if (role === 0) {
+      alert("i'm the admin");
+    }
+    // } catch (error) {
+    //   console.error("submit login", error);
+    // }
   };
 
   return (
@@ -70,7 +76,7 @@ const Login = () => {
               autoComplete="false"
               type="email"
               name="email"
-              value={email}
+              // value={values.email}
               onChange={(e) => handleChange(e)}
             />
           </FloatingLabel>
@@ -81,7 +87,7 @@ const Login = () => {
               required
               type="password"
               name="password"
-              value={password}
+              // value={values.password}
               onChange={(e) => handleChange(e)}
             />
           </FloatingLabel>
@@ -91,7 +97,7 @@ const Login = () => {
             <Button
               variant="primary"
               type="submit"
-              onClick={() => loginSubmit()}
+              onClick={(e) => loginSubmit(e)}
             >
               Submit
             </Button>
