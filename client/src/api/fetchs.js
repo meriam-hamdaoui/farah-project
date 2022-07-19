@@ -6,7 +6,11 @@ export const fetchAds = async () => {
 };
 
 export const fetchParent = async () => {
-  const { data } = await axios.get(`http://localhost:5000/farah/parent/profil`);
+  const token = localStorage.getItem("token");
+  const { data } = await axios.get(
+    `http://localhost:5000/farah/parent/profil`,
+    { headers: { authenticate: token } }
+  );
   return data;
 };
 
@@ -22,6 +26,7 @@ export const fetchAdmin = async () => {
   return data;
 };
 
+//mapage
 export const fetchChildren = async () => {
   const { data } = await axios.get(
     "http://localhost:5000/farah/dashboard/children"

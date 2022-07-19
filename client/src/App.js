@@ -77,7 +77,14 @@ function App() {
             />
 
             {/* parent routes */}
-            <Route path="/parent/profil" element={<PrivateRoute />} />
+            <Route
+              path="/parent/profil"
+              element={
+                <PrivateRoute>
+                  <ParentProfil />
+                </PrivateRoute>
+              }
+            />
 
             <Route path="/parent/profil/children" element={<ParentProfil />} />
             <Route

@@ -13,16 +13,21 @@ exports.isAuth = async (req, res, next) => {
   const token = req.header("authenticate");
   // console.log("token isAuth =>", token);
   try {
-    //we need to verify between the token registred inside our DB and the one from the header
-    let matched = jwt.verify(token, process.env.secretOrKey);
-    // console.log("matched isAuth =>", matched);
+    //if there is no token
+    if (!token) return res.status(401).send({ msg: "not authenticate" });
+    //else : we need to verify between the token registred inside our DB and the one from the header
+    const dechiffrage = jwt.verify(token, process.env.secretOrKey);
     //if our tokens did not match
-    if (!matched)
-      return res.status(400).send({ msg: "you are not authorized to login" });
-    //if our token matchs we search for the user using his _id
-    const user = await User.findById(matched.id);
-    //after that we give it back to the req
+    if (!dechiffrage) return res.status(401).send({ msg: "sign up first" });
+    // console.log("dechiffrage =>", dechiffrage);
+
+    //if our token matchs we search for the user using his id
+    const { id } = dechiffrage;
+    const user = await User.findById(id);
+    // console.log("user isAuth =>", user);
     req.user = user;
+
+    // res.send(req.user);
 
     next();
   } catch (errors) {

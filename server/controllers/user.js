@@ -111,7 +111,7 @@ exports.signin = async (req, res) => {
 };
 
 exports.getProfile = async (req, res) => {
-  const { role, _id } = req.user;
+  const { _id, role } = req.user;
   // console.log("role =>", role);
   try {
     if (role === 1) {
