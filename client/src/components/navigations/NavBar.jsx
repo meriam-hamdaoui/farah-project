@@ -1,8 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Nav, Navbar, Container } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+
+import { Nav, Navbar, Container, Button } from "react-bootstrap";
 
 const NavBar = () => {
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+  // console.log("token from navbar =>", token);
+  const role = localStorage.getItem("role");
+  // console.log("role from navbar =>", typeof role);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/", { replace: true });
+  };
+
+  const handleProfil = () => {
+    if (Number(role) === 0) {
+      navigate("/dashboard");
+    }
+    if (Number(role) === 1) {
+      navigate("/parent/profil");
+    }
+    if (Number(role) === 2) {
+      navigate("/consultant/profil");
+    }
+    // console.log("handleProfil clicked");
+  };
+
   return (
     <Navbar>
       <Container className="container">
@@ -19,9 +45,16 @@ const NavBar = () => {
         </Navbar.Collapse>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          <Nav as={Link} to="/sign-in">
-            Se connecter
-          </Nav>
+          {token ? (
+            <>
+              <Button onClick={() => logout()}>logout</Button>
+              <Button onClick={() => handleProfil()}>profil</Button>
+            </>
+          ) : (
+            <Nav as={Link} to="/sign-in">
+              Se connecter
+            </Nav>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>

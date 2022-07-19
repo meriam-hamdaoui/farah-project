@@ -7,22 +7,41 @@ export const fetchAds = async () => {
 
 export const fetchParent = async () => {
   const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
   const { data } = await axios.get(
     `http://localhost:5000/farah/parent/profil`,
-    { headers: { authenticate: token } }
+    { headers: { authenticate: token, role: role } }
   );
   return data;
 };
 
 export const fetchConsultant = async () => {
+  const token = localStorage.getItem("token");
   const { data } = await axios.get(
-    "http://localhost:5000/farah/consultant/profil"
+    "http://localhost:5000/farah/consultant/profil",
+    {
+      headers: { authenticate: token },
+    }
   );
   return data;
 };
 
 export const fetchAdmin = async () => {
-  const { data } = await axios.get("http://localhost:5000/farah/dashboard");
+  const token = localStorage.getItem("token");
+  const { data } = await axios.get("http://localhost:5000/farah/dashboard", {
+    headers: { authenticate: token },
+  });
+  return data;
+};
+
+export const fetchChildrenByParent = async () => {
+  const token = localStorage.getItem("token");
+  const { data } = await axios.get(
+    "http://localhost:5000/farah/parent/profil/children",
+    {
+      headers: { authenticate: token },
+    }
+  );
   return data;
 };
 

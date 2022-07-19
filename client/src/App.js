@@ -14,14 +14,8 @@ import Login from "./components/auth/Login";
 import Parent from "./components/auth/Parent";
 import Consultant from "./components/auth/Consultant";
 import ParentProfil from "./components/profils/ParentProfil";
-import PrivateRoute from "./components/auth/PrivateRoute";
+// import PrivateRoute from "./components/auth/PrivateRoute";
 import Child from "./components/forms/Child";
-import Admin from "./components/profils/Admin";
-import Children from "./components/items/Children";
-import Parents from "./components/items/Parents";
-import Consultants from "./components/items/Consultants";
-// import Signin from "./components/auth/Signin";
-import ConsultantProfil from "./components/profils/ConsultantProfil";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -49,7 +43,6 @@ function App() {
             <Route path="services" element={<Services />} />
             {/* <Route path="events" element={<Events />} /> */}
             <Route path="contacts" element={<Contacts />} />
-
             {/* forms routes */}
             <Route
               path="sign-in"
@@ -75,17 +68,8 @@ function App() {
                 </Signup>
               }
             />
-
-            {/* parent routes */}
-            <Route
-              path="/parent/profil"
-              element={
-                <PrivateRoute>
-                  <ParentProfil />
-                </PrivateRoute>
-              }
-            />
-
+            {/* privater routes */}
+            <Route path="/parent/profil" element={<ParentProfil />} />
             <Route path="/parent/profil/children" element={<ParentProfil />} />
             <Route
               path="/parent/profil/add-child"
@@ -93,35 +77,6 @@ function App() {
                 <ParentProfil>
                   <Child />
                 </ParentProfil>
-              }
-            />
-            {/* consultant */}
-            <Route path="/consultant/profil" element={<ConsultantProfil />} />
-
-            {/* admin */}
-            <Route path="/dashboard" element={<Admin />} />
-            <Route
-              path="/dashboard/children"
-              element={
-                <Admin>
-                  <Children />
-                </Admin>
-              }
-            />
-            <Route
-              path="/dashboard/parents"
-              element={
-                <Admin>
-                  <Parents />
-                </Admin>
-              }
-            />
-            <Route
-              path="/dashboard/consultants"
-              element={
-                <Admin>
-                  <Consultants />
-                </Admin>
               }
             />
           </Routes>
