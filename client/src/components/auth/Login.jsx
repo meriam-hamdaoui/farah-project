@@ -52,6 +52,7 @@ const Login = () => {
       // console.log("response from login=>", response);
       localStorage.setItem("token", res.data.token);
       const { role } = res.data.exists;
+      localStorage.setItem("role", role);
       if (role === 0) {
         navigate("/dashboard");
       }

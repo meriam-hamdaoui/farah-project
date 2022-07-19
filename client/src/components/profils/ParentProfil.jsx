@@ -7,24 +7,30 @@ import UpdateParent from "../forms/UpdateParent";
 import ChildCard from "./ChildCard";
 import { v4 as uuidv4 } from "uuid";
 import Child from "../forms/Child";
-import { useParams } from "react-router-dom";
-import { fetchParent } from "../../api/fetchs";
+import { fetchParent, fetchChildrenByParent } from "../../api/fetchs";
 import { setAccountParent } from "../../JS/accountParent";
+import { setChild } from "../../JS/childReducer";
 
 const ParentProfil = () => {
   const parent = useSelector((state) => state.accountParent);
-  // const children = useSelector((state) => state.child);
+  const children = useSelector((state) => state.child);
 
   const dispatch = useDispatch();
 
   const getProfil = async () => {
     const res = await fetchParent();
-    // console.log("res =>", res);
     dispatch(setAccountParent(res.profil));
+  };
+
+  const getMyChildren = async () => {
+    const res = await fetchChildrenByParent();
+    // console.log("getMyChildren res =>", res);
+    dispatch(setChild(res.children));
   };
 
   useEffect(() => {
     getProfil();
+    getMyChildren();
   }, []);
 
   return (
@@ -41,7 +47,7 @@ const ParentProfil = () => {
           </div>
         </UserCard>
       </div>
-      {/* <div>
+      <div>
         {children.length !== 0 ? (
           children.map((el) => {
             return <ChildCard key={uuidv4()} child={el} />;
@@ -49,7 +55,7 @@ const ParentProfil = () => {
         ) : (
           <h1>compeleter votre profil par ajouter un enfant ou plus</h1>
         )}
-      </div> */}
+      </div>
     </div>
   );
 };
