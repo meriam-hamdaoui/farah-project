@@ -74,17 +74,17 @@ const Consultant = () => {
     console.log("test => ", test);
   };
 
-  const handleSubmit = async () => {
-    // const form = event.currentTarget;
-    // if (form.checkValidity() === false) {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    // }
-    // setValidated(true);
+  const handleSubmit = async (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    setValidated(true);
     dispatch(signConsultant({ ...consultant }));
     postConsultant({ ...consultant })
       .then((res) => {
-        console.log("postConsultant res=> ", res);
+        // console.log("postConsultant res=> ", res);
         return alert("success");
       })
       .then((err) => {
@@ -93,7 +93,7 @@ const Consultant = () => {
       });
 
     // add postConsultant
-    console.log("submit consultant =>", consultant);
+    // console.log("submit consultant =>", consultant);
   };
 
   return (
@@ -214,7 +214,7 @@ const Consultant = () => {
             </Button>
           </Col>
           <Col>
-            <Button variant="primary" onClick={(e) => handleSubmit()}>
+            <Button variant="primary" onClick={(e) => handleSubmit(e)}>
               Submit
             </Button>
           </Col>

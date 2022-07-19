@@ -19,7 +19,7 @@ const ParentProfil = () => {
 
   const getProfil = async () => {
     const res = await fetchParent();
-    console.log("res =>", res);
+    // console.log("res =>", res);
     dispatch(setAccountParent(res.profil));
   };
 

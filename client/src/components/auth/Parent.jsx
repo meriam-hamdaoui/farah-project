@@ -69,17 +69,17 @@ const Parent = () => {
     // console.log("test => ", test);
   };
 
-  const handleSubmit = () => {
-    // const form = event.currentTarget;
-    // if (form.checkValidity() === false) {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    // }
-    //   setValidated(true);
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    setValidated(true);
 
     postParent({ ...parent })
       .then((res) => {
-        console.log("postParent res =>", res);
+        // console.log("postParent res =>", res);
         setParent({ ...parentValues });
         alert("success");
         navigate("/sign-in", { replace: true });
@@ -92,12 +92,6 @@ const Parent = () => {
     // await postParent(value);
     console.log("submit parent =>", parent);
   };
-
-  // const handleSubmit = async (value) => {
-  //   dispatch(signParent(value));
-  //   // await postParent(value);
-  //   console.log("parent =>", parent);
-  // };
 
   return (
     <Form autoComplete="off" noValidate validated={validated}>
@@ -203,7 +197,7 @@ const Parent = () => {
             </Button>
           </Col>
           <Col>
-            <Button variant="primary" onClick={() => handleSubmit()}>
+            <Button variant="primary" onClick={(e) => handleSubmit(e)}>
               Submit
             </Button>
           </Col>

@@ -15,14 +15,20 @@ export const fetchParent = async () => {
 };
 
 export const fetchConsultant = async () => {
-  const { data } = await axios.get(
-    "http://localhost:5000/farah/consultant/profil"
-  );
+  const token = localStorage.getItem("token");
+  const {
+    data,
+  } = await axios.get("http://localhost:5000/farah/consultant/profil", {
+    headers: { authenticate: token },
+  });
   return data;
 };
 
 export const fetchAdmin = async () => {
-  const { data } = await axios.get("http://localhost:5000/farah/dashboard");
+  const token = localStorage.getItem("token");
+  const { data } = await axios.get("http://localhost:5000/farah/dashboard", {
+    headers: { authenticate: token },
+  });
   return data;
 };
 
