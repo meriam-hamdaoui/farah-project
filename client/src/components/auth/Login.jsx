@@ -53,15 +53,17 @@ const Login = () => {
       localStorage.setItem("token", res.data.token);
       const { role } = res.data.exists;
       localStorage.setItem("role", role);
-      if (role === 0) {
-        navigate("/dashboard");
-      }
-      if (role === 1) {
-        navigate("/parent/profil");
-      }
-      if (role === 2) {
-        navigate("/consultant/profil");
-      }
+      setTimeout(() => {
+        if (role === 0) {
+          navigate("/dashboard");
+        }
+        if (role === 1) {
+          navigate("/parent/profil");
+        }
+        if (role === 2) {
+          navigate("/consultant/profil");
+        }
+      }, 500);
     } catch (error) {
       console.error("submit login", error);
     }

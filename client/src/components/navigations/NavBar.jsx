@@ -13,17 +13,18 @@ const NavBar = () => {
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
     navigate("/", { replace: true });
   };
 
   const handleProfil = () => {
-    if (Number(role) === 0) {
+    if (token && Number(role) === 0) {
       navigate("/dashboard");
     }
-    if (Number(role) === 1) {
+    if (token && Number(role) === 1) {
       navigate("/parent/profil");
     }
-    if (Number(role) === 2) {
+    if (token && Number(role) === 2) {
       navigate("/consultant/profil");
     }
     // console.log("handleProfil clicked");
