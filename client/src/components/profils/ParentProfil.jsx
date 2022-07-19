@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import "./Profil.css";
 import UserCard from "./UserCard";
 import { useSelector, useDispatch } from "react-redux";
@@ -19,6 +20,7 @@ const ParentProfil = () => {
 
   const getProfil = async () => {
     const res = await fetchParent();
+    // console.log("getProfil res =>", res);
     dispatch(setAccountParent(res.profil));
   };
 
@@ -42,6 +44,7 @@ const ParentProfil = () => {
           <Card.Text> Nombre de familles : {parent.familyMembers} </Card.Text>
           <Card.Text> Mes demandes : {parent.demandes} </Card.Text>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <Outlet />
             <UpdateParent parent={parent} />
             <Child label={"ajouter un enfant"} />
           </div>

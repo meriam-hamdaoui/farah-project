@@ -7,9 +7,20 @@ export const postParent = async (value) => {
     },
   };
   const response = await axios.post(
-    `${process.env.REACT_APP_API_URL}/farah/sign-up/parent`,
+    `http://localhost:5000/farah/sign-up/parent`,
     { ...value },
     config
   );
   return response;
+};
+
+export const updateParentProfil = async (id, value) => {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+
+  const updatedParent = await axios.put(
+    `http://localhost:5000/farah/parent/profil/${id}`,
+    value,
+    { headers: { authenticate: token, role: role } }
+  );
 };

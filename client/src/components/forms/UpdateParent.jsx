@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Form, Button, Row, FloatingLabel, Col } from "react-bootstrap";
 import { stateOptions } from "../constant/constant";
 import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
 import { useDispatch } from "react-redux";
 import { updateParent } from "../../JS/parentReducer";
+import { updateParentProfil } from "../../api/parent";
 
 const UpdateParent = ({ parent }) => {
   const { user } = parent;
+  const id = user._id;
+  // console.log("UpdateParent user =>", id);
   //the model actions
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -52,10 +55,10 @@ const UpdateParent = ({ parent }) => {
 
   //handle the save button
   const dispatch = useDispatch();
-  const id = parent.id;
-  const handleClick = () => {
+  const handleClick = async () => {
     console.log("handle modify =>", modify);
-    dispatch(updateParent({ id, modify }));
+    await updateParentProfil(id, modify);
+    // dispatch(updateParent({ id, modify }));
     handleClose();
   };
 
