@@ -3,7 +3,7 @@ import { Modal, Button, Row, Col, Form, FloatingLabel } from "react-bootstrap";
 import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
 import { childValues } from "../constant/constant";
 import { ajoutEnfant, modifierEnfant } from "../../api/parent";
-import { setChildReducer } from "../../JS/childReducer";
+import { setChildReducer, addChild } from "../../JS/childReducer";
 import { useDispatch } from "react-redux";
 
 const Child = ({ label, theChild }) => {
@@ -11,7 +11,12 @@ const Child = ({ label, theChild }) => {
   const [show, setShow] = useState(false);
   const [child, setChild] = useState({ ...fields });
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    if (label === "modifier") {
+      console.log("theChild =>", theChild._id);
+    }
+    setShow(true);
+  };
 
   //changes of inputes
   const handleChange = (e) => {
@@ -34,7 +39,12 @@ const Child = ({ label, theChild }) => {
         },
       };
       setChild(fields);
-    } else {
+    } else if (
+      name === "childFName" ||
+      name === "childLName" ||
+      name === "gender" ||
+      name === "birthDate"
+    ) {
       fields = {
         ...child,
         [name]: value,
@@ -47,18 +57,12 @@ const Child = ({ label, theChild }) => {
 
   const handleClick = async () => {
     if (label === "modifier") {
-      let id = theChild._id;
-      await modifierEnfant(id, { ...child })
-        .then((res) => {
-          dispatch(setChildReducer({ ...child }));
-        })
-        .catch((err) => {
-          console.log("modifierEnfant err =>", err);
-        });
+      const id = theChild._id;
+      await modifierEnfant(id, child);
     } else if (label === "ajouter un enfant") {
       await ajoutEnfant({ ...child })
         .then((res) => {
-          dispatch(setChildReducer({ ...child }));
+          dispatch(addChild({ ...child }));
         })
         .catch((err) => {
           console.log("error ajout enfant +>", err);
@@ -199,13 +203,13 @@ const Child = ({ label, theChild }) => {
                   defaultValue={theChild && theChild.integration.integrated}
                 >
                   <FormControlLabel
-                    value="true"
+                    value={true}
                     control={<Radio />}
                     label="Oui"
                     onChange={(e) => handleChange(e)}
                   />
                   <FormControlLabel
-                    value="false"
+                    value={false}
                     control={<Radio />}
                     label="Non"
                     onChange={(e) => handleChange(e)}

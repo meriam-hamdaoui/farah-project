@@ -5,6 +5,7 @@ import Child from "../forms/Child";
 const ChildCard = ({ child }) => {
   let index1 = child.birthDate.indexOf("T");
   let index2 = child.diagnosis.date.indexOf("T");
+  // console.log("integrated =>", child.integration.integrated);
   return (
     <Card>
       <div>

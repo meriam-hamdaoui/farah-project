@@ -34,5 +34,5 @@ const childSlice = createSlice({
   },
 });
 
-export const { setChildReducer } = childSlice.actions;
+export const { setChildReducer, addChild } = childSlice.actions;
 export default childSlice.reducer;
