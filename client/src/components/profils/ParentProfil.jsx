@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import Child from "../forms/Child";
 import { fetchParent, fetchChildrenByParent } from "../../api/fetchs";
 import { setAccountParent } from "../../JS/accountParent";
-import { setChild } from "../../JS/childReducer";
+import { setChildReducer } from "../../JS/childReducer";
 
 const ParentProfil = () => {
   const parent = useSelector((state) => state.accountParent);
@@ -27,7 +27,7 @@ const ParentProfil = () => {
   const getMyChildren = async () => {
     const res = await fetchChildrenByParent();
     // console.log("getMyChildren res =>", res);
-    dispatch(setChild(res.children));
+    dispatch(setChildReducer(res.children));
   };
 
   useEffect(() => {

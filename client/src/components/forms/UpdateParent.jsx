@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal, Form, Button, Row, FloatingLabel, Col } from "react-bootstrap";
 import { stateOptions } from "../constant/constant";
 import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
-import { useDispatch } from "react-redux";
-import { updateParent } from "../../JS/parentReducer";
 import { updateParentProfil } from "../../api/parent";
 
 const UpdateParent = ({ parent }) => {
@@ -54,11 +52,9 @@ const UpdateParent = ({ parent }) => {
   };
 
   //handle the save button
-  const dispatch = useDispatch();
   const handleClick = async () => {
     console.log("handle modify =>", modify);
     await updateParentProfil(id, modify);
-    // dispatch(updateParent({ id, modify }));
     handleClose();
   };
 

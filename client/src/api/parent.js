@@ -18,8 +18,26 @@ export const updateParentProfil = async (id, value) => {
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
 
-  const updatedParent = await axios.put(
-    `http://localhost:5000/farah/parent/profil/${id}`,
+  await axios.put(`http://localhost:5000/farah/parent/profil/${id}`, value, {
+    headers: { authenticate: token, role: role },
+  });
+};
+
+export const ajoutEnfant = async (value) => {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+  await axios.post(
+    "http://localhost:5000/farah/parent/profil/add-child",
+    value,
+    { headers: { authenticate: token, role: role } }
+  );
+};
+
+export const modifierEnfant = async (id, value) => {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+  await axios.put(
+    `http://localhost:5000/farah/parent/profil/children/${id}`,
     value,
     { headers: { authenticate: token, role: role } }
   );

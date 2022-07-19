@@ -25,7 +25,7 @@ const childSlice = createSlice({
   name: "child",
   initialState,
   reducers: {
-    setChild: (state, action) => {
+    setChildReducer: (state, action) => {
       return action.payload;
     },
     addChild: (state, action) => {
@@ -34,5 +34,5 @@ const childSlice = createSlice({
   },
 });
 
-export const { setChild } = childSlice.actions;
+export const { setChildReducer } = childSlice.actions;
 export default childSlice.reducer;

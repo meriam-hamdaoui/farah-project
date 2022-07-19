@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import { Modal, Button, Row, Col, Form, FloatingLabel } from "react-bootstrap";
 import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
 import { childValues } from "../constant/constant";
+import { ajoutEnfant, modifierEnfant } from "../../api/parent";
+import { setChildReducer } from "../../JS/childReducer";
+import { useDispatch } from "react-redux";
 
-const Child = ({ label }) => {
+const Child = ({ label, theChild }) => {
   let fields = { ...childValues };
   const [show, setShow] = useState(false);
   const [child, setChild] = useState({ ...fields });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  //changes of inputes
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "disorder" || name === "establishment" || name === "date") {
@@ -39,7 +43,27 @@ const Child = ({ label }) => {
     }
   };
 
-  const handleClick = () => {
+  const dispatch = useDispatch();
+
+  const handleClick = async () => {
+    if (label === "modifier") {
+      let id = theChild._id;
+      await modifierEnfant(id, { ...child })
+        .then((res) => {
+          dispatch(setChildReducer({ ...child }));
+        })
+        .catch((err) => {
+          console.log("modifierEnfant err =>", err);
+        });
+    } else if (label === "ajouter un enfant") {
+      await ajoutEnfant({ ...child })
+        .then((res) => {
+          dispatch(setChildReducer({ ...child }));
+        })
+        .catch((err) => {
+          console.log("error ajout enfant +>", err);
+        });
+    }
     handleClose();
   };
 
@@ -54,7 +78,11 @@ const Child = ({ label }) => {
           <Form>
             <Row>
               <FormLabel>Sex</FormLabel>
-              <RadioGroup row name="gender">
+              <RadioGroup
+                row
+                name="gender"
+                defaultValue={theChild && theChild.gender}
+              >
                 <FormControlLabel
                   value="garçon"
                   control={<Radio />}
@@ -79,7 +107,8 @@ const Child = ({ label }) => {
                   <Form.Control
                     required
                     type="text"
-                    name="firstName"
+                    name="childFName"
+                    defaultValue={theChild && theChild.childFName}
                     onChange={(e) => handleChange(e)}
                   />
                 </FloatingLabel>
@@ -93,7 +122,8 @@ const Child = ({ label }) => {
                   <Form.Control
                     required
                     type="text"
-                    name="firstName"
+                    name="childLName"
+                    defaultValue={theChild && theChild.childLName}
                     onChange={(e) => handleChange(e)}
                   />
                 </FloatingLabel>
@@ -109,6 +139,7 @@ const Child = ({ label }) => {
                 <Form.Control
                   type="date"
                   name="birthDate"
+                  defaultValue={theChild && theChild.birthDate}
                   onChange={(e) => handleChange(e)}
                 />
               </FloatingLabel>
@@ -124,6 +155,7 @@ const Child = ({ label }) => {
                     required
                     type="text"
                     name="disorder"
+                    defaultValue={theChild && theChild.diagnosis.disorder}
                     onChange={(e) => handleChange(e)}
                   />
                 </FloatingLabel>
@@ -138,6 +170,7 @@ const Child = ({ label }) => {
                     required
                     type="text"
                     name="establishment"
+                    defaultValue={theChild && theChild.diagnosis.establishment}
                     onChange={(e) => handleChange(e)}
                   />
                 </FloatingLabel>
@@ -152,6 +185,7 @@ const Child = ({ label }) => {
                 <Form.Control
                   type="date"
                   name="date"
+                  defaultValue={theChild && theChild.diagnosis.date}
                   onChange={(e) => handleChange(e)}
                 />
               </FloatingLabel>
@@ -159,7 +193,11 @@ const Child = ({ label }) => {
             <Row>
               <Col>
                 <FormLabel>Integration</FormLabel>
-                <RadioGroup row name="integrated">
+                <RadioGroup
+                  row
+                  name="integrated"
+                  defaultValue={theChild && theChild.integration.integrated}
+                >
                   <FormControlLabel
                     value="true"
                     control={<Radio />}
@@ -185,6 +223,7 @@ const Child = ({ label }) => {
                     required
                     type="text"
                     name="school"
+                    defaultValue={theChild && theChild.integration.school}
                     onChange={(e) => handleChange(e)}
                   />
                 </FloatingLabel>
@@ -196,7 +235,7 @@ const Child = ({ label }) => {
           <Button variant="secondary" onClick={() => handleClose()}>
             fermer
           </Button>
-          <Button onClick={handleClick} variant="primary">
+          <Button onClick={() => handleClick()} variant="primary">
             enregistrer
           </Button>
         </Modal.Footer>
