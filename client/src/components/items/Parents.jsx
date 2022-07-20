@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { Card } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllParents } from "../../api/fetchs";
@@ -20,14 +21,14 @@ const Parents = () => {
   return (
     <>
       {parents.map((parent) => (
-        <UserCard key={parent.user.id} user={parent.user}>
-          <div key={parent.id}>
+        <div key={uuidv4()}>
+          <UserCard user={parent.user}>
             <Card.Text> Etat Civil : {parent.civil} </Card.Text>
             <Card.Text> Emploi : {parent.job} </Card.Text>
             <Card.Text> Nombre de familles : {parent.familyMembers} </Card.Text>
             <Card.Text> Mes demandes : {parent.demandes} </Card.Text>
-          </div>
-        </UserCard>
+          </UserCard>
+        </div>
       ))}
     </>
   );

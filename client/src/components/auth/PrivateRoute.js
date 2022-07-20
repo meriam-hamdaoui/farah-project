@@ -1,6 +1,6 @@
 import React from "react";
 
-const PrivateRoute = ({ children, ...rest }) => {
+const PrivateRoute = ({ children }) => {
   // {component,rest} are props rest: spread the rest of the props
   const token = localStorage.getItem("token");
   // console.log("token =>", token);

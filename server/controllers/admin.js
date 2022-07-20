@@ -10,7 +10,7 @@ exports.getAdmin = async (req, res) => {
   try {
     const { role } = req.user;
     // console.log("category =>", category);
-    console.log(("role =>", role));
+    // console.log(("role =>", role));
     if (role === 0) {
       return res.status(200).json(req.user);
     }

@@ -10,30 +10,28 @@ const Admin = (props) => {
   const { children } = props;
 
   const theAdmin = useSelector((state) => state.admin);
-  console.log("theAdmin => ", theAdmin);
+  // console.log("theAdmin => ", theAdmin);
   const dispatch = useDispatch();
 
   const getAdmin = async () => {
     const res = await fetchAdmin();
-    console.log("getAdmin front =>", res);
-    dispatch(setAdmin(res.admin));
+    // console.log("getAdmin front =>", res);
+    dispatch(setAdmin(res));
   };
 
   useEffect(() => {
     getAdmin();
-  }, [theAdmin]);
+  }, []);
 
   return (
     <div>
       <div>
-        {theAdmin.map((el) => (
-          <Card key={uuidv4()}>
-            <Card.Title>
-              {el.firstName} {el.lastName}
-            </Card.Title>
-            <Card.Title>{el.email} </Card.Title>
-          </Card>
-        ))}
+        <Card>
+          <Card.Title>
+            {theAdmin.firstName} {theAdmin.lastName}
+          </Card.Title>
+          <Card.Title>{theAdmin.email} </Card.Title>
+        </Card>
       </div>
       <div>
         <Nav style={{ display: "flex", justifyContent: "space-around" }}>

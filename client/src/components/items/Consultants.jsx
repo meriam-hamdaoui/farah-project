@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { Card } from "react-bootstrap";
 import UserCard from "../profils/UserCard";
 import { fetchAllConsultants } from "../../api/fetchs";
@@ -21,8 +22,8 @@ const Consultants = () => {
   return (
     <>
       {consultants.map((consultant) => (
-        <UserCard key={consultant.user.id} user={consultant.user}>
-          <div key={consultant.id}>
+        <div key={uuidv4()}>
+          <UserCard user={consultant.user}>
             <Card.Text> gender : {consultant.gender}</Card.Text>
             <Card.Text> domaine : {consultant.domain}</Card.Text>
             <Card.Text>
@@ -35,8 +36,8 @@ const Consultants = () => {
               Date de diplome : {consultant.educations.graduation}
             </Card.Text>
             <Card.Text> offre : {consultant.offres} </Card.Text>
-          </div>
-        </UserCard>
+          </UserCard>
+        </div>
       ))}
     </>
   );

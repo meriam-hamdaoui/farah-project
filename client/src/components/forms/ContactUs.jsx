@@ -44,7 +44,7 @@ const ContactUs = () => {
           <Form.Control as="textarea" rows={20} />
         </FloatingLabel>
       </Form.Group>
-      <Button type="submit">Envoyer</Button>
+      <Button type="button">Envoyer</Button>
     </Form>
   );
 };

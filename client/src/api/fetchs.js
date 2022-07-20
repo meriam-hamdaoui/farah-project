@@ -31,6 +31,7 @@ export const fetchConsultant = async () => {
 export const fetchAdmin = async () => {
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
+
   const { data } = await axios.get("http://localhost:5000/farah/dashboard", {
     headers: { authenticate: token, role: role },
   });
@@ -48,24 +49,41 @@ export const fetchChildrenByParent = async () => {
   return data;
 };
 
-//mapage
+//mapage dashboard
 export const fetchChildren = async () => {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
   const { data } = await axios.get(
-    "http://localhost:5000/farah/dashboard/children"
+    "http://localhost:5000/farah/dashboard/children",
+    {
+      headers: { authenticate: token, role: role },
+    }
   );
   return data;
 };
 
 export const fetchAllParents = async () => {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+
   const { data } = await axios.get(
-    "http://localhost:5000/farah/dashboard/parents"
+    "http://localhost:5000/farah/dashboard/parents",
+    {
+      headers: { authenticate: token, role: role },
+    }
   );
   return data;
 };
 
 export const fetchAllConsultants = async () => {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+
   const { data } = await axios.get(
-    "http://localhost:5000/farah/dashboard/consultants"
+    "http://localhost:5000/farah/dashboard/consultants",
+    {
+      headers: { authenticate: token, role: role },
+    }
   );
   return data;
 };
