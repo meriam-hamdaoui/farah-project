@@ -4,6 +4,8 @@ const User = require("../models/user");
 const Parent = require("../models/parent");
 const Child = require("../models/child");
 
+let bcrypt = require("bcryptjs");
+
 exports.updateParent = async (req, res) => {
   try {
     //get the profil id from the req param
@@ -11,8 +13,19 @@ exports.updateParent = async (req, res) => {
     // console.log("updateProfile id =>", id);
     const userId = Schema.Types.ObjectId(id);
     const { user, ...rest } = req.body;
+
+    const { password } = user;
+
+    const saltRound = 8;
+    const salt = bcrypt.genSaltSync(saltRound);
+    //hash the password
+    const hash = bcrypt.hashSync(password, salt);
+
+    req.body.user.password = hash;
+    req.body.user.passwordConfirm = hash;
+
     const updateUser = await User.findByIdAndUpdate(id, {
-      $set: { ...user },
+      $set: { ...req.body.user },
     });
     // console.log("updateUser =>", updateUser);
     const updateParent = await Parent.findOneAndUpdate(

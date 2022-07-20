@@ -6,7 +6,6 @@ const Child = require("../models/child");
 const Ad = require("../models/ads");
 
 let bcrypt = require("bcryptjs");
-let jwt = require("jsonwebtoken");
 
 exports.getAdmin = async (req, res) => {
   // console.log("getAdmin req =>", req.user);
