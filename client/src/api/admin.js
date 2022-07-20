@@ -34,3 +34,21 @@ export const removeConsultantDB = async (id) => {
     }
   );
 };
+
+export const publierAd = async (value) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+  const annonces = await axios.post(
+    "http://localhost:5000/farah/dashboard/ads/create",
+    value,
+    { headers: { authenticate: token, role: role } },
+    config
+  );
+
+  return annonces;
+};

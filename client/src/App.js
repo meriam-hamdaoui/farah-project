@@ -20,7 +20,7 @@ import Admin from "./components/profils/Admin";
 import Children from "./components/items/Children";
 import Parents from "./components/items/Parents";
 import Consultants from "./components/items/Consultants";
-import Ad from "./components/items/Ad";
+import Publicities from "./components/items/Publicities";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -123,16 +123,16 @@ function App() {
                 </PrivateRoute>
               }
             />
-            {/* <Route
+            <Route
               path="/dashboard/ads"
               element={
                 <PrivateRoute>
                   <Admin>
-                    <Ad />
+                    <Publicities />
                   </Admin>
                 </PrivateRoute>
               }
-            /> */}
+            />
 
             {/* parent profil */}
             <Route
