@@ -50,7 +50,7 @@ const Login = () => {
         values
       );
       // console.log("response from login=>", response);
-      localStorage.setItem("token", res.data.token);
+      const token = localStorage.setItem("token", res.data.token);
       const { role } = res.data.exists;
       localStorage.setItem("role", role);
       setTimeout(() => {

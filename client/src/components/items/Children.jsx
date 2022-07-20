@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchChildren } from "../../api/fetchs";
-import { setChild } from "../../JS/childReducer";
+import { setChildReducer } from "../../JS/childReducer";
 import { Card } from "react-bootstrap";
 
 const Children = () => {
@@ -10,7 +10,7 @@ const Children = () => {
 
   const getChildren = async () => {
     const data = await fetchChildren();
-    dispatch(setChild(data));
+    dispatch(setChildReducer(data));
   };
 
   useEffect(() => {

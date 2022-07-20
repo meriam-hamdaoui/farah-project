@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
 import { Nav, Card } from "react-bootstrap";
 import { NavLink, Outlet } from "react-router-dom";
@@ -9,11 +10,13 @@ const Admin = (props) => {
   const { children } = props;
 
   const theAdmin = useSelector((state) => state.admin);
+  console.log("theAdmin => ", theAdmin);
   const dispatch = useDispatch();
 
   const getAdmin = async () => {
     const res = await fetchAdmin();
-    dispatch(setAdmin(res));
+    console.log("getAdmin front =>", res);
+    dispatch(setAdmin(res.admin));
   };
 
   useEffect(() => {
@@ -23,12 +26,14 @@ const Admin = (props) => {
   return (
     <div>
       <div>
-        <Card>
-          <Card.Title>
-            {theAdmin.firstName} {theAdmin.lastName}
-          </Card.Title>
-          <Card.Title>{theAdmin.email} </Card.Title>
-        </Card>
+        {theAdmin.map((el) => (
+          <Card key={uuidv4()}>
+            <Card.Title>
+              {el.firstName} {el.lastName}
+            </Card.Title>
+            <Card.Title>{el.email} </Card.Title>
+          </Card>
+        ))}
       </div>
       <div>
         <Nav style={{ display: "flex", justifyContent: "space-around" }}>

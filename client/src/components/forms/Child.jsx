@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 
 const Child = ({ label, theChild }) => {
   let fields = { ...childValues };
+  console.log("first fields =>", fields);
   const [show, setShow] = useState(false);
   const [child, setChild] = useState({ ...fields });
   const handleClose = () => setShow(false);
@@ -51,6 +52,8 @@ const Child = ({ label, theChild }) => {
       };
       setChild(fields);
     }
+
+    console.log("second fields =>", fields);
   };
 
   const dispatch = useDispatch();
@@ -58,6 +61,7 @@ const Child = ({ label, theChild }) => {
   const handleClick = async () => {
     if (label === "modifier") {
       const id = theChild._id;
+      console.log("handleClick child =>", child);
       await modifierEnfant(id, child);
     } else if (label === "ajouter un enfant") {
       await ajoutEnfant({ ...child })

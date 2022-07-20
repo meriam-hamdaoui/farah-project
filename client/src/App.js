@@ -14,8 +14,10 @@ import Login from "./components/auth/Login";
 import Parent from "./components/auth/Parent";
 import Consultant from "./components/auth/Consultant";
 import ParentProfil from "./components/profils/ParentProfil";
-// import PrivateRoute from "./components/auth/PrivateRoute";
+import PrivateRoute from "./components/auth/PrivateRoute";
 import Child from "./components/forms/Child";
+import Admin from "./components/profils/Admin";
+import Children from "./components/items/Children";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -69,14 +71,38 @@ function App() {
               }
             />
             {/* privater routes */}
-            <Route path="/parent/profil" element={<ParentProfil />} />
-            <Route path="/parent/profil/children" element={<ParentProfil />} />
+            {/* admin dashbord */}
             <Route
-              path="/parent/profil/add-child"
+              path="/dashboard"
               element={
-                <ParentProfil>
-                  <Child />
-                </ParentProfil>
+                <PrivateRoute>
+                  <Admin />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/dashboard/children"
+              element={
+                <PrivateRoute>
+                  <Admin>
+                    <Children />
+                  </Admin>
+                </PrivateRoute>
+              }
+            />
+
+            <Route path="" />
+
+            {/* parent profil */}
+            <Route
+              path="/parent/profil"
+              element={
+                <PrivateRoute>
+                  <ParentProfil>
+                    <Child />
+                  </ParentProfil>
+                </PrivateRoute>
               }
             />
           </Routes>

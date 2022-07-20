@@ -6,8 +6,11 @@ const Child = require("../models/child");
 const Ad = require("../models/ads");
 
 exports.getAdmin = async (req, res) => {
+  // console.log("getAdmin req =>", req.user);
   try {
-    const role = req.user;
+    const { role } = req.user;
+    // console.log("category =>", category);
+    console.log(("role =>", role));
     if (role === 0) {
       return res.status(200).json(req.user);
     }

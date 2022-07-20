@@ -1,10 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
-const initialState = {
-  firstName: "Mareim",
-  lastName: "Hamdaoui",
-  email: "meriam.hamdaoui@gmail.com",
-};
+const initialState = [
+  {
+    id: uuidv4(),
+    firstName: "Maya",
+    lastName: "Mayouch",
+    email: "meriam.hamdaoui@gmail.com",
+    password: "",
+    confirmPassword: "",
+  },
+];
 const adminSlice = createSlice({
   name: "admin",
   initialState,
