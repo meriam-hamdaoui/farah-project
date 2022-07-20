@@ -6,11 +6,11 @@ import Publicity from "../forms/Publicity";
 import Ad from "../items/Ad";
 import { fetchAds } from "../../api/fetchs";
 import { setAds, addAdsReducer } from "../../JS/adReducer";
-import { publierAd } from "../../api/admin";
+import { publierAd, editAd } from "../../api/admin";
 
 const Publicities = () => {
   const adsFromReducer = useSelector((state) => state.ad);
-  console.log("adsFromReducer =>", adsFromReducer);
+  // console.log("adsFromReducer =>", adsFromReducer);
   const dispatch = useDispatch();
 
   const [pub, setPub] = useState({
@@ -30,16 +30,16 @@ const Publicities = () => {
   };
 
   const publier = async () => {
-    console.log("publier pub =>", pub);
+    // console.log("publier pub =>", pub);
     await publierAd(pub);
     dispatch(addAdsReducer(pub));
   };
 
+  //mapage
   const getAllAds = async () => {
     const data = await fetchAds();
     dispatch(setAds(data));
   };
-
   useEffect(() => {
     getAllAds();
   }, []);

@@ -52,3 +52,11 @@ export const publierAd = async (value) => {
 
   return annonces;
 };
+
+export const editAd = async (id, value) => {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+  await axios.put(`http://localhost:5000/farah/dashboard/ads/${id}`, value, {
+    headers: { authenticate: token, role: role },
+  });
+};
