@@ -24,7 +24,7 @@ const Home = () => {
 
   useEffect(() => {
     getAllAds();
-  }, [adsFromReducer]);
+  }, []);
 
   return (
     <Container>

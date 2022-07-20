@@ -11,8 +11,7 @@ const NavBar = () => {
   // console.log("role from navbar =>", typeof role);
 
   const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
+    localStorage.clear();
     navigate("/", { replace: true });
   };
 
