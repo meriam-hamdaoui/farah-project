@@ -13,3 +13,13 @@ export const postConsultant = async (value) => {
   );
   return response;
 };
+
+export const updateConsultantProfil = async (id, value) => {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+  await axios.put(
+    `http://localhost:5000/farah/consultant/profil/${id}`,
+    value,
+    { headers: { authenticate: token, role: role } }
+  );
+};

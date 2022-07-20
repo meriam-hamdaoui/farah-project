@@ -53,7 +53,7 @@ const UpdateParent = ({ parent }) => {
 
   //handle the save button
   const handleClick = async () => {
-    console.log("handle modify =>", modify);
+    // console.log("handle modify =>", modify);
     await updateParentProfil(id, modify);
     handleClose();
   };

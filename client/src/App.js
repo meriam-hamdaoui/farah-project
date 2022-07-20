@@ -14,6 +14,7 @@ import Login from "./components/auth/Login";
 import Parent from "./components/auth/Parent";
 import Consultant from "./components/auth/Consultant";
 import ParentProfil from "./components/profils/ParentProfil";
+import ConsultantProfil from "./components/profils/ConsultantProfil";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import Child from "./components/forms/Child";
 import Admin from "./components/profils/Admin";
@@ -50,36 +51,34 @@ function App() {
             {/* <Route path="events" element={<Events />} /> */}
             <Route path="contacts" element={<Contacts />} />
             {/* forms routes */}
-            {!token && (
-              <Route
-                path="sign-in"
-                element={
-                  <Authentication label={"se connecter"}>
-                    <Login />
-                  </Authentication>
-                }
-              />
-            )}
-            {!token && (
-              <Route
-                path="sign-up/parent"
-                element={
-                  <Signup>
-                    <Parent />
-                  </Signup>
-                }
-              />
-            )}
-            {!token && (
-              <Route
-                path="sign-up/consultant"
-                element={
-                  <Signup>
-                    <Consultant />
-                  </Signup>
-                }
-              />
-            )}
+
+            <Route
+              path="sign-in"
+              element={
+                <Authentication label={"se connecter"}>
+                  <Login />
+                </Authentication>
+              }
+            />
+
+            <Route
+              path="sign-up/parent"
+              element={
+                <Signup>
+                  <Parent />
+                </Signup>
+              }
+            />
+
+            <Route
+              path="sign-up/consultant"
+              element={
+                <Signup>
+                  <Consultant />
+                </Signup>
+              }
+            />
+
             {/* privater routes */}
             {/* admin dashbord */}
             <Route
@@ -142,6 +141,16 @@ function App() {
                   <ParentProfil>
                     <Child />
                   </ParentProfil>
+                </PrivateRoute>
+              }
+            />
+
+            {/* consultant profil */}
+            <Route
+              path="/consultant/profil"
+              element={
+                <PrivateRoute>
+                  <ConsultantProfil />
                 </PrivateRoute>
               }
             />

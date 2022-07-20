@@ -69,7 +69,7 @@ const Parent = () => {
     // console.log("test => ", test);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -77,7 +77,7 @@ const Parent = () => {
     }
     setValidated(true);
 
-    postParent({ ...parent })
+    await postParent({ ...parent })
       .then((res) => {
         // console.log("postParent res =>", res);
         setParent({ ...parentValues });
@@ -197,7 +197,11 @@ const Parent = () => {
             </Button>
           </Col>
           <Col>
-            <Button variant="primary" onClick={(e) => handleSubmit(e)}>
+            <Button
+              type="button"
+              variant="primary"
+              onClick={(e) => handleSubmit(e)}
+            >
               Submit
             </Button>
           </Col>

@@ -81,15 +81,17 @@ const Consultant = () => {
       event.stopPropagation();
     }
     setValidated(true);
-    dispatch(signConsultant({ ...consultant }));
-    postConsultant({ ...consultant })
+    await postConsultant({ ...consultant })
       .then((res) => {
         // console.log("postConsultant res=> ", res);
-        return alert("success");
+        dispatch(signConsultant({ ...consultant }));
+        alert("success");
+        navigate("/sign-in", { replace: true });
+        return;
       })
       .then((err) => {
         console.error("postConsultant error=>", err);
-        return alert("false");
+        alert("false");
       });
 
     // add postConsultant
@@ -203,6 +205,25 @@ const Consultant = () => {
               </Form.Control.Feedback>
             </FloatingLabel>
           </Row>
+          <Row>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Comment pouvez-vous nous aider? </Form.Label>
+              <Form.Control
+                required
+                as="textarea"
+                rows={3}
+                name="demandes"
+                // value={parent.demandes}
+                onChange={handleChange}
+              />
+              <Form.Control.Feedback type="invalid">
+                required.
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Row>
         </User>
         <Row>
           <Col>
@@ -214,7 +235,11 @@ const Consultant = () => {
             </Button>
           </Col>
           <Col>
-            <Button variant="primary" onClick={(e) => handleSubmit(e)}>
+            <Button
+              variant="primary"
+              type="button"
+              onClick={(e) => handleSubmit(e)}
+            >
               Submit
             </Button>
           </Col>

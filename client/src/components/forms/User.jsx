@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Form, FloatingLabel } from "react-bootstrap";
+import { Row, Col, Form, FloatingLabel, NavLink } from "react-bootstrap";
 import { stateOptions } from "../constant/constant";
 import { Radio, RadioGroup, FormControlLabel, FormLabel } from "@mui/material/";
 
@@ -214,11 +214,12 @@ const User = (props) => {
           required
           name="agrement"
           value="agreed"
-          label="Accepter les terms et les conditions"
+          label="Accepter les terms et "
           feedback="You must agree before submitting."
           feedbackType="invalid"
           onChange={handleChange}
         />
+        <a>les conditions</a>
       </Form.Group>
     </>
   );

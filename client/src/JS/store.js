@@ -5,6 +5,7 @@ import adminSlice from "./adminReducer";
 import adSlice from "./adReducer";
 import childSlice from "./childReducer";
 import accountParSlice from "./accountParent";
+import accountConsultantSlice from "./accountConsultant";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     ad: adSlice,
     child: childSlice,
     accountParent: accountParSlice,
+    accountConsultant: accountConsultantSlice,
   },
 });
 export default store;
