@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchAllParents } from "../../api/fetchs";
 import { setParent } from "../../JS/parentReducer";
 import UserCard from "../profils/UserCard";
+import { removeParentDB } from "../../api/admin";
 
 const Parents = () => {
   const parents = useSelector((state) => state.parent);
@@ -14,9 +15,10 @@ const Parents = () => {
     const data = await fetchAllParents();
     dispatch(setParent(data));
   };
+
   useEffect(() => {
     getParents();
-  }, [parents]);
+  }, []);
 
   return (
     <>

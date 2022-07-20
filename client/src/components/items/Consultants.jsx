@@ -17,7 +17,7 @@ const Consultants = () => {
 
   useEffect(() => {
     getConsultants();
-  }, [consultants]);
+  }, []);
 
   return (
     <>

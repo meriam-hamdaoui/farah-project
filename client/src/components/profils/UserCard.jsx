@@ -2,17 +2,27 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import "./Profil.css";
+import {
+  removeUserDB,
+  removeParentDB,
+  removeConsultantDB,
+} from "../../api/admin";
 
 const UserCard = ({ user, children }) => {
+  // console.log("user_card user =>", user.category);
   const currentLocation = useLocation().pathname;
   // console.log("currentLocation =>", currentLocation);
+
+  const removeUser = async (id) => {
+    await removeUserDB(id);
+  };
 
   return (
     <Card className="user_card">
       <div>
         {(currentLocation === "/dashboard/parents" ||
           currentLocation === "/dashboard/consultants") && (
-          <button>delete</button>
+          <button onClick={() => removeUser(user._id)}>delete</button>
         )}
       </div>
 

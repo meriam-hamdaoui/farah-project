@@ -7,3 +7,30 @@ export const removeChildDB = async (id) => {
     headers: { authenticate: token, role: role },
   });
 };
+
+export const removeUserDB = async (id) => {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+  await axios.delete(`http://localhost:5000/farah/dashboard/users/${id}`, {
+    headers: { authenticate: token, role: role },
+  });
+};
+
+export const removeParentDB = async (id) => {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+  await axios.delete(`http://localhost:5000/farah/dashboard/parents/${id}`, {
+    headers: { authenticate: token, role: role },
+  });
+};
+
+export const removeConsultantDB = async (id) => {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+  await axios.delete(
+    `http://localhost:5000/farah/dashboard/consultants/${id}`,
+    {
+      headers: { authenticate: token, role: role },
+    }
+  );
+};

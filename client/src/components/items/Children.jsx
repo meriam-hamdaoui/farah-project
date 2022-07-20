@@ -17,7 +17,7 @@ const Children = () => {
 
   const removeChild = async (id) => {
     await removeChildDB(id);
-    getChildren();
+    // getChildren();
   };
 
   useEffect(() => {
