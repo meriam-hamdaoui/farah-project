@@ -1,6 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-
+import { Link, useNavigate, NavLink } from "react-router-dom";
 import { Nav, Navbar, Container, Button } from "react-bootstrap";
 
 const NavBar = () => {
@@ -41,9 +40,22 @@ const NavBar = () => {
             height="35"
             className="d-inline align-top"
           />
-          Association Farah des Enfants Autistes et à Difficultés
-          d'apprentissage
+          {token && Number(role) === 0 ? (
+            <Nav className="nav-admin">
+              <NavLink to="/dashboard">dashboard</NavLink>
+              <NavLink to="/dashboard/children">enfants</NavLink>
+              <NavLink to="/dashboard/parents">parents</NavLink>
+              <NavLink to="/dashboard/consultants">consultants</NavLink>
+              <NavLink to="/dashboard/ads">annonces</NavLink>
+            </Nav>
+          ) : (
+            <span>
+              Association Farah des Enfants Autistes et à Difficultés
+              d'apprentissage
+            </span>
+          )}
         </Navbar.Collapse>
+
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           {token ? (

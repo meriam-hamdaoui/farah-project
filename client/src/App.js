@@ -20,9 +20,11 @@ import Admin from "./components/profils/Admin";
 import Children from "./components/items/Children";
 import Parents from "./components/items/Parents";
 import Consultants from "./components/items/Consultants";
+import Ad from "./components/items/Ad";
 
 function App() {
   const [show, setShow] = useState(false);
+  const token = localStorage.getItem("token");
 
   return (
     <div className="App">
@@ -48,30 +50,36 @@ function App() {
             {/* <Route path="events" element={<Events />} /> */}
             <Route path="contacts" element={<Contacts />} />
             {/* forms routes */}
-            <Route
-              path="sign-in"
-              element={
-                <Authentication label={"se connecter"}>
-                  <Login />
-                </Authentication>
-              }
-            />
-            <Route
-              path="sign-up/parent"
-              element={
-                <Signup>
-                  <Parent />
-                </Signup>
-              }
-            />
-            <Route
-              path="sign-up/consultant"
-              element={
-                <Signup>
-                  <Consultant />
-                </Signup>
-              }
-            />
+            {!token && (
+              <Route
+                path="sign-in"
+                element={
+                  <Authentication label={"se connecter"}>
+                    <Login />
+                  </Authentication>
+                }
+              />
+            )}
+            {!token && (
+              <Route
+                path="sign-up/parent"
+                element={
+                  <Signup>
+                    <Parent />
+                  </Signup>
+                }
+              />
+            )}
+            {!token && (
+              <Route
+                path="sign-up/consultant"
+                element={
+                  <Signup>
+                    <Consultant />
+                  </Signup>
+                }
+              />
+            )}
             {/* privater routes */}
             {/* admin dashbord */}
             <Route
@@ -115,6 +123,16 @@ function App() {
                 </PrivateRoute>
               }
             />
+            {/* <Route
+              path="/dashboard/ads"
+              element={
+                <PrivateRoute>
+                  <Admin>
+                    <Ad />
+                  </Admin>
+                </PrivateRoute>
+              }
+            /> */}
 
             {/* parent profil */}
             <Route

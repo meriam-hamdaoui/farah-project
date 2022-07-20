@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
-import { Nav, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { NavLink, Outlet } from "react-router-dom";
 import { fetchAdmin } from "../../api/fetchs";
 import { setAdmin } from "../../JS/adminReducer";
@@ -25,22 +25,26 @@ const Admin = (props) => {
 
   return (
     <div>
-      <div>
-        <Card>
-          <Card.Title>
+      <Container>
+        <Row>
+          <Col> {theAdmin.email} </Col>
+          <Col>
             {theAdmin.firstName} {theAdmin.lastName}
-          </Card.Title>
-          <Card.Title>{theAdmin.email} </Card.Title>
-        </Card>
-      </div>
-      <div>
+          </Col>
+          <Col>
+            <Button>Mot de passe</Button>
+          </Col>
+        </Row>
+      </Container>
+
+      {/* <div>
         <Nav style={{ display: "flex", justifyContent: "space-around" }}>
           <NavLink to="/dashboard">dashboard</NavLink>
           <NavLink to="/dashboard/children">enfants</NavLink>
           <NavLink to="/dashboard/parents">parents</NavLink>
           <NavLink to="/dashboard/consultants">consultants</NavLink>
         </Nav>
-      </div>
+      </div> */}
       <div>
         <Outlet />
         <div>{children}</div>
