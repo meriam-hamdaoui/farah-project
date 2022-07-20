@@ -5,6 +5,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { NavLink, Outlet } from "react-router-dom";
 import { fetchAdmin } from "../../api/fetchs";
 import { setAdmin } from "../../JS/adminReducer";
+import UpdateAdmin from "../forms/UpdateAdmin";
 
 const Admin = (props) => {
   const { children } = props;
@@ -32,7 +33,7 @@ const Admin = (props) => {
             {theAdmin.firstName} {theAdmin.lastName}
           </Col>
           <Col>
-            <Button>Mot de passe</Button>
+            <UpdateAdmin />
           </Col>
         </Row>
       </Container>

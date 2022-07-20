@@ -5,6 +5,9 @@ const Consultant = require("../models/consultant");
 const Child = require("../models/child");
 const Ad = require("../models/ads");
 
+let bcrypt = require("bcryptjs");
+let jwt = require("jsonwebtoken");
+
 exports.getAdmin = async (req, res) => {
   // console.log("getAdmin req =>", req.user);
   try {
@@ -25,6 +28,16 @@ exports.updateAdmin = async (req, res) => {
   try {
     const { id } = req.user._id;
     const myId = Schema.Types.ObjectId(id);
+
+    let { password } = req.body;
+
+    const saltRound = 8;
+    const salt = bcrypt.genSaltSync(saltRound);
+    //hash the password
+    const hash = bcrypt.hashSync(password, salt);
+
+    req.body.password = hash;
+    req.body.passwordConfirm = hash;
 
     // const admin = await User.findById(me);
     // console.log("the admin =>", admin);

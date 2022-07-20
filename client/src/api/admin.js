@@ -76,3 +76,16 @@ export const removeAd = async (id) => {
       headers: { authenticate: token, role: role },
     });
 };
+
+export const editAdmin = async (value) => {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+  Number(role) === 0 &&
+    (await axios.put(
+      `http://localhost:5000/farah/dashboard/admin`,
+      value,
+      {
+        headers: { authenticate: token, role: role },
+      }
+    ));
+};
