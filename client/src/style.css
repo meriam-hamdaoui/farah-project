@@ -96,6 +96,44 @@ span {
   /* border: 1px solid red; */
   width: 150vh;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
+  margin: auto;
+}
+.btn-icons {
+  border: 0;
+  background: transparent;
+  color: black;
+}
+.btn-icons:hover {
+  border: 0;
+  background: transparent;
+  color: #f7a715;
+}
+.btn-icons {
+  border: 0;
+  background: transparent;
+  color: #f7a715;
+}
+.logout {
+  border: 0;
+  background: transparent;
+  color: #b50507;
+}
+.logout:hover {
+  border: 0;
+  background: transparent;
+  color: #f7a715;
+}
+.btn-active {
+  border: 0;
+  background: transparent;
+  color: black;
+}
+.association-farah {
+  font-family: "Edu VIC WA NT Beginner", cursive;
+  /* border: 1px solid red; */
+}
+.logo {
+  border: 50%;
 }
