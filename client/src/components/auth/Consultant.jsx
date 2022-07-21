@@ -74,22 +74,22 @@ const Consultant = () => {
     console.log("test => ", test);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
     setValidated(true);
-    await postConsultant({ ...consultant })
-      .then((res) => {
-        // console.log("postConsultant res=> ", res);
+
+    postConsultant({ ...consultant })
+      .then((response) => {
+        console.log("postConsultant res=> ", response);
         dispatch(signConsultant({ ...consultant }));
         alert("success");
         navigate("/sign-in", { replace: true });
-        return;
       })
-      .then((err) => {
+      .catch((err) => {
         console.error("postConsultant error=>", err);
         alert("false");
       });
@@ -215,8 +215,7 @@ const Consultant = () => {
                 required
                 as="textarea"
                 rows={3}
-                name="demandes"
-                // value={parent.demandes}
+                name="offers"
                 onChange={handleChange}
               />
               <Form.Control.Feedback type="invalid">

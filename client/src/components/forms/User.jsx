@@ -128,7 +128,7 @@ const User = (props) => {
             required
             type="phone"
             name="phone"
-            // value={user.phone}
+            min="8"
             onChange={handleChange}
           />
           <Form.Control.Feedback type="invalid">
